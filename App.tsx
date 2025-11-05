@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, createContext, useCallback } from 'react';
 import type { User } from './types';
 import { UserRole } from './types';
@@ -6,6 +7,7 @@ import LandingScreen from './screens/LandingScreen';
 import BorrowerDashboard from './screens/BorrowerDashboard';
 import AgentDashboard from './screens/AgentDashboard';
 import ComingSoonScreen from './screens/ComingSoonScreen';
+import AboutUsScreen from './screens/AboutUsScreen';
 
 interface AuthContextType {
   user: User | null;
@@ -58,15 +60,15 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="py-3 bg-gray-50">
+            <header className="relative z-30 py-3 bg-gray-50">
                  <div className="container mx-auto px-6">
-                    <div className="bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-6 py-2 flex justify-between items-center">
+                    <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center space-x-2">
                             <LogoIcon className="h-8 w-8" />
                             <span className="text-xl font-bold text-secondary">Offer Me Loan</span>
                         </a>
                         
-                        <nav className="hidden lg:flex items-center space-x-2">
+                        <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-4 py-2">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
@@ -74,7 +76,7 @@ const Header: React.FC = () => {
                                     Loan Categories
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </a>
-                                <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 py-2 w-56 z-50 border border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="absolute opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 bg-white shadow-lg rounded-md mt-2 py-2 w-56 z-50 border border-gray-100">
                                     {loanCategories.map(category => (
                                         <a 
                                             key={category.title}
@@ -88,7 +90,7 @@ const Header: React.FC = () => {
                             </div>
                             
                             <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
-                            <a href={`${linkPrefix}#testimonials`} className={navLinkClasses}>Testimonials</a>
+                            <a href="/about-us" className={navLinkClasses}>About Us</a>
                             <a href={`${linkPrefix}#contact-us`} className={navLinkClasses}>Contact Us</a>
                         </nav>
 
@@ -203,6 +205,10 @@ function AppContent() {
     
     if (window.location.pathname === '/coming-soon') {
         return <ComingSoonScreen />;
+    }
+
+    if (window.location.pathname === '/about-us') {
+        return <AboutUsScreen />;
     }
 
     if (!user) {

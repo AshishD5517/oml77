@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import type { LoanRequest } from '../types';
 import { LoanStatus } from '../types';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import ContactUsSection from '../components/ContactUsSection';
+import MakeOfferModal from '../components/MakeOfferModal';
 
 
 const mockLoanRequests: LoanRequest[] = [
@@ -37,7 +39,7 @@ const StatCard: React.FC<{ title: string; value: string; icon: React.ReactNode; 
 );
 
 
-const LoanRequestCard: React.FC<{ request: LoanRequest }> = ({ request }) => (
+const LoanRequestCard: React.FC<{ request: LoanRequest; onMakeOffer: () => void; hasOffered: boolean; }> = ({ request, onMakeOffer, hasOffered }) => (
     <div className="bg-white p-6 rounded-lg border border-gray-200 hover:shadow-xl hover:border-primary transition-all duration-300 flex flex-col">
         <div className="flex justify-between items-start mb-4">
             <div>
@@ -61,9 +63,80 @@ const LoanRequestCard: React.FC<{ request: LoanRequest }> = ({ request }) => (
             </div>
         </div>
         <div className="mt-auto">
-            <button className="w-full py-3 bg-accent text-secondary font-bold rounded-lg hover:opacity-90 transition-opacity transform hover:scale-105">
-                Make an Offer
+            <button 
+                onClick={onMakeOffer}
+                disabled={hasOffered}
+                className={`w-full py-3 font-bold rounded-lg transition-all transform hover:scale-105 ${
+                    hasOffered 
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                        : 'bg-accent text-secondary hover:opacity-90'
+                }`}
+            >
+                {hasOffered ? 'Offer Sent' : 'Make an Offer'}
             </button>
+        </div>
+    </div>
+);
+
+// --- SKELETON COMPONENTS ---
+const StatCardSkeleton: React.FC = () => (
+    <div className="bg-white p-4 rounded-xl shadow-md flex items-center space-x-4 animate-pulse">
+        <div className="h-12 w-12 rounded-full bg-gray-300"></div>
+        <div className="flex-1 space-y-2">
+            <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+            <div className="h-5 bg-gray-300 rounded w-1/2"></div>
+        </div>
+    </div>
+);
+
+const LoanRequestCardSkeleton: React.FC = () => (
+    <div className="bg-white p-6 rounded-lg border border-gray-200 flex flex-col animate-pulse">
+        <div className="flex justify-between items-start mb-4">
+            <div className="space-y-2">
+                <div className="h-6 bg-gray-300 rounded w-32"></div>
+                <div className="h-4 bg-gray-300 rounded w-48"></div>
+            </div>
+             <div className="h-8 w-20 bg-gray-300 rounded-full"></div>
+        </div>
+        <div className="border-t border-gray-100 my-4"></div>
+        <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="h-5 bg-gray-300 rounded w-full"></div>
+            <div className="h-5 bg-gray-300 rounded w-full"></div>
+        </div>
+        <div className="mt-auto">
+            <div className="w-full h-12 bg-gray-300 rounded-lg"></div>
+        </div>
+    </div>
+);
+
+const AgentDashboardSkeleton: React.FC = () => (
+    <div className="container mx-auto px-6 py-8">
+        <div className="h-9 bg-gray-300 rounded w-1/3 mb-8 animate-pulse"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+                <div className="flex justify-between items-center mb-4">
+                    <div className="h-6 bg-gray-300 rounded w-1/2 animate-pulse"></div>
+                    <div className="h-10 bg-gray-300 rounded-lg w-40 animate-pulse"></div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                    <LoanRequestCardSkeleton />
+                    <LoanRequestCardSkeleton />
+                    <LoanRequestCardSkeleton />
+                    <LoanRequestCardSkeleton />
+                </div>
+            </div>
+            <div className="space-y-8">
+                <div className="space-y-4">
+                    <div className="h-5 bg-gray-300 rounded w-1/3 mb-4 animate-pulse"></div>
+                    <StatCardSkeleton />
+                    <StatCardSkeleton />
+                    <StatCardSkeleton />
+                </div>
+                <div className="bg-white p-6 rounded-xl shadow-md animate-pulse">
+                    <div className="h-5 bg-gray-300 rounded w-1/2 mb-4"></div>
+                    <div className="h-64 w-64 bg-gray-300 rounded-full mx-auto"></div>
+                </div>
+            </div>
         </div>
     </div>
 );
@@ -71,9 +144,44 @@ const LoanRequestCard: React.FC<{ request: LoanRequest }> = ({ request }) => (
 
 const AgentDashboard: React.FC = () => {
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
+    const [selectedLoan, setSelectedLoan] = useState<LoanRequest | null>(null);
+    const [offeredRequestIds, setOfferedRequestIds] = useState<string[]>([]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleOpenOfferModal = (request: LoanRequest) => {
+        setSelectedLoan(request);
+        setIsOfferModalOpen(true);
+    };
+
+    const handleCloseOfferModal = () => {
+        setIsOfferModalOpen(false);
+        setSelectedLoan(null);
+    };
+
+    const handleOfferSubmit = (loanId: string) => {
+        setOfferedRequestIds(prev => [...prev, loanId]);
+        handleCloseOfferModal();
+    };
+
+    if (isLoading) {
+        return <AgentDashboardSkeleton />;
+    }
     
     return (
         <>
+            {isOfferModalOpen && selectedLoan && (
+                <MakeOfferModal 
+                    loanRequest={selectedLoan}
+                    onClose={handleCloseOfferModal}
+                    onSubmit={() => handleOfferSubmit(selectedLoan.id)}
+                />
+            )}
             <div className="container mx-auto px-6 py-8">
                 <h1 className="text-3xl font-bold text-secondary mb-8">Loan Marketplace</h1>
 
@@ -91,7 +199,12 @@ const AgentDashboard: React.FC = () => {
                         </div>
                         <div className="grid md:grid-cols-2 gap-6">
                             {loanRequests.map(req => (
-                                <LoanRequestCard key={req.id} request={req} />
+                                <LoanRequestCard 
+                                    key={req.id} 
+                                    request={req} 
+                                    onMakeOffer={() => handleOpenOfferModal(req)}
+                                    hasOffered={offeredRequestIds.includes(req.id)}
+                                />
                             ))}
                         </div>
                     </div>

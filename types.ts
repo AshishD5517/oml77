@@ -14,9 +14,22 @@ export interface User {
 
 export enum LoanStatus {
     PENDING = 'Pending Review',
+    OFFERS_RECEIVED = 'Offers Received',
     APPROVED = 'Approved',
     FUNDED = 'Funded',
     REJECTED = 'Rejected',
+}
+
+export interface Offer {
+    id: string;
+    agentId: string;
+    agentName: string;
+    agentAvatarUrl: string;
+    loanRequestId: string;
+    offeredRate: number;
+    processingFee: number;
+    message: string;
+    dateOffered: string;
 }
 
 export interface LoanRequest {
@@ -30,4 +43,5 @@ export interface LoanRequest {
     status: LoanStatus;
     dateRequested: string;
     creditScore: number;
+    offers?: Offer[];
 }

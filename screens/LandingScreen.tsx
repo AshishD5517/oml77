@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import ApplyLoanModal from '../components/ApplyLoanModal';
@@ -59,13 +60,13 @@ const testimonials = [
         name: 'Priya Sharma',
         role: 'Borrower, Mumbai',
         quote: 'Offer Me Loan was a lifesaver! I needed funds for a family emergency, and the process was incredibly fast. I received multiple offers within a day and chose the one that best suited me. Highly recommended!',
-        avatarUrl: 'https://i.pravatar.cc/150?u=priya'
+        avatarUrl: 'https://i.pravatar.cc/150?u=rajesh'
     },
     {
         name: 'Rajesh Kumar',
         role: 'Loan Agent, Delhi',
         quote: 'As an agent, finding genuine leads is the biggest challenge. This platform provides quality, verified loan requests, which has significantly boosted my business. The interface is clean and easy to use.',
-        avatarUrl: 'https://i.pravatar.cc/150?u=rajesh'
+        avatarUrl: 'https://i.pravatar.cc/150?u=priya'
     },
     {
         name: 'Anjali Singh',
@@ -201,7 +202,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Features Section */}
-            <section className="py-20">
+            <section className="py-20 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl font-bold text-secondary">Why Choose Us?</h2>
@@ -229,7 +230,7 @@ const LandingScreen: React.FC = () => {
                             description="No hidden fees or surprise charges. We believe in complete clarity, so you can make decisions with confidence."
                         />
                         <FeatureCard 
-                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>}
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>}
                             title="Wide Lender Network"
                             description="Gain access to a diverse network of verified loan agents and financial institutions from all over India."
                         />
