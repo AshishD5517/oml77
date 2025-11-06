@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import ApplyLoanModal from '../components/ApplyLoanModal';
@@ -268,7 +267,7 @@ const LandingScreen: React.FC = () => {
                             <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
                             <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
                                 <img 
-                                    src="https://plus.unsplash.com/premium_photo-1683140622359-3d23b3f86b1c?q=80&w=800&auto=format=fit=crop" 
+                                    src="https://images.unsplash.com/photo-1628226426343-33bfd82089f2?q=80&w=800&auto=format=fit=crop" 
                                     className="w-full h-full object-cover" 
                                     alt="Offer Me Loan App Screenshot"
                                 />
