@@ -260,11 +260,20 @@ const LandingScreen: React.FC = () => {
                     </div>
                     
                     <div className="flex justify-center mt-12">
-                        <img 
-                            src="https://images.unsplash.com/photo-1601597111158-2f808541230d?q=80&w=800&auto=format&fit=crop" 
-                            alt="Offer Me Loan App on phone" 
-                            className="max-h-96 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300" 
-                        />
+                        {/* Phone mockup */}
+                        <div className="relative mx-auto border-gray-800 bg-gray-800 border-[10px] rounded-[2.5rem] h-[550px] w-[270px] shadow-2xl transition-transform transform hover:scale-105 duration-300">
+                            <div className="w-[140px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[124px] rounded-s-lg"></div>
+                            <div className="h-[46px] w-[3px] bg-gray-800 absolute -start-[13px] top-[178px] rounded-s-lg"></div>
+                            <div className="h-[64px] w-[3px] bg-gray-800 absolute -end-[13px] top-[142px] rounded-e-lg"></div>
+                            <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white">
+                                <img 
+                                    src="https://plus.unsplash.com/premium_photo-1683140622359-3d23b3f86b1c?q=80&w=800&auto=format=fit=crop" 
+                                    className="w-full h-full object-cover" 
+                                    alt="Offer Me Loan App Screenshot"
+                                />
+                            </div>
+                        </div>
                     </div>
                     
                     <div className="flex space-x-4 justify-center mt-12">
