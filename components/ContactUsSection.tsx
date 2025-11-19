@@ -136,7 +136,7 @@ const ContactUsSection: React.FC = () => {
                     {/* Contact Info and Image */}
                     <div className="animate-fade-in-up" style={{ animationDuration: '0.6s' }}>
                         <img 
-                            src="https://images.unsplash.com/photo-1586769852836-5c64a5c378b5?q=80&w=2070&auto=format&fit=crop" 
+                            src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=2071&auto=format&fit=crop" 
                             alt="Contact us representative typing on a laptop"
                             className="rounded-xl shadow-lg mb-8 w-full object-cover h-80"
                         />
