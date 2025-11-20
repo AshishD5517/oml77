@@ -46,25 +46,25 @@ export const useUI = () => {
 
 
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg className={className} viewBox="0 0 385 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g>
-            {/* Coin */}
-            <circle cx="56" cy="38" r="32" fill="#27AE60" />
-            {/* Dollar Sign */}
-            <text x="56" y="53" textAnchor="middle" fill="white" fontSize="34" fontWeight="bold" fontFamily="Inter, sans-serif">$</text>
+    <svg className={className} viewBox="0 0 280 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(5, 5)">
+            {/* Dollar Coin */}
+            <circle cx="30" cy="30" r="30" fill="#27AE60" />
+            <text x="30" y="42" textAnchor="middle" fill="white" fontSize="32" fontWeight="bold" fontFamily="Inter, sans-serif">$</text>
             
-            {/* Rupee Icon */}
-            <text x="56" y="125" textAnchor="middle" fill="#1D2B4F" fontSize="60" fontWeight="bold" fontFamily="Inter, sans-serif">₹</text>
+            {/* Rupee Symbol overlapping to show togetherness */}
+            <circle cx="62" cy="52" r="24" fill="#1D2B4F" stroke="white" strokeWidth="4" />
+            <text x="62" y="60" textAnchor="middle" fill="white" fontSize="22" fontWeight="bold" fontFamily="Inter, sans-serif">₹</text>
         </g>
         
-        {/* Text part */}
-        <g transform="translate(100, 0)">
-            <text y="50" fontFamily="Inter, sans-serif" fontSize="50" fontWeight="800" letterSpacing="1">
+        {/* Text part - Closer and tighter */}
+        <g transform="translate(100, 5)">
+            <text y="38" fontFamily="Inter, sans-serif" fontSize="38" fontWeight="900" letterSpacing="-1">
                 <tspan fill="#1D2B4F">OFFER</tspan>
             </text>
-            <text y="100" fontFamily="Inter, sans-serif" fontSize="50" fontWeight="800" letterSpacing="1">
+            <text y="72" fontFamily="Inter, sans-serif" fontSize="38" fontWeight="900" letterSpacing="-1">
                 <tspan fill="#27AE60">ME</tspan>
-                <tspan fill="#1D2B4F" dx="0.1em">LOAN</tspan>
+                <tspan fill="#1D2B4F">LOAN</tspan>
             </text>
         </g>
     </svg>
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
                  <div className="container mx-auto px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center">
-                            <LogoIcon className="h-20" />
+                            <LogoIcon className="h-16 md:h-20" />
                         </a>
                         
                         <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-4 py-2">

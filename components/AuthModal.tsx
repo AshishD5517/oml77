@@ -1,9 +1,12 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../App';
 import { UserRole } from '../types';
 
 interface AuthModalProps {
   onClose: () => void;
+  initialRole?: UserRole;
+  initialView?: 'login' | 'register';
 }
 
 // --- ICONS ---
@@ -172,10 +175,10 @@ const SearchableDropdown: React.FC<{
 };
 
 
-const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
+const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.BORROWER, initialView = 'login' }) => {
   const { login } = useAuth();
-  const [isRegister, setIsRegister] = useState(false);
-  const [selectedRole, setSelectedRole] = useState<UserRole>(UserRole.BORROWER);
+  const [isRegister, setIsRegister] = useState(initialView === 'register');
+  const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole);
 
   // Form state
   const [email, setEmail] = useState('');
@@ -232,7 +235,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
         return;
     }
     setIsVerifying(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Reduced artificial delay from 1500ms to 500ms
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     // Mock response for demo purposes
     if (pan.toUpperCase() === 'ABCDE1234F') {
@@ -256,7 +260,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
         return;
     }
     setIsSendingOtp(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Reduced artificial delay from 1500ms to 500ms
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
     setMockOtp(generatedOtp);

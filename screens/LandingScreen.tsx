@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
 import { useUI } from '../App';
+import { UserRole } from '../types';
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve namespace issue.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
@@ -79,11 +79,19 @@ const testimonials = [
 
 const LandingScreen: React.FC = () => {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const [authModalRole, setAuthModalRole] = useState<UserRole>(UserRole.BORROWER);
+    const [authModalView, setAuthModalView] = useState<'login' | 'register'>('register');
     const { openApplyModal } = useUI();
+
+    const handleOpenAuth = (role: UserRole, view: 'login' | 'register' = 'register') => {
+        setAuthModalRole(role);
+        setAuthModalView(view);
+        setIsAuthModalOpen(true);
+    };
 
     return (
         <div className="bg-gray-50">
-            {isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} />}
+            {isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} initialRole={authModalRole} initialView={authModalView} />}
             
             {/* Hero Section */}
             <section id="home" className="relative bg-secondary text-white overflow-hidden">
@@ -109,13 +117,13 @@ const LandingScreen: React.FC = () => {
                     </p>
                     <div className="flex justify-center space-x-4">
                         <button 
-                            onClick={openApplyModal}
+                            onClick={() => handleOpenAuth(UserRole.BORROWER, 'register')}
                             className="px-8 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105"
                         >
                             I'm a Borrower
                         </button>
                         <button 
-                            onClick={() => setIsAuthModalOpen(true)}
+                            onClick={() => handleOpenAuth(UserRole.AGENT, 'register')}
                             className="px-8 py-3 bg-white/20 text-white backdrop-blur-sm font-semibold rounded-lg hover:bg-white/30 transition"
                         >
                             I'm a Loan Agent
@@ -253,7 +261,7 @@ const LandingScreen: React.FC = () => {
             <section id="mobile-app" className="relative py-20 overflow-hidden">
                  <div 
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')" }}
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop')" }}
                 ></div>
                 <div className="absolute inset-0 bg-white/90"></div>
 
@@ -331,4 +339,3 @@ const LandingScreen: React.FC = () => {
 };
 
 export default LandingScreen;
-    

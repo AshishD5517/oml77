@@ -129,12 +129,8 @@ const BorrowerDashboardSkeleton: React.FC = () => (
 const BorrowerDashboard: React.FC = () => {
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
     const { openApplyModal } = useUI();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 1500);
-        return () => clearTimeout(timer);
-    }, []);
+    // Removed artificial loading state to make the dashboard instant
+    const [isLoading, setIsLoading] = useState(false);
 
     const totalRequested = loanRequests.reduce((sum, req) => sum + req.amount, 0);
     const activeRequests = loanRequests.filter(req => req.status === LoanStatus.PENDING || req.status === LoanStatus.APPROVED || req.status === LoanStatus.OFFERS_RECEIVED).length;

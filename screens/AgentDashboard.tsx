@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import type { LoanRequest } from '../types';
 import { LoanStatus } from '../types';
@@ -133,15 +132,11 @@ const AgentDashboardSkeleton: React.FC = () => (
 
 const AgentDashboard: React.FC = () => {
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
-    const [isLoading, setIsLoading] = useState(true);
+    // Removed artificial loading state to make the dashboard instant
+    const [isLoading, setIsLoading] = useState(false);
     const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
     const [selectedLoan, setSelectedLoan] = useState<LoanRequest | null>(null);
     const [offeredRequestIds, setOfferedRequestIds] = useState<string[]>([]);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 1500);
-        return () => clearTimeout(timer);
-    }, []);
 
     const handleOpenOfferModal = (request: LoanRequest) => {
         setSelectedLoan(request);
