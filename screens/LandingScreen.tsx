@@ -149,16 +149,21 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* EMI Calculator Section */}
-            <section id="emi-calculator" className="py-20 bg-primary-light">
-                <div className="container mx-auto px-6">
+            <section id="emi-calculator" className="relative py-24 bg-secondary overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-secondary">Plan Your Finances</h2>
-                        <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
-                            Use our easy-to-use calculator to estimate your Equated Monthly Installment (EMI) and make informed financial decisions.
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Plan Your Finances</h2>
+                        <p className="text-gray-200 text-lg max-w-2xl mx-auto">
+                            Take the guesswork out of your loan. Use our calculator to estimate your monthly installments.
                         </p>
                     </div>
+                    
                     <div className="max-w-4xl mx-auto">
-                        <EMICalculator />
+                       <EMICalculator />
                     </div>
                 </div>
             </section>
@@ -215,7 +220,6 @@ const LandingScreen: React.FC = () => {
                             />
                         </div>
                     </div>
-                    {/* Button Removed as per request */}
                 </div>
             </section>
 
@@ -288,36 +292,116 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
-            {/* Mobile App Section */}
-            <section id="mobile-app" className="relative py-20 overflow-hidden">
-                 <div 
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1449034446853-66c86144b0ad?q=80&w=2070&auto=format&fit=crop')" }}
-                ></div>
-                <div className="absolute inset-0 bg-white/90"></div>
+            {/* Mobile App Section - ENHANCED */}
+            <section id="mobile-app" className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-blue-50/50">
+                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                 {/* Abstract shapes */}
+                 <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-primary/5 to-transparent skew-x-12 transform origin-top-right"></div>
+                 <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-accent/5 to-transparent rounded-full blur-3xl"></div>
 
-                <div className="relative container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-12 items-center">
+                <div className="relative container mx-auto px-6 z-10 grid lg:grid-cols-2 gap-16 items-center">
                     <div className="text-center lg:text-left">
-                        <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-4">Manage Your Loans On The Go</h2>
-                        <p className="text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-                            Get our mobile app for a seamless and convenient loan management experience. Track your applications, get instant notifications, and connect with agents right from your pocket.
+                        <div className="inline-block px-4 py-1 mb-4 bg-primary/10 text-primary font-bold rounded-full text-xs tracking-widest uppercase">
+                             Mobile Exclusive
+                        </div>
+                        <h2 className="text-3xl lg:text-5xl font-extrabold text-secondary mb-6 leading-tight">
+                            Manage Your Loans <br/><span className="text-primary">On The Go</span>
+                        </h2>
+                        <p className="text-gray-600 mb-8 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+                            Experience the power of Offer Me Loan in your pocket. Track applications, chat with agents, and get funded faster with our secure mobile app.
                         </p>
-                        <div className="flex space-x-4 justify-center lg:justify-start">
-                            <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="currentColor" viewBox="0 0 384 512">
-                                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C39.2 141.1 0 183.1 0 241.2c0 61.6 43.1 113.7 103.1 113.7 20.2 0 45.4-14.5 73.1-14.5 27.6 0 52.2 14.5 73.8 14.5 58.1 0 104.4-50.5 104.4-113.7 0-27.9-10.6-54.4-29.7-74.2zm-155.6-141.3c3-11.2 10.3-21.6 20.2-27.7 10.1-6.1 21.6-8.1 31.9-5.1 1.9 11.2-4.5 24.3-14.5 30.5-10.1 6-22.1 7.9-32.1 5.1-1.3-2.1-2.4-4.2-2.9-7.3z"/>
-                            </svg>
-                                <span>App Store</span>
-                            </a>
-                            <a href="/coming-soon" className="bg-gray-800 text-white px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-gray-900 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 32 32"><path fill="currentColor" d="M29.5,13.2L4.6,0.3c-1.1-0.6-2.5,0.4-2.5,1.6v27.9c0,1.2,1.4,2.2,2.5,1.6l24.9-12.8C30.6,17.9,30.6,14.1,29.5,13.2z M22,20.9l-10.2-3l-0.1,6.1L22,20.9z M11.7,14.1l10.2-3L11.8,8L11.7,14.1z M4,4.2l6.8,3.5l0.1,16.5L4,27.7V4.2z M23.9,15.9 L23.9,15.9l-11,3.2L24,12.7L23.9,15.9z"></path></svg>
-                                <span>Google Play</span>
-                            </a>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6 mb-10 text-left max-w-lg mx-auto lg:mx-0">
+                            {[
+                                { title: "Instant Alerts", icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg> },
+                                { title: "Biometric Login", icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.2-2.858.571-4.186M19 12h2m-2-3h2m-2-6h2m-2 9h2" /></svg> },
+                                { title: "Paperless Uploads", icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> },
+                                { title: "24/7 Support Chat", icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg> },
+                            ].map((item, idx) => (
+                                <div key={idx} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-white hover:shadow-sm transition-all duration-300">
+                                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary">
+                                        {item.icon}
+                                    </div>
+                                    <span className="font-semibold text-gray-700">{item.title}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                            <div className="flex space-x-4">
+                                <a href="/coming-soon" className="bg-secondary text-white px-5 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-900 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 group">
+                                    <svg className="w-7 h-7 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C39.2 141.1 0 183.1 0 241.2c0 61.6 43.1 113.7 103.1 113.7 20.2 0 45.4-14.5 73.1-14.5 27.6 0 52.2 14.5 73.8 14.5 58.1 0 104.4-50.5 104.4-113.7 0-27.9-10.6-54.4-29.7-74.2zm-155.6-141.3c3-11.2 10.3-21.6 20.2-27.7 10.1-6.1 21.6-8.1 31.9-5.1 1.9 11.2-4.5 24.3-14.5 30.5-10.1 6-22.1 7.9-32.1 5.1-1.3-2.1-2.4-4.2-2.9-7.3z"/></svg>
+                                    <div className="text-left">
+                                        <div className="text-[10px] uppercase tracking-wider opacity-70">Download on the</div>
+                                        <div className="text-sm font-bold leading-none font-sans">App Store</div>
+                                    </div>
+                                </a>
+                                <a href="/coming-soon" className="bg-secondary text-white px-5 py-3 rounded-xl flex items-center space-x-3 hover:bg-gray-900 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 group">
+                                     <svg className="w-7 h-7 group-hover:scale-110 transition-transform" viewBox="0 0 32 32"><path fill="currentColor" d="M29.5,13.2L4.6,0.3c-1.1-0.6-2.5,0.4-2.5,1.6v27.9c0,1.2,1.4,2.2,2.5,1.6l24.9-12.8C30.6,17.9,30.6,14.1,29.5,13.2z M22,20.9l-10.2-3l-0.1,6.1L22,20.9z M11.7,14.1l10.2-3L11.8,8L11.7,14.1z M4,4.2l6.8,3.5l0.1,16.5L4,27.7V4.2z M23.9,15.9 L23.9,15.9l-11,3.2L24,12.7L23.9,15.9z"></path></svg>
+                                    <div className="text-left">
+                                        <div className="text-[10px] uppercase tracking-wider opacity-70">Get it on</div>
+                                        <div className="text-sm font-bold leading-none font-sans">Google Play</div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div className="hidden lg:flex items-center gap-4 pl-6 border-l border-gray-200">
+                                <div className="p-2 bg-white rounded-lg shadow-sm border border-gray-100">
+                                    <svg className="w-14 h-14 text-secondary" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 3H9V9H3V3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M15 3H21V9H15V3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M3 15H9V21H3V15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <path d="M15 15H17V17H15V15Z" fill="currentColor"/>
+                                        <path d="M19 15H21V17H19V15Z" fill="currentColor"/>
+                                        <path d="M15 19H17V21H15V19Z" fill="currentColor"/>
+                                        <path d="M19 19H21V21H19V19Z" fill="currentColor"/>
+                                        <path d="M12 12H13V13H12V12Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div className="text-xs text-gray-500 leading-tight">
+                                    <p>Scan to</p>
+                                    <p className="font-bold text-secondary text-sm">Download</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div className="flex justify-center lg:justify-end items-center mt-12 lg:mt-0 min-h-[550px]">
                         <div className="relative w-[320px] h-[550px] lg:w-[480px]">
+                            
+                             {/* Floating Icon 1: Percentage/Rate */}
+                             <div className="absolute top-20 left-0 lg:-left-8 z-20 animate-bounce" style={{ animationDuration: '3.5s' }}>
+                                <div className="w-16 h-16 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center border border-gray-100 transform -rotate-12">
+                                    <span className="text-2xl font-bold text-primary">%</span>
+                                    <span className="text-[10px] text-gray-500 font-medium">Low Rate</span>
+                                </div>
+                            </div>
+
+                            {/* Floating Icon 2: Currency */}
+                            <div className="absolute top-40 -right-4 lg:-right-12 z-20 animate-bounce" style={{ animationDuration: '4s', animationDelay: '0.5s' }}>
+                                <div className="w-14 h-14 bg-secondary text-white rounded-full shadow-xl flex items-center justify-center border-4 border-white/20">
+                                    <span className="text-2xl font-bold">₹</span>
+                                </div>
+                            </div>
+
+                            {/* Floating Icon 3: Approval */}
+                            <div className="absolute bottom-32 -left-4 lg:-left-10 z-20 animate-bounce" style={{ animationDuration: '5s', animationDelay: '1s' }}>
+                                <div className="w-12 h-12 bg-accent rounded-full shadow-lg flex items-center justify-center text-secondary border-2 border-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {/* Floating Icon 4: Badge */}
+                             <div className="absolute bottom-10 right-4 lg:-right-4 z-20 animate-pulse">
+                                <div className="px-4 py-2 bg-white rounded-full shadow-xl border border-gray-100 flex items-center space-x-2 transform rotate-3">
+                                    <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                                    <span className="text-xs font-bold text-gray-700">Fast Approval</span>
+                                </div>
+                            </div>
+
+
                             {/* Phone 1 (Back) */}
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-[70%] -translate-y-1/2 -rotate-15 transition-transform duration-500 hover:rotate-[-20deg] hover:scale-105">
                                 <div className="relative mx-auto border-gray-300 bg-gray-300 border-[8px] rounded-[2rem] h-[450px] w-[220px] lg:h-[550px] lg:w-[270px] shadow-xl">
