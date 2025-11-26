@@ -35,11 +35,11 @@ const EMICalculatorScreen: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen">
              <main className="flex-grow">
-                <section id="emi-calculator-page" className="py-20 bg-primary-light">
-                    <div className="container mx-auto px-6">
+                <section id="emi-calculator-page" className="relative py-24 bg-white">
+                    <div className="container mx-auto px-6 relative z-10">
                         <div className="text-center mb-12">
                             <h1 className="text-4xl font-bold text-secondary">EMI Calculator</h1>
-                            <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
+                            <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
                                 Plan your finances with our easy-to-use tool. Estimate your Equated Monthly Installment (EMI) to make informed decisions about your loan.
                             </p>
                         </div>

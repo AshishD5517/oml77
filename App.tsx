@@ -9,8 +9,10 @@ import AgentDashboard from './screens/AgentDashboard';
 import ComingSoonScreen from './screens/ComingSoonScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
 import ContactUsScreen from './screens/ContactUsScreen';
+import EMICalculatorScreen from './screens/EMICalculatorScreen';
 import Chatbot from './components/Chatbot';
 import ApplyLoanModal from './components/ApplyLoanModal';
+import LiveActivityFeed from './components/LiveActivityFeed';
 
 interface AuthContextType {
   user: User | null;
@@ -283,6 +285,7 @@ export default function App() {
                     </main>
                     <Footer />
                     <Chatbot />
+                    <LiveActivityFeed />
                 </div>
             </UIProvider>
         </AuthProvider>
@@ -302,6 +305,10 @@ function AppContent() {
 
     if (window.location.pathname === '/contact-us') {
         return <ContactUsScreen />;
+    }
+
+    if (window.location.pathname === '/emi-calculator') {
+        return <EMICalculatorScreen />;
     }
 
     if (!user) {
