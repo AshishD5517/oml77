@@ -12,7 +12,6 @@ import ContactUsScreen from './screens/ContactUsScreen';
 import EMICalculatorScreen from './screens/EMICalculatorScreen';
 import Chatbot from './components/Chatbot';
 import ApplyLoanModal from './components/ApplyLoanModal';
-import LiveActivityFeed from './components/LiveActivityFeed';
 
 interface AuthContextType {
   user: User | null;
@@ -177,7 +176,7 @@ const Footer: React.FC = () => {
     if (isComingSoonPage) return null;
 
     return (
-        <footer className="relative bg-secondary text-white pt-16 pb-8">
+        <footer className="relative bg-secondary text-white pt-16">
              <div
                 className="absolute top-0 left-0 w-full overflow-hidden leading-none"
                 style={{ transform: 'translateY(calc(-100% + 1px))', height: '60px' }}
@@ -201,7 +200,7 @@ const Footer: React.FC = () => {
                 </svg>
             </div>
             
-            <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm relative z-10">
+            <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm relative z-10 mb-12">
                 <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
                     <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
                     <p className="mt-2">
@@ -214,6 +213,90 @@ const Footer: React.FC = () => {
                             {link.icon}
                         </a>
                     ))}
+                </div>
+            </div>
+
+            {/* Partners / Trust Strip */}
+            <div className="bg-white text-gray-800 py-6 border-t border-gray-100">
+                <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-8">
+                    {/* Quick Campus */}
+                    <div className="flex flex-col items-center sm:items-start">
+                        <div className="flex items-end leading-none items-center sm:items-start">
+                             <div className="flex items-end gap-0">
+                                 {/* Custom Q - Proper Q without 't' elements */}
+                                 <div className="relative w-10 h-12"> 
+                                    <svg viewBox="0 0 60 80" className="w-full h-full overflow-visible" fill="none" stroke="black" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+                                        {/* o */}
+                                        <circle cx="30" cy="40" r="20" />
+                                        {/* tail under o - yellow */}
+                                        <path d="M15 70 Q 30 80 45 70" stroke="#FDB913" strokeWidth="8" />
+                                    </svg>
+                                 </div>
+                                 <span className="text-4xl font-light text-black tracking-tight leading-none">uick</span>
+                                 <span className="text-4xl font-bold text-black tracking-tight leading-none">Campus</span>
+                            </div>
+                            <span className="ml-2 bg-[#FDB913] text-black text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider mb-2">Online</span>
+                        </div>
+                        <span className="text-[11px] text-gray-900 font-medium tracking-wide mt-1">The EduTech Marketplace</span>
+                    </div>
+
+                    {/* Made in India */}
+                    <div className="text-center">
+                        <p className="font-semibold text-gray-800 flex items-center justify-center gap-2 text-sm">
+                            Made with <span className="text-red-500 text-lg">❤️</span> in India
+                        </p>
+                    </div>
+
+                    {/* Product of / Listed on */}
+                    <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
+                        <div className="flex flex-col items-center sm:items-end">
+                            <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Product of</p>
+                            <div className="flex items-center gap-3">
+                                {/* QuickTouch Logo */}
+                                <div className="relative h-14 w-20">
+                                    <svg viewBox="0 0 100 80" className="w-full h-full overflow-visible" fill="none" stroke="black" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+                                        {/* o */}
+                                        <circle cx="30" cy="40" r="20" />
+                                        {/* t vertical - straight then curved right */}
+                                        <path d="M70 15 V 50 A 10 10 0 0 0 80 60 H 85" />
+                                        {/* t crossbar - connecting to o */}
+                                        <line x1="50" y1="35" x2="85" y2="35" />
+                                        {/* tail under o - yellow */}
+                                        <path d="M15 70 Q 30 80 45 70" stroke="#FDB913" strokeWidth="8" />
+                                    </svg>
+                                </div>
+                                <div className="flex flex-col justify-center">
+                                    <span className="text-black text-xl font-light tracking-tight leading-none">Quick</span>
+                                    <span className="text-black text-xl font-bold tracking-tight leading-none mt-1">Touch</span>
+                                    <span className="text-[7px] text-gray-500 tracking-[0.1em] mt-1 font-bold uppercase leading-none">INNOVATING INTERESTINGLY</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="h-10 w-px bg-gray-300 hidden sm:block"></div>
+
+                        <div className="flex flex-col items-center sm:items-start">
+                            <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Listed on</p>
+                            <div className="flex items-center gap-2">
+                                <div className="w-9 h-9 relative flex-shrink-0">
+                                    {/* Abstract Hexagon Logo for NSE */}
+                                    <svg viewBox="0 0 100 100" className="w-full h-full">
+                                        <polygon points="50 0, 95 25, 95 75, 50 100, 5 75, 5 25" fill="none" stroke="#652D90" strokeWidth="0" />
+                                        <path d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z" fill="white" />
+                                        <path d="M50 0 L93.3 25 L50 50 L6.7 25 Z" fill="#FDB913" opacity="0.9" />
+                                        <path d="M50 0 L93.3 25 L93.3 75 L50 50 Z" fill="#DA2128" opacity="0.9" />
+                                        <path d="M93.3 75 L50 100 L50 50 Z" fill="#652D90" opacity="0.9" />
+                                        <path d="M50 100 L6.7 75 L50 50 Z" fill="#2E3192" opacity="0.9" />
+                                        <path d="M6.7 75 L6.7 25 L50 50 Z" fill="#0091D2" opacity="0.9" />
+                                        <path d="M6.7 25 L50 0 L50 50 Z" fill="#FDB913" opacity="0.9" />
+                                    </svg>
+                                </div>
+                                <div className="font-bold text-xl leading-none flex items-center text-[#2E3192]">
+                                    NSE <span className="text-gray-300 mx-2 text-2xl font-light">|</span> <span className="text-[#DA2128]">Emerge</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -285,7 +368,6 @@ export default function App() {
                     </main>
                     <Footer />
                     <Chatbot />
-                    <LiveActivityFeed />
                 </div>
             </UIProvider>
         </AuthProvider>

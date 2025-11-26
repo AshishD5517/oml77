@@ -8,7 +8,7 @@ import { UserRole } from '../types';
 
 // Fix: Replaced JSX.Element with React.ReactNode to resolve namespace issue.
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border border-gray-100">
+    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border border-gray-100 h-full">
         <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary-light text-primary mb-4">
             {icon}
         </div>
@@ -126,7 +126,7 @@ const LandingScreen: React.FC = () => {
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 transform rotate-2 hover:rotate-0 transition-transform duration-500">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80" 
+                                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
                                     alt="People discussing finances" 
                                     className="rounded-xl w-full object-cover h-[400px]"
                                 />
@@ -210,6 +210,21 @@ const LandingScreen: React.FC = () => {
                             icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>}
                             title="Best Rates"
                             description="Access a wide network of lenders competing to offer you the most competitive interest rates."
+                        />
+                        <FeatureCard 
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
+                            title="Transparent Process"
+                            description="No hidden charges. Complete clarity on terms and conditions before you sign."
+                        />
+                        <FeatureCard 
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z" /></svg>}
+                            title="Verified Agents"
+                            description="Every agent on our platform undergoes a strict verification process for your safety."
+                        />
+                        <FeatureCard 
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>}
+                            title="Dedicated Support"
+                            description="Our customer support team is available around the clock to assist with your queries."
                         />
                     </div>
                 </div>
@@ -397,20 +412,23 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* CTA Section */}
-            <section className="py-24 bg-secondary relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+            <section className="py-24 bg-primary-light relative overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                   <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-60"></div>
+                   <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-accent/20 rounded-full blur-3xl opacity-60"></div>
+                </div>
                 <div className="container mx-auto px-6 relative z-10 text-center">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">Ready to Get Started?</h2>
-                    <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-secondary mb-6">Ready to Get Started?</h2>
+                    <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
                         Join our growing community today. Whether you need funds or want to lend, we have the right solution for you.
                     </p>
                     <button 
                         onClick={openApplyModal}
-                        className="px-10 py-5 bg-primary text-white text-lg font-bold rounded-full shadow-2xl hover:bg-primary-dark transform hover:-translate-y-1 transition-all"
+                        className="px-10 py-5 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-lg hover:from-yellow-500 hover:to-green-600 transform hover:-translate-y-1 transition-all"
                     >
-                        Create Free Account
+                        Apply for Loan
                     </button>
-                    <p className="mt-6 text-sm text-gray-400">No credit card required for sign up • Secure & Encrypted</p>
+                    <p className="mt-6 text-sm text-gray-500">No credit card required for sign up • Secure & Encrypted</p>
                 </div>
             </section>
 
