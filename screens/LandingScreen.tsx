@@ -161,8 +161,34 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
+             {/* Loan Categories */}
+             <section id="loan-categories" className="py-20 bg-gray-50">
+                <div className="container mx-auto px-6">
+                    <div className="flex justify-between items-end mb-12">
+                         <div>
+                            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">Loan Categories</h2>
+                            <p className="text-gray-600">Explore financing options tailored for your needs</p>
+                        </div>
+                        <a href="#" className="hidden md:inline-flex items-center text-primary font-semibold hover:text-primary-dark">
+                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {loanCategories.map((category, idx) => (
+                            <LoanCategoryCard key={idx} title={category.title} imageUrl={category.imageUrl} />
+                        ))}
+                    </div>
+                    <div className="mt-8 text-center md:hidden">
+                        <a href="#" className="inline-flex items-center text-primary font-semibold hover:text-primary-dark">
+                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             {/* Features Section */}
-            <section id="features" className="py-20 bg-gray-50">
+            <section id="features" className="py-20 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Why Choose Offer Me Loan?</h2>
@@ -190,7 +216,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* How It Works */}
-            <section id="how-it-works" className="py-20 bg-white relative overflow-hidden">
+            <section id="how-it-works" className="py-20 bg-gray-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
                      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -226,32 +252,6 @@ const LandingScreen: React.FC = () => {
                             description="Choose the best offer and get funds transferred to your account."
                             icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>}
                         />
-                    </div>
-                </div>
-            </section>
-
-            {/* Loan Categories */}
-            <section id="loan-categories" className="py-20 bg-gray-50">
-                <div className="container mx-auto px-6">
-                    <div className="flex justify-between items-end mb-12">
-                         <div>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">Loan Categories</h2>
-                            <p className="text-gray-600">Explore financing options tailored for your needs</p>
-                        </div>
-                        <a href="#" className="hidden md:inline-flex items-center text-primary font-semibold hover:text-primary-dark">
-                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {loanCategories.map((category, idx) => (
-                            <LoanCategoryCard key={idx} title={category.title} imageUrl={category.imageUrl} />
-                        ))}
-                    </div>
-                    <div className="mt-8 text-center md:hidden">
-                        <a href="#" className="inline-flex items-center text-primary font-semibold hover:text-primary-dark">
-                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
                     </div>
                 </div>
             </section>
