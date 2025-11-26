@@ -124,7 +124,7 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100">
                                 <img 
                                     src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
                                     alt="People discussing finances" 
