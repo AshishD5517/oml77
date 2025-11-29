@@ -32,23 +32,174 @@ const StepCard: React.FC<{ number: string; title: string; description: string; i
     </div>
 );
 
-const loanCategories = [
-    { title: "Personal Loans", imageUrl: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Home Loans", imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Auto Loans", imageUrl: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Business Loans", imageUrl: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Student Loans", imageUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Debt Consolidation", imageUrl: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Medical Loans", imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Wedding Loans", imageUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
+interface LoanCategoryData {
+    title: string;
+    imageUrl: string;
+    description: string;
+    features: string[];
+    eligibility: string;
+    rates: string;
+}
+
+const loanCategories: LoanCategoryData[] = [
+    { 
+        title: "Personal Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop",
+        description: "A flexible, unsecured loan that you can use for almost any purpose, from consolidating debt to funding a vacation or covering unexpected expenses.",
+        features: ["No collateral required", "Quick disbursal within 24 hours", "Flexible tenure up to 5 years", "Minimal documentation"],
+        eligibility: "Salaried employees with monthly income > ₹25,000 or Self-employed professionals.",
+        rates: "Starting from 10.50% p.a."
+    },
+    { 
+        title: "Home Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop",
+        description: "Financing specifically designed to help you purchase, construct, or renovate your dream home with long-term repayment options.",
+        features: ["Higher loan amounts", "Long tenure up to 30 years", "Tax benefits under Sec 80C & 24(b)", "Balance transfer facility available"],
+        eligibility: "Indian residents aged 21-65 years with a stable income source.",
+        rates: "Starting from 8.35% p.a."
+    },
+    { 
+        title: "Auto Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop",
+        description: "Get behind the wheel of your dream car with our customized auto loans for new and used vehicles.",
+        features: ["Up to 100% on-road funding", "Pocket-friendly EMI options", "Instant approval for pre-approved customers", "Special rates for EVs"],
+        eligibility: "Salaried or Self-employed individuals aged 21+ with min. 1 year work experience.",
+        rates: "Starting from 8.75% p.a."
+    },
+    { 
+        title: "Business Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?q=80&w=2070&auto=format&fit=crop",
+        description: "Capital tailored to help your business grow, whether you need working capital, machinery, or funds for expansion.",
+        features: ["Collateral-free options available", "Overdraft facility", "Flexible repayment schedules", "High loan amounts up to ₹50 Lakhs"],
+        eligibility: "Business vintage of at least 3 years with profitable turnover.",
+        rates: "Starting from 12.00% p.a."
+    },
+    { 
+        title: "Student Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop",
+        description: "Invest in your future with education loans that cover tuition fees, accommodation, and travel for studies in India or abroad.",
+        features: ["Covers 100% of educational expenses", "Moratorium period (course duration + 1 year)", "Tax deduction on interest", "Preferential rates for premier institutes"],
+        eligibility: "Indian students with secured admission in recognized institutions.",
+        rates: "Starting from 9.00% p.a."
+    },
+    { 
+        title: "Debt Consolidation", 
+        imageUrl: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=2070&auto=format&fit=crop",
+        description: "Combine multiple high-interest debts into a single loan with a lower interest rate and one easy monthly payment.",
+        features: ["Single monthly EMI", "Reduced overall interest burden", "Improve credit score", "Fixed repayment timeline"],
+        eligibility: "Individuals with existing multiple debts and stable income to support consolidated EMI.",
+        rates: "Starting from 11.00% p.a."
+    },
+    { 
+        title: "Medical Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop",
+        description: "Emergency funds to cover medical treatments, surgeries, or hospitalization costs without depleting your savings.",
+        features: ["Instant approval & disbursal", "No restriction on hospital choice", "Covers pre/post hospitalization", "Minimal documentation"],
+        eligibility: "Individuals aged 21-60 years facing medical requirements.",
+        rates: "Starting from 10.99% p.a."
+    },
+    { 
+        title: "Wedding Loans", 
+        imageUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
+        description: "Make your special day perfect with a loan to cover venue, catering, attire, and other wedding-related expenses.",
+        features: ["Usage flexibility", "High loan value", "Quick processing", "Short to medium term tenure"],
+        eligibility: "Salaried individuals with monthly income > ₹20,000.",
+        rates: "Starting from 11.25% p.a."
+    }
 ];
 
-const LoanCategoryCard: React.FC<{ title: string; imageUrl: string }> = ({ title, imageUrl }) => (
-    <div className="relative rounded-xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 h-48">
-        <img src={imageUrl} alt={title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 p-4">
-            <h3 className="text-xl font-bold text-white">{title}</h3>
+const LoanCategoryCard: React.FC<{ category: LoanCategoryData; onClick: () => void }> = ({ category, onClick }) => (
+    <div 
+        onClick={onClick}
+        className="relative rounded-xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 h-48 cursor-pointer"
+    >
+        <img src={category.imageUrl} alt={category.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 p-4 w-full">
+            <h3 className="text-xl font-bold text-white flex justify-between items-center">
+                {category.title}
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </h3>
+            <p className="text-gray-300 text-xs mt-1 line-clamp-1 opacity-80 group-hover:opacity-100 transition-opacity">{category.description}</p>
+        </div>
+    </div>
+);
+
+const LoanCategoryModal: React.FC<{ category: LoanCategoryData; onClose: () => void; onApply: () => void }> = ({ category, onClose, onApply }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={onClose}>
+        <div 
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden animate-fade-in-up" 
+            onClick={(e) => e.stopPropagation()}
+        >
+            <div className="relative h-48 sm:h-64">
+                <img src={category.imageUrl} alt={category.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <button 
+                    onClick={onClose} 
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <div className="absolute bottom-0 left-0 p-6">
+                    <h2 className="text-3xl font-bold text-white mb-1">{category.title}</h2>
+                    <span className="inline-block px-3 py-1 bg-accent text-secondary text-xs font-bold rounded-full">
+                        {category.rates}
+                    </span>
+                </div>
+            </div>
+            
+            <div className="p-6 sm:p-8 max-h-[60vh] overflow-y-auto">
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                    {category.description}
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h4 className="font-bold text-secondary mb-3 flex items-center">
+                            <span className="w-1 h-6 bg-primary mr-2 rounded-full"></span>
+                            Key Features
+                        </h4>
+                        <ul className="space-y-2">
+                            {category.features.map((feature, idx) => (
+                                <li key={idx} className="flex items-start text-sm text-gray-600">
+                                    <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    {feature}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                         <h4 className="font-bold text-secondary mb-3 flex items-center">
+                            <span className="w-1 h-6 bg-accent mr-2 rounded-full"></span>
+                            Eligibility Criteria
+                        </h4>
+                        <p className="text-sm text-gray-600 bg-gray-50 p-4 rounded-lg border border-gray-100">
+                            {category.eligibility}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-100 mt-4">
+                    <button 
+                        onClick={() => { onClose(); onApply(); }}
+                        className="flex-1 bg-primary text-white py-3 rounded-lg font-bold hover:bg-primary-dark transition-colors shadow-lg"
+                    >
+                        Apply for {category.title}
+                    </button>
+                    <button 
+                        onClick={onClose}
+                        className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 );
@@ -71,7 +222,7 @@ const TestimonialCard: React.FC<{ name: string; role: string; quote: string; ava
 
 const LandingScreen: React.FC = () => {
     const { openApplyModal } = useUI();
-    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+    const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
     const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role: UserRole}>({
         isOpen: false,
         role: UserRole.BORROWER
@@ -86,7 +237,12 @@ const LandingScreen: React.FC = () => {
             {/* Hero Section */}
             <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                   <div className="absolute inset-0 bg-gradient-to-br from-primary-light/40 to-white/20"></div>
+                   <img 
+                       src="https://images.unsplash.com/photo-1565514020176-db7102e34560?q=80&w=2070&auto=format&fit=crop" 
+                       alt="Hero Background" 
+                       className="absolute inset-0 w-full h-full object-cover"
+                   />
+                   <div className="absolute inset-0 bg-white/90"></div>
                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-50"></div>
                    <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50"></div>
                 </div>
@@ -124,11 +280,11 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100">
+                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[600px] lg:h-[700px] overflow-hidden">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop" 
-                                    alt="People discussing finances" 
-                                    className="rounded-xl w-full object-cover h-[400px]"
+                                    src="https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=2069&auto=format&fit=crop" 
+                                    alt="Colleagues celebrating success" 
+                                    className="rounded-xl w-full h-full object-cover"
                                 />
                                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-50 flex items-center gap-3">
                                     <div className="bg-green-100 p-3 rounded-full text-green-600">
@@ -147,7 +303,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
              {/* EMI Calculator Section */}
-            <section id="emi-calculator" className="relative py-24 bg-white">
+            <section id="emi-calculator" className="relative py-24 bg-white overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Calculate Your EMI</h2>
@@ -169,20 +325,16 @@ const LandingScreen: React.FC = () => {
                             <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">Loan Categories</h2>
                             <p className="text-gray-600">Explore financing options tailored for your needs</p>
                         </div>
-                        <a href="#" className="hidden md:inline-flex items-center text-primary font-semibold hover:text-primary-dark">
-                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
                     </div>
                     
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {loanCategories.map((category, idx) => (
-                            <LoanCategoryCard key={idx} title={category.title} imageUrl={category.imageUrl} />
+                            <LoanCategoryCard 
+                                key={idx} 
+                                category={category} 
+                                onClick={() => setSelectedCategory(category)}
+                            />
                         ))}
-                    </div>
-                    <div className="mt-8 text-center md:hidden">
-                        <a href="#" className="inline-flex items-center text-primary font-semibold hover:text-primary-dark">
-                            View all categories <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </a>
                     </div>
                 </div>
             </section>
@@ -439,6 +591,14 @@ const LandingScreen: React.FC = () => {
                     onClose={() => setAuthModalConfig(prev => ({ ...prev, isOpen: false }))}
                     initialRole={authModalConfig.role}
                     initialView="register"
+                />
+            )}
+
+            {selectedCategory && (
+                <LoanCategoryModal 
+                    category={selectedCategory} 
+                    onClose={() => setSelectedCategory(null)}
+                    onApply={openApplyModal}
                 />
             )}
         </div>
