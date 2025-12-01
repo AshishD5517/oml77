@@ -220,6 +220,34 @@ const TestimonialCard: React.FC<{ name: string; role: string; quote: string; ava
     </div>
 );
 
+const LiveRatesTicker: React.FC = () => (
+    <div className="bg-secondary text-white py-3 overflow-hidden whitespace-nowrap border-b border-white/10 relative z-20">
+        <div className="animate-marquee inline-block">
+            <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
+            <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">🚗 Auto Loans @ 8.75% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">💰 Personal Loans @ 10.50% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">🎓 Education Loans @ 9.00% p.a.</span>
+             <span className="mx-8"> </span> {/* Spacer */}
+             <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
+            <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">🚗 Auto Loans @ 8.75% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">💰 Personal Loans @ 10.50% p.a.</span>
+            <span className="mx-4 text-gray-500">|</span>
+            <span className="mx-4 text-sm opacity-90">🎓 Education Loans @ 9.00% p.a.</span>
+        </div>
+    </div>
+);
+
 const LandingScreen: React.FC = () => {
     const { openApplyModal } = useUI();
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
@@ -234,8 +262,11 @@ const LandingScreen: React.FC = () => {
 
     return (
         <div className="bg-gray-50">
+            {/* Live Ticker Bar */}
+            <LiveRatesTicker />
+
             {/* Hero Section */}
-            <section id="home" className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <section id="home" className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                    <img 
                        src="https://images.unsplash.com/photo-1565514020176-db7102e34560?q=80&w=2070&auto=format&fit=crop" 
