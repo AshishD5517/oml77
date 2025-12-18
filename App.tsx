@@ -1,5 +1,4 @@
-
-import React, { useState, useContext, createContext, useCallback } from 'react';
+import React, { useState, useContext, createContext, useCallback, useRef, useEffect } from 'react';
 import type { User } from './types';
 import { UserRole } from './types';
 import AuthModal from './components/AuthModal';
@@ -75,6 +74,8 @@ const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
 const Header: React.FC = () => {
     const { user, logout } = useAuth();
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
     
     const loanCategories = [
         { title: "Personal Loans" },
@@ -87,21 +88,27 @@ const Header: React.FC = () => {
         { title: "Wedding Loans" }
     ];
 
-    // Determine if we are on the landing page (and not logged in)
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsProfileDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     const isLandingPage = !user && window.location.pathname === '/';
-    
-    // If user is logged in OR we are not on the root path, prefix links with '/' to ensure we navigate to root first
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-
     const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium px-4 py-2 rounded-full";
-
     const isComingSoonPage = window.location.pathname === '/coming-soon';
 
     if (isComingSoonPage) return null;
 
     return (
         <>
-            <header className="relative z-30 py-4 bg-gray-50">
+            <header className="relative z-50 py-4 bg-gray-50">
                  <div className="container mx-auto px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center">
@@ -116,7 +123,7 @@ const Header: React.FC = () => {
                                     Loan Categories
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </a>
-                                <div className="absolute opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 bg-white shadow-lg rounded-md mt-2 py-2 w-56 z-50 border border-gray-100">
+                                <div className="absolute opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 bg-white shadow-xl rounded-xl mt-2 py-2 w-56 z-50 border border-gray-100">
                                     {loanCategories.map(category => (
                                         <a 
                                             key={category.title}
@@ -136,15 +143,60 @@ const Header: React.FC = () => {
 
                         <div className="flex items-center space-x-4">
                             {user ? (
-                                <div className="flex items-center space-x-4">
-                                    <span className="text-gray-600 hidden sm:block">Welcome, {user.name}!</span>
-                                    <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" />
-                                    <button
-                                        onClick={logout}
-                                        className="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-full hover:bg-red-600 transition-colors duration-300"
+                                <div className="relative" ref={dropdownRef}>
+                                    <button 
+                                        onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                                        className="flex items-center space-x-3 bg-white p-1 pr-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
                                     >
-                                        Logout
+                                        <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" />
+                                        <div className="hidden sm:flex flex-col items-start leading-tight">
+                                            <span className="text-sm font-bold text-secondary">{user.name}</span>
+                                            <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
                                     </button>
+
+                                    {isProfileDropdownOpen && (
+                                        <div className="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-fade-in-up origin-top-right overflow-hidden">
+                                            <div className="px-4 py-3 border-b border-gray-50 mb-1">
+                                                <p className="text-xs text-gray-500 font-medium">Signed in as</p>
+                                                <p className="text-sm font-bold text-secondary truncate">{user.email}</p>
+                                            </div>
+                                            
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                                <span>Dashboard</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                                <span>Active Loans</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                                                <span>Messages</span>
+                                                <span className="ml-auto bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                                <span>Update Profile</span>
+                                            </a>
+                                            
+                                            <div className="border-t border-gray-50 mt-1">
+                                                <button
+                                                    onClick={() => {
+                                                        setIsProfileDropdownOpen(false);
+                                                        logout();
+                                                    }}
+                                                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left"
+                                                >
+                                                    <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                                                    <span className="font-semibold">Logout</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             ) : (
                                 <button

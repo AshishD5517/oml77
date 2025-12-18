@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
@@ -6,7 +5,7 @@ import ContactUsSection from '../components/ContactUsSection';
 import { useUI } from '../App';
 import { UserRole } from '../types';
 
-// Fix: Replaced JSX.Element with React.ReactNode to resolve namespace issue.
+// FeatureCard component
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border border-gray-100 h-full">
         <div className="flex items-center justify-center h-12 w-12 rounded-full bg-primary-light text-primary mb-4">
@@ -17,6 +16,7 @@ const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description:
     </div>
 );
 
+// StepCard component
 const StepCard: React.FC<{ number: string; title: string; description: string; icon: React.ReactNode }> = ({ number, title, description, icon }) => (
     <div className="relative bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
         <div className="w-16 h-16 mx-auto bg-white border-2 border-primary/20 rounded-full flex items-center justify-center text-2xl font-bold mb-6 shadow-md group-hover:scale-110 transition-transform relative text-primary">
@@ -311,10 +311,10 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[600px] lg:h-[700px] overflow-hidden">
+                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[500px] lg:h-[600px] overflow-hidden">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1574607383476-f517f260d30b?q=80&w=2069&auto=format&fit=crop" 
-                                    alt="Colleagues celebrating success" 
+                                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" 
+                                    alt="Two couples celebrating loan approval in a modern office" 
                                     className="rounded-xl w-full h-full object-cover"
                                 />
                                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-50 flex items-center gap-3">
