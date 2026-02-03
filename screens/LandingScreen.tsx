@@ -269,7 +269,7 @@ const LandingScreen: React.FC = () => {
             <section id="home" className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                    <img 
-                       src="https://images.unsplash.com/photo-1565514020176-db7102e34560?q=80&w=2070&auto=format&fit=crop" 
+                       src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" 
                        alt="Hero Background" 
                        className="absolute inset-0 w-full h-full object-cover"
                    />
@@ -313,19 +313,10 @@ const LandingScreen: React.FC = () => {
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[500px] lg:h-[600px] overflow-hidden">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" 
-                                    alt="Two couples celebrating loan approval in a modern office" 
+                                    src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?q=80&w=2070&auto=format&fit=crop" 
+                                    alt="Sack of money with Rupee symbol and apartment buildings in background representing home financing" 
                                     className="rounded-xl w-full h-full object-cover"
                                 />
-                                <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-gray-50 flex items-center gap-3">
-                                    <div className="bg-green-100 p-3 rounded-full text-green-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-gray-500 font-semibold uppercase">Loan Status</p>
-                                        <p className="text-lg font-bold text-secondary">Approved</p>
-                                    </div>
-                                </div>
                             </div>
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary-light/30 to-accent/20 rounded-full blur-3xl -z-10"></div>
                         </div>
@@ -400,7 +391,7 @@ const LandingScreen: React.FC = () => {
                             description="No hidden charges. Complete clarity on terms and conditions before you sign."
                         />
                         <FeatureCard 
-                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z" /></svg>}
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>}
                             title="Verified Agents"
                             description="Every agent on our platform undergoes a strict verification process for your safety."
                         />

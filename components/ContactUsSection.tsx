@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { GoogleGenAI, Type } from '@google/genai';
 
@@ -88,7 +87,7 @@ const ContactUsSection: React.FC = () => {
             };
 
             const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
+                model: 'gemini-3-flash-preview',
                 contents: `Analyze the following user message from a contact form and provide a structured analysis. Message: "${userMessage}"`,
                 config: {
                     responseMimeType: "application/json",
@@ -145,7 +144,7 @@ const ContactUsSection: React.FC = () => {
                                 <div className="flex-shrink-0 w-12 h-12 bg-primary-light rounded-full flex items-center justify-center text-primary"><LocationIcon /></div>
                                 <div>
                                     <h3 className="font-semibold text-secondary">Our Office</h3>
-                                    <p className="text-gray-600">203, D Mall, Netaji Subhash Place, Delhi - 110034</p>
+                                    <p className="text-gray-600">Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034</p>
                                 </div>
                             </div>
                             <div className="flex items-center space-x-4">
@@ -159,7 +158,7 @@ const ContactUsSection: React.FC = () => {
                                 <div className="flex-shrink-0 w-12 h-12 bg-primary-light rounded-full flex items-center justify-center text-primary"><InfoMailIcon /></div>
                                 <div>
                                     <h3 className="font-semibold text-secondary">Email Address</h3>
-                                    <p className="text-gray-500 italic">Coming Soon</p>
+                                    <p className="text-gray-600">info@offermeloan.com</p>
                                 </div>
                             </div>
                         </div>

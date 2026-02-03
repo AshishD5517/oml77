@@ -256,7 +256,7 @@ const Footer: React.FC = () => {
                 <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
                     <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
                     <p className="mt-2">
-                        203, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, Delhi - 110034
+                        Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
                     </p>
                 </div>
                 <div className="flex items-center space-x-6">
