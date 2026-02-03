@@ -272,25 +272,33 @@ const Footer: React.FC = () => {
             {/* Partners / Trust Strip */}
             <div className="bg-white text-gray-800 py-6 border-t border-gray-100">
                 <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-8">
-                    {/* Quick Campus */}
+                    
+                    {/* Standard Capital Markets Limited Logo recreated via SVG */}
                     <div className="flex flex-col items-center sm:items-start">
-                        <div className="flex items-end leading-none items-center sm:items-start">
-                             <div className="flex items-end gap-0">
-                                 {/* Custom Q - Proper Q without 't' elements */}
-                                 <div className="relative w-10 h-12"> 
-                                    <svg viewBox="0 0 60 80" className="w-full h-full overflow-visible" fill="none" stroke="black" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
-                                        {/* o */}
-                                        <circle cx="30" cy="40" r="20" />
-                                        {/* tail under o - yellow */}
-                                        <path d="M15 70 Q 30 80 45 70" stroke="#FDB913" strokeWidth="8" />
-                                    </svg>
-                                 </div>
-                                 <span className="text-4xl font-light text-black tracking-tight leading-none">uick</span>
-                                 <span className="text-4xl font-bold text-black tracking-tight leading-none">Campus</span>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">Product of</p>
+                        <div className="flex items-center gap-3">
+                            <div className="relative w-16 h-10 flex items-center justify-center">
+                                <svg viewBox="0 0 100 60" className="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style={{stopColor:'#B8E44B', stopOpacity:1}} />
+                                            <stop offset="100%" style={{stopColor:'#74B559', stopOpacity:1}} />
+                                        </linearGradient>
+                                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style={{stopColor:'#74B559', stopOpacity:1}} />
+                                            <stop offset="100%" style={{stopColor:'#4A8C2E', stopOpacity:1}} />
+                                        </linearGradient>
+                                    </defs>
+                                    {/* Two overlapping slanted capsules */}
+                                    <rect x="5" y="15" width="45" height="18" rx="9" transform="rotate(-30 27.5 24)" fill="url(#grad1)" />
+                                    <rect x="25" y="25" width="45" height="18" rx="9" transform="rotate(-30 47.5 34)" fill="url(#grad2)" />
+                                </svg>
                             </div>
-                            <span className="ml-2 bg-[#FDB913] text-black text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider mb-2">Online</span>
+                            <div className="flex flex-col justify-center">
+                                <span className="text-[#74B559] text-xl font-extrabold tracking-tight leading-none">Standard Capital</span>
+                                <span className="text-gray-500 text-sm font-medium tracking-tight leading-none mt-1">Markets Limited</span>
+                            </div>
                         </div>
-                        <span className="text-[11px] text-gray-900 font-medium tracking-wide mt-1">The EduTech Marketplace</span>
                     </div>
 
                     {/* Made in India */}
@@ -300,39 +308,12 @@ const Footer: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Product of / Listed on */}
+                    {/* Listed on Section */}
                     <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
-                        <div className="flex flex-col items-center sm:items-end">
-                            <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Product of</p>
-                            <div className="flex items-center gap-3">
-                                {/* QuickTouch Logo */}
-                                <div className="relative h-14 w-20">
-                                    <svg viewBox="0 0 100 80" className="w-full h-full overflow-visible" fill="none" stroke="black" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
-                                        {/* o */}
-                                        <circle cx="30" cy="40" r="20" />
-                                        {/* t vertical - straight then curved right */}
-                                        <path d="M70 15 V 50 A 10 10 0 0 0 80 60 H 85" />
-                                        {/* t crossbar - connecting to o */}
-                                        <line x1="50" y1="35" x2="85" y2="35" />
-                                        {/* tail under o - yellow */}
-                                        <path d="M15 70 Q 30 80 45 70" stroke="#FDB913" strokeWidth="8" />
-                                    </svg>
-                                </div>
-                                <div className="flex flex-col justify-center">
-                                    <span className="text-black text-xl font-light tracking-tight leading-none">Quick</span>
-                                    <span className="text-black text-xl font-bold tracking-tight leading-none mt-1">Touch</span>
-                                    <span className="text-[7px] text-gray-500 tracking-[0.1em] mt-1 font-bold uppercase leading-none">INNOVATING INTERESTINGLY</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="h-10 w-px bg-gray-300 hidden sm:block"></div>
-
                         <div className="flex flex-col items-center sm:items-start">
                             <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Listed on</p>
                             <div className="flex items-center gap-2">
                                 <div className="w-9 h-9 relative flex-shrink-0">
-                                    {/* Abstract Hexagon Logo for NSE */}
                                     <svg viewBox="0 0 100 100" className="w-full h-full">
                                         <polygon points="50 0, 95 25, 95 75, 50 100, 5 75, 5 25" fill="none" stroke="#652D90" strokeWidth="0" />
                                         <path d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z" fill="white" />
@@ -388,7 +369,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   );
 };
 
-// --- NEW UI PROVIDER ---
+// --- NEW UI CONTEXT ---
 const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   
@@ -407,7 +388,7 @@ const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </UIContext.Provider>
   );
 };
-// --- END NEW UI PROVIDER ---
+// --- END NEW UI CONTEXT ---
 
 
 export default function App() {
