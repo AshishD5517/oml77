@@ -31,7 +31,8 @@ const EMICalculator: React.FC = () => {
         { name: 'Principal', value: amount },
         { name: 'Interest', value: totalInterest },
     ];
-    const COLORS = ['#00C49F', '#FFBB28'];
+    {/* Updated COLORS array to use new primary green #74B559 */}
+    const COLORS = ['#74B559', '#FFBB28'];
 
     const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(value);
 

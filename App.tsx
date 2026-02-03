@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, createContext, useCallback, useRef, useEffect } from 'react';
 import type { User } from './types';
 import { UserRole } from './types';
@@ -48,8 +49,8 @@ export const useUI = () => {
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg className={className} viewBox="0 0 280 90" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(5, 5)">
-            {/* Dollar Coin */}
-            <circle cx="30" cy="30" r="30" fill="#27AE60" />
+            {/* Dollar Coin - Updated to new primary green */}
+            <circle cx="30" cy="30" r="30" fill="#74B559" />
             <text x="30" y="42" textAnchor="middle" fill="white" fontSize="32" fontWeight="bold" fontFamily="Inter, sans-serif">$</text>
             
             {/* Rupee Symbol overlapping to show togetherness */}
@@ -63,7 +64,7 @@ const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
                 <tspan fill="#1D2B4F">OFFER</tspan>
             </text>
             <text y="72" fontFamily="Inter, sans-serif" fontSize="38" fontWeight="900" letterSpacing="-1">
-                <tspan fill="#27AE60">ME</tspan>
+                <tspan fill="#74B559">ME</tspan>
                 <tspan fill="#1D2B4F">LOAN</tspan>
             </text>
         </g>

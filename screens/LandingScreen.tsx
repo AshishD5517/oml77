@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
@@ -391,7 +392,7 @@ const LandingScreen: React.FC = () => {
                             description="No hidden charges. Complete clarity on terms and conditions before you sign."
                         />
                         <FeatureCard 
-                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>}
+                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z" /></svg>}
                             title="Verified Agents"
                             description="Every agent on our platform undergoes a strict verification process for your safety."
                         />
@@ -410,7 +411,8 @@ const LandingScreen: React.FC = () => {
                      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#00C49F" strokeWidth="1"/>
+                                {/* Updated grid stroke to new primary green #74B559 */}
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#74B559" strokeWidth="1"/>
                             </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#grid)" />
