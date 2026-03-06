@@ -314,8 +314,8 @@ const LandingScreen: React.FC = () => {
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[500px] lg:h-[600px] overflow-hidden">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?q=80&w=2070&auto=format&fit=crop" 
-                                    alt="Sack of money with Rupee symbol and apartment buildings in background representing home financing" 
+                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2000&auto=format&fit=crop" 
+                                    alt="Smiling professional man holding a tablet in a modern office setting, representing smart borrowing and lending" 
                                     className="rounded-xl w-full h-full object-cover"
                                 />
                             </div>
