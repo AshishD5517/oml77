@@ -4,20 +4,22 @@ import React from 'react';
 const AboutUsScreen: React.FC = () => {
     return (
         <div className="bg-white font-sans text-gray-700">
-            {/* Hero Section */}
+            {/* Company Overview / Hero Section */}
             <div className="relative bg-secondary py-24 sm:py-32 isolate overflow-hidden">
                 <img
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
-                    alt="Modern office environment"
-                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
+                    src="https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    alt="Financial growth and partnership"
+                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-10"
                 />
-                <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
-                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
-                        About <span className="text-primary">Offer Me Loan</span>
-                    </h1>
-                    <p className="mt-6 text-lg leading-8 text-gray-300 max-w-2xl mx-auto">
-                        We are a fintech marketplace dedicated to simplifying the borrowing experience in India. By leveraging technology, we bridge the gap between borrowers and verified loan agents, ensuring you get the funds you need on terms that work for you.
-                    </p>
+                <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6">
+                            Company <span className="text-primary">Overview</span>
+                        </h1>
+                        <p className="mt-6 text-xl leading-8 text-gray-300 max-w-3xl mx-auto">
+                            Offer Me Loan is a premier digital lending marketplace designed to bridge the gap between ambitious borrowers and trusted financial institutions. We leverage cutting-edge technology to provide a seamless, transparent, and secure environment for all your financial needs.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -25,24 +27,135 @@ const AboutUsScreen: React.FC = () => {
             <div className="py-24 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl font-bold text-secondary mb-6">Our Mission</h2>
-                            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                                To democratize access to credit by creating a transparent, efficient, and competitive marketplace. We believe that everyone deserves a fair chance at securing financial support without the hassle of traditional bureaucratic hurdles.
-                            </p>
-                             <h2 className="text-3xl font-bold text-secondary mb-6">Our Vision</h2>
-                            <p className="text-lg text-gray-600 leading-relaxed">
-                                To become India's most trusted financial partner, where finding a loan is as easy as sending a text. We envision a future where financial inclusion is a reality for every individual and business.
-                            </p>
+                        <div className="space-y-12">
+                            <div>
+                                <h2 className="text-3xl font-bold text-secondary mb-4 flex items-center">
+                                    <span className="w-8 h-1 bg-primary mr-4 rounded-full"></span>
+                                    Our Mission
+                                </h2>
+                                <p className="text-lg text-gray-600 leading-relaxed">
+                                    Our mission is to democratize access to credit by connecting borrowers with a network of trusted lenders. We aim to eliminate the complexities of traditional lending, providing a platform where transparency and speed are the standards, not the exceptions.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className="text-3xl font-bold text-secondary mb-4 flex items-center">
+                                    <span className="w-8 h-1 bg-primary mr-4 rounded-full"></span>
+                                    Our Vision
+                                </h2>
+                                <p className="text-lg text-gray-600 leading-relaxed">
+                                    We envision a future where financial support is accessible to everyone at the click of a button. By fostering a community of reliable lenders and informed borrowers, we strive to become the most trusted digital loan platform globally.
+                                </p>
+                            </div>
                         </div>
                         <div className="relative">
-                             <div className="absolute -top-4 -left-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl opacity-50"></div>
-                             <div className="absolute -bottom-4 -right-4 w-72 h-72 bg-accent/10 rounded-full blur-3xl opacity-50"></div>
-                             <img 
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
-                                alt="Team brainstorming" 
-                                className="relative rounded-2xl shadow-2xl w-full object-cover hover:scale-[1.02] transition-transform duration-500"
+                            <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+                            <img 
+                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80" 
+                                alt="Professional collaboration" 
+                                className="relative rounded-3xl shadow-2xl w-full object-cover z-10"
                             />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* What We Offer Section */}
+            <div className="py-24 bg-gray-50">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-secondary">What We Offer</h2>
+                        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Comprehensive financial solutions tailored to your unique requirements.</p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: "Personal Loans",
+                                description: "Quick funds for life's unexpected moments, from medical emergencies to dream weddings.",
+                                icon: "💳"
+                            },
+                            {
+                                title: "Business Loans",
+                                description: "Fuel your entrepreneurial journey with capital designed for growth and expansion.",
+                                icon: "📈"
+                            },
+                            {
+                                title: "Home & Auto Loans",
+                                description: "Competitive rates to help you secure the keys to your new home or vehicle.",
+                                icon: "🏠"
+                            },
+                            {
+                                title: "Debt Consolidation",
+                                description: "Simplify your finances by merging multiple debts into one manageable monthly payment.",
+                                icon: "🔄"
+                            },
+                            {
+                                title: "Education Loans",
+                                description: "Invest in your future with flexible repayment plans for higher studies.",
+                                icon: "🎓"
+                            },
+                            {
+                                title: "Instant Approvals",
+                                description: "Our automated matching system ensures you get offers from lenders in record time.",
+                                icon: "⚡"
+                            }
+                        ].map((item, index) => (
+                            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+                                <div className="text-4xl mb-4">{item.icon}</div>
+                                <h3 className="text-xl font-bold text-secondary mb-3">{item.title}</h3>
+                                <p className="text-gray-600">{item.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Why Choose Us Section */}
+            <div className="py-24 bg-white">
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col lg:flex-row gap-16 items-center">
+                        <div className="lg:w-1/2">
+                            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-8">Why Choose Us?</h2>
+                            <div className="space-y-6">
+                                {[
+                                    {
+                                        title: "Trusted Lenders",
+                                        desc: "We partner only with verified and reputable financial institutions to ensure your peace of mind."
+                                    },
+                                    {
+                                        title: "Transparency First",
+                                        desc: "No hidden charges or complex jargon. We provide clear terms so you can make informed decisions."
+                                    },
+                                    {
+                                        title: "Bank-Grade Security",
+                                        desc: "Your data security is our top priority. We use advanced encryption to protect your personal information."
+                                    },
+                                    {
+                                        title: "Customer-Centric Support",
+                                        desc: "Our dedicated team is always here to guide you through every step of your loan application."
+                                    }
+                                ].map((reason, i) => (
+                                    <div key={i} className="flex gap-4">
+                                        <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                                            {i + 1}
+                                        </div>
+                                        <div>
+                                            <h4 className="text-lg font-bold text-secondary">{reason.title}</h4>
+                                            <p className="text-gray-600">{reason.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+                            <div className="space-y-4 pt-8">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-lg" alt="Support" />
+                                <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-lg" alt="Finance" />
+                            </div>
+                            <div className="space-y-4">
+                                <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-lg" alt="Growth" />
+                                <img src="https://images.unsplash.com/photo-1521791136064-7986c2959213?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="rounded-2xl shadow-lg" alt="Trust" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -51,90 +164,40 @@ const AboutUsScreen: React.FC = () => {
             {/* Statistics Section */}
             <div className="bg-secondary py-20">
                 <div className="container mx-auto px-6">
-                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
                         <div className="p-4">
-                            <div className="text-4xl font-bold text-primary mb-2">50k+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Applications Processed</div>
+                            <div className="text-4xl font-bold text-primary mb-2">100k+</div>
+                            <div className="text-sm text-gray-400 uppercase tracking-wide">Happy Borrowers</div>
                         </div>
-                         <div className="p-4">
-                            <div className="text-4xl font-bold text-white mb-2">₹100Cr+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Loan Amount Disbursed</div>
+                        <div className="p-4">
+                            <div className="text-4xl font-bold text-white mb-2">₹500Cr+</div>
+                            <div className="text-sm text-gray-400 uppercase tracking-wide">Loans Facilitated</div>
                         </div>
-                         <div className="p-4">
-                            <div className="text-4xl font-bold text-accent mb-2">2,500+</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Verified Agents</div>
+                        <div className="p-4">
+                            <div className="text-4xl font-bold text-primary mb-2">500+</div>
+                            <div className="text-sm text-gray-400 uppercase tracking-wide">Verified Lenders</div>
                         </div>
-                         <div className="p-4">
-                            <div className="text-4xl font-bold text-white mb-2">98%</div>
-                            <div className="text-sm text-gray-400 uppercase tracking-wide">Customer Satisfaction</div>
+                        <div className="p-4">
+                            <div className="text-4xl font-bold text-white mb-2">24/7</div>
+                            <div className="text-sm text-gray-400 uppercase tracking-wide">Support Available</div>
                         </div>
-                     </div>
-                </div>
-            </div>
-
-            {/* Our Values Grid */}
-             <div className="py-24 bg-gray-50">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-secondary">Core Values</h2>
-                        <p className="mt-4 text-gray-600">The principles that drive every decision we make.</p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            { title: 'Transparency', description: 'No hidden fees or terms. We believe in complete clarity for all parties involved.', icon: <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg> },
-                            { title: 'Security', description: 'Your data integrity is our top priority. We use bank-grade encryption to keep information safe.', icon: <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg> },
-                            { title: 'Innovation', description: 'We continuously improve our platform to provide faster matches and better user experiences.', icon: <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> },
-                        ].map((value, idx) => (
-                            <div key={idx} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-100">
-                                <div className="mb-4 bg-primary-light w-16 h-16 rounded-full flex items-center justify-center">
-                                    {value.icon}
-                                </div>
-                                <h3 className="text-xl font-bold text-secondary mb-3">{value.title}</h3>
-                                <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-             </div>
-
-            {/* Team Section */}
-            <div className="py-24 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-secondary">Meet The Team</h2>
-                        <p className="mt-4 text-gray-600">The passionate minds behind Offer Me Loan.</p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-                        {[
-                            { name: 'Arjun Mehta', role: 'Founder & CEO', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                            { name: 'Priya Singh', role: 'Head of Operations', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                            { name: 'Vikram Das', role: 'Chief Technology Officer', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' },
-                        ].map((member, idx) => (
-                            <div key={idx} className="text-center group">
-                                <div className="relative mb-6 inline-block rounded-full overflow-hidden w-48 h-48 border-4 border-gray-50 shadow-lg group-hover:border-primary transition-colors">
-                                    <img src={member.img} alt={member.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                                </div>
-                                <h3 className="text-xl font-bold text-secondary">{member.name}</h3>
-                                <p className="text-primary font-medium">{member.role}</p>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>
 
             {/* CTA Section */}
-            <div className="bg-primary-light py-20">
+            <div className="bg-primary-light py-24">
                 <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-bold text-secondary mb-6">Ready to Experience the Future of Lending?</h2>
-                    <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                        Whether you are looking to borrow or lend, Offer Me Loan provides the secure and efficient platform you need.
+                    <h2 className="text-4xl font-bold text-secondary mb-6">Experience Transparent Lending Today</h2>
+                    <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                        Join thousands of satisfied customers who found their perfect loan match through Offer Me Loan.
                     </p>
-                     <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="/#apply-now" className="px-8 py-3 bg-secondary text-white font-bold rounded-full hover:bg-gray-900 transition shadow-lg transform hover:-translate-y-1">
-                            Apply for a Loan
+                    <div className="flex flex-col sm:flex-row justify-center gap-6">
+                        <a href="/#apply-now" className="px-10 py-4 bg-secondary text-white font-bold rounded-full hover:bg-gray-900 transition-all shadow-xl transform hover:-translate-y-1">
+                            Get Started Now
                         </a>
-                        <a href="/contact-us" className="px-8 py-3 bg-white text-secondary font-bold rounded-full hover:bg-gray-50 transition shadow-lg transform hover:-translate-y-1">
-                            Contact Support
+                        <a href="/contact-us" className="px-10 py-4 bg-white text-secondary font-bold rounded-full border-2 border-secondary/10 hover:bg-gray-50 transition-all shadow-xl transform hover:-translate-y-1">
+                            Contact Our Experts
                         </a>
                     </div>
                 </div>
