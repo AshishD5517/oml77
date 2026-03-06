@@ -47,27 +47,39 @@ export const useUI = () => {
 
 
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg className={className} viewBox="0 0 280 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g transform="translate(5, 5)">
-            {/* Dollar Coin - Updated to new primary green */}
-            <circle cx="30" cy="30" r="30" fill="#74B559" />
-            <text x="30" y="42" textAnchor="middle" fill="white" fontSize="32" fontWeight="bold" fontFamily="Inter, sans-serif">$</text>
-            
-            {/* Rupee Symbol overlapping to show togetherness */}
-            <circle cx="62" cy="52" r="24" fill="#1D2B4F" stroke="white" strokeWidth="4" />
-            <text x="62" y="60" textAnchor="middle" fill="white" fontSize="22" fontWeight="bold" fontFamily="Inter, sans-serif">₹</text>
+    <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="logo-grad-main" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#74B559', stopOpacity:1}} />
+                <stop offset="100%" style={{stopColor:'#4A8C2E', stopOpacity:1}} />
+            </linearGradient>
+            <linearGradient id="text-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style={{stopColor:'#2A3B6F', stopOpacity:1}} />
+                <stop offset="100%" style={{stopColor:'#1D2B4F', stopOpacity:1}} />
+            </linearGradient>
+            <filter id="logo-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#74B559" floodOpacity="0.2" />
+            </filter>
+        </defs>
+        
+        {/* Icon: Sophisticated 'O' with Rupee symbol and growth elements */}
+        <g filter="url(#logo-shadow)">
+            <circle cx="50" cy="50" r="42" fill="url(#logo-grad-main)" />
+            <path d="M50 20C33.4315 20 20 33.4315 20 50C20 66.5685 33.4315 80 50 80C66.5685 80 80 66.5685 80 50" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.3" />
+            <path d="M50 35V65M35 50H65" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.2" />
+            <text x="50" y="68" textAnchor="middle" fill="white" fontSize="46" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
         </g>
         
-        {/* Text part - Closer and tighter */}
-        <g transform="translate(100, 5)">
-            <text y="38" fontFamily="Inter, sans-serif" fontSize="38" fontWeight="900" letterSpacing="-1">
-                <tspan fill="#1D2B4F">OFFER</tspan>
-            </text>
-            <text y="72" fontFamily="Inter, sans-serif" fontSize="38" fontWeight="900" letterSpacing="-1">
-                <tspan fill="#74B559">ME</tspan>
-                <tspan fill="#1D2B4F">LOAN</tspan>
-            </text>
-        </g>
+        {/* Text: Premium brand typography */}
+        <text x="115" y="48" fontFamily="Inter, sans-serif" fontSize="44" fontWeight="900" letterSpacing="-1.8">
+            <tspan fill="url(#text-grad)">OFFER ME</tspan>
+        </text>
+        <text x="115" y="88" fontFamily="Inter, sans-serif" fontSize="44" fontWeight="900" letterSpacing="-1.8">
+            <tspan fill="#74B559">LOAN</tspan>
+        </text>
+        
+        {/* Decorative accent dot */}
+        <circle cx="345" cy="78" r="6" fill="#74B559" />
     </svg>
 );
 
@@ -149,7 +161,7 @@ const Header: React.FC = () => {
                                         onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                                         className="flex items-center space-x-3 bg-white p-1 pr-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
                                     >
-                                        <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" />
+                                        <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
                                         <div className="hidden sm:flex flex-col items-start leading-tight">
                                             <span className="text-sm font-bold text-secondary">{user.name}</span>
                                             <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
@@ -254,11 +266,14 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm relative z-10 mb-12">
-                <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
-                    <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
-                    <p className="mt-2">
-                        Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
-                    </p>
+                <div className="flex flex-col items-center sm:items-start mb-6 sm:mb-0">
+                    <LogoIcon className="h-12 mb-4 opacity-80 brightness-0 invert" />
+                    <div className="text-center sm:text-left text-gray-400">
+                        <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
+                        <p className="mt-2">
+                            Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
+                        </p>
+                    </div>
                 </div>
                 <div className="flex items-center space-x-6">
                     {socialLinks.map(link => (

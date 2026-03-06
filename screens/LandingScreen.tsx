@@ -1,10 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Home, GraduationCap, Car, Briefcase } from 'lucide-react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
 import { useUI } from '../App';
 import { UserRole } from '../types';
+import { generateLoanImage } from '../src/services/imageService';
 
 // FeatureCard component
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
@@ -114,7 +116,16 @@ const LoanCategoryCard: React.FC<{ category: LoanCategoryData; onClick: () => vo
         onClick={onClick}
         className="relative rounded-xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 h-48 cursor-pointer"
     >
-        <img src={category.imageUrl} alt={category.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+        <img 
+            src={category.imageUrl} 
+            alt={category.title} 
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" 
+            referrerPolicy="no-referrer" 
+            onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = `https://picsum.photos/seed/${category.title.replace(/\s+/g, '-').toLowerCase()}/800/600`;
+            }}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         <div className="absolute bottom-0 left-0 p-4 w-full">
             <h3 className="text-xl font-bold text-white flex justify-between items-center">
@@ -135,7 +146,16 @@ const LoanCategoryModal: React.FC<{ category: LoanCategoryData; onClose: () => v
             onClick={(e) => e.stopPropagation()}
         >
             <div className="relative h-48 sm:h-64">
-                <img src={category.imageUrl} alt={category.title} className="w-full h-full object-cover" />
+                <img 
+                    src={category.imageUrl} 
+                    alt={category.title} 
+                    className="w-full h-full object-cover" 
+                    referrerPolicy="no-referrer" 
+                    onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://picsum.photos/seed/${category.title.replace(/\s+/g, '-').toLowerCase()}/1200/800`;
+                    }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                 <button 
                     onClick={onClose} 
@@ -212,7 +232,16 @@ const TestimonialCard: React.FC<{ name: string; role: string; quote: string; ava
             <p className="text-gray-600 italic mb-6">"{quote}"</p>
         </div>
         <div className="flex items-center mt-auto relative z-10">
-            <img src={avatarUrl} alt={name} className="w-12 h-12 rounded-full mr-4 border-2 border-primary-light" />
+            <img 
+                src={avatarUrl} 
+                alt={name} 
+                className="w-12 h-12 rounded-full mr-4 border-2 border-primary-light" 
+                referrerPolicy="no-referrer" 
+                onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = `https://i.pravatar.cc/150?u=${name}`;
+                }}
+            />
             <div>
                 <h4 className="font-bold text-secondary">{name}</h4>
                 <p className="text-xs text-primary font-medium">{role}</p>
@@ -252,10 +281,32 @@ const LiveRatesTicker: React.FC = () => (
 const LandingScreen: React.FC = () => {
     const { openApplyModal } = useUI();
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
+    const [heroImage, setHeroImage] = useState<string | null>(null);
+    const [mobileAppImage, setMobileAppImage] = useState<string | null>(null);
     const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role: UserRole}>({
         isOpen: false,
         role: UserRole.BORROWER
     });
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const heroPrompt = "High-end commercial photography for 'Offer Me Loan' fintech brand. A stunning, sun-drenched modern office in a Mumbai skyscraper with floor-to-ceiling windows showing the city skyline. A diverse, happy Indian family (mother, father, and daughter) are joyfully shaking hands with a professional, friendly loan officer. On the desk, a sleek tablet displays a vibrant 'LOAN APPROVED' interface with a large green checkmark. Cinematic lighting, shallow depth of field, 8k resolution, photorealistic, premium corporate aesthetic.";
+                const mobilePrompt = "A sleek, modern smartphone displaying the 'Offer Me Loan' mobile app dashboard. The screen shows a clean interface with loan progress bars, interest rates, and a 'Loan Approved' notification. The phone is held by a professional Indian hand in a modern office setting. High-quality, sharp focus, vibrant colors, professional fintech aesthetic.";
+                
+                const [heroImg, mobileImg] = await Promise.all([
+                    generateLoanImage(heroPrompt),
+                    generateLoanImage(mobilePrompt)
+                ]);
+
+                if (heroImg) setHeroImage(heroImg);
+                if (mobileImg) setMobileAppImage(mobileImg);
+            } catch (error) {
+                console.error("Failed to generate images:", error);
+            }
+        };
+        fetchImages();
+    }, []);
 
     const openAuthModal = (role: UserRole) => {
         setAuthModalConfig({ isOpen: true, role });
@@ -270,9 +321,14 @@ const LandingScreen: React.FC = () => {
             <section id="home" className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                    <img 
-                       src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" 
-                       alt="Hero Background" 
-                       className="absolute inset-0 w-full h-full object-cover"
+                       src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80" 
+                       alt="Modern Indian business district background" 
+                       className="absolute inset-0 w-full h-full object-cover opacity-30"
+                       referrerPolicy="no-referrer"
+                       onError={(e) => {
+                           const target = e.target as HTMLImageElement;
+                           target.src = "https://picsum.photos/seed/indian-city/1200/800";
+                       }}
                    />
                    <div className="absolute inset-0 bg-white/90"></div>
                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-50"></div>
@@ -312,14 +368,31 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 h-[500px] lg:h-[600px] overflow-hidden">
+                            <div className="relative z-10 bg-white p-4 rounded-[2.5rem] shadow-2xl border border-gray-100 h-[500px] lg:h-[650px] overflow-hidden group">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=2000&auto=format&fit=crop" 
-                                    alt="Smiling professional man holding a tablet in a modern office setting, representing smart borrowing and lending" 
-                                    className="rounded-xl w-full h-full object-cover"
+                                    src={heroImage || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"} 
+                                    alt="Happy Indian family celebrating loan approval in a modern Mumbai office" 
+                                    className="rounded-[2rem] w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    referrerPolicy="no-referrer"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "https://picsum.photos/seed/mumbai-office-loan/1200/800";
+                                    }}
                                 />
+                                
+                                {/* Loan Approved Badge Overlay */}
+                                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md border border-green-200 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 z-20 animate-fade-in-up">
+                                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-200">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest leading-none mb-1">Status</p>
+                                        <p className="text-sm font-extrabold text-secondary leading-none">LOAN APPROVED</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary-light/30 to-accent/20 rounded-full blur-3xl -z-10"></div>
+                            {/* Background glow */}
+                            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-gradient-to-tr from-primary-light/40 to-accent/30 rounded-full blur-[100px] -z-10 opacity-60"></div>
                         </div>
                     </div>
                 </div>
@@ -516,9 +589,14 @@ const LandingScreen: React.FC = () => {
                         <div className="lg:w-1/2 relative flex justify-center">
                             <div className="relative z-10 w-64 md:w-80">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600&auto=format&fit=crop" 
-                                    alt="Offer Me Loan Mobile App Interface" 
+                                    src={mobileAppImage || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop"} 
+                                    alt="Offer Me Loan Mobile App Interface showing loan dashboard" 
                                     className="rounded-[2.5rem] shadow-2xl border-8 border-gray-800 transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+                                    referrerPolicy="no-referrer"
+                                    onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = "https://picsum.photos/seed/fintech-app/600/1200";
+                                    }}
                                 />
                                 {/* Floating elements */}
                                 <div className="absolute -top-6 -right-6 bg-white p-3 rounded-xl shadow-xl animate-bounce">
@@ -569,19 +647,19 @@ const LandingScreen: React.FC = () => {
                             name="Rahul Sharma"
                             role="Small Business Owner"
                             quote="Offer Me Loan helped me secure a business loan within 3 days. The platform is incredibly intuitive and the agents are very professional."
-                            avatarUrl="https://randomuser.me/api/portraits/men/32.jpg"
+                            avatarUrl="https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=200&auto=format&fit=crop"
                         />
                         <TestimonialCard 
                             name="Priya Patel"
                             role="Software Engineer"
                             quote="I was looking for a home loan and got overwhelmed by bank visits. This site gave me 5 competitive offers in 24 hours. Highly recommended!"
-                            avatarUrl="https://randomuser.me/api/portraits/women/44.jpg"
+                            avatarUrl="https://images.unsplash.com/photo-1589156280159-27698a70f29e?q=80&w=200&auto=format&fit=crop"
                         />
                         <TestimonialCard 
                             name="Amit Verma"
                             role="Freelancer"
                             quote="Getting a personal loan as a freelancer is tough. Offer Me Loan connected me with lenders who understand the gig economy."
-                            avatarUrl="https://randomuser.me/api/portraits/men/67.jpg"
+                            avatarUrl="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=200&auto=format&fit=crop"
                         />
                     </div>
                 </div>

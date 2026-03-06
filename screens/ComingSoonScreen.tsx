@@ -16,6 +16,7 @@ const ComingSoonScreen: React.FC = () => {
                     src="https://images.unsplash.com/photo-1588949869355-32939d4197e4?q=80&w=600&auto=format&fit=crop" 
                     alt="Mobile app launching soon illustration" 
                     className="w-64 h-64 object-contain mb-8" 
+                    referrerPolicy="no-referrer"
                 />
                 <h1 className="text-5xl md:text-7xl font-extrabold mb-4 animate-pulse">
                     Coming Soon

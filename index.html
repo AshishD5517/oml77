@@ -36,6 +36,10 @@
               'marquee': {
                 '0%': { transform: 'translateX(100%)' },
                 '100%': { transform: 'translateX(-100%)' },
+              },
+              'float': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
               }
             },
             animation: {
@@ -43,6 +47,8 @@
                 'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
                 'slide-in-fade-out': 'slide-in-fade-out 5.5s ease-in-out forwards',
                 'marquee': 'marquee 30s linear infinite',
+                'float': 'float 6s ease-in-out infinite',
+                'float-delayed': 'float 6s ease-in-out 3s infinite',
             },
             backgroundSize: {
               '200%': '200% auto',
@@ -69,7 +75,6 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-gray-50">
     <div id="root"></div>

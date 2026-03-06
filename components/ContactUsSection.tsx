@@ -138,6 +138,7 @@ const ContactUsSection: React.FC = () => {
                             src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=2071&auto=format&fit=crop" 
                             alt="Contact us representative typing on a laptop"
                             className="rounded-xl shadow-lg mb-8 w-full object-cover h-80"
+                            referrerPolicy="no-referrer"
                         />
                         <div className="space-y-6">
                             <div className="flex items-center space-x-4">
