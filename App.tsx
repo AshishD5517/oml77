@@ -68,7 +68,7 @@ const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
             <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
             
             {/* Rupee Symbol - Finance Core */}
-            <text x="40" y="52" textAnchor="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
+            <text x="40" y="56" textAnchor="middle" fill="white" fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
         </g>
         
         {/* Typography: Bold & Professional */}
@@ -266,83 +266,88 @@ const Footer: React.FC = () => {
                 </svg>
             </div>
             
-            <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm relative z-10 mb-12">
-                <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
-                    <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
-                    <p className="mt-2">
-                        Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
-                    </p>
+            <div className="container mx-auto px-6 relative z-10 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                    {/* Logo and Description */}
+                    <div className="col-span-1 md:col-span-1">
+                        <div className="flex items-center space-x-2 mb-6">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
+                                <span className="text-white font-bold text-xl transform -rotate-3">O</span>
+                            </div>
+                            <span className="text-2xl font-extrabold tracking-tight text-white">
+                                OfferMe<span className="text-primary">Loan</span>
+                            </span>
+                        </div>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                            The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.
+                        </p>
+                        <div className="flex items-center space-x-4">
+                            {socialLinks.map(link => (
+                                <a key={link.name} href={link.href} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all duration-300" aria-label={link.name}>
+                                    {link.icon}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Quick Links */}
+                    <div className="col-span-1">
+                        <h3 className="text-lg font-bold text-white mb-6">Quick Links</h3>
+                        <ul className="space-y-4">
+                            <li><a href="/about-us" className="text-gray-400 hover:text-primary transition-colors text-sm">About Us</a></li>
+                            <li><a href="/#emi-calculator" className="text-gray-400 hover:text-primary transition-colors text-sm">EMI Calculator</a></li>
+                            <li><a href="/#how-it-works" className="text-gray-400 hover:text-primary transition-colors text-sm">How It Works</a></li>
+                            <li><a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm">Blog & Insights</a></li>
+                            <li><a href="/faqs" className="text-gray-400 hover:text-primary transition-colors text-sm">FAQs</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Legal */}
+                    <div className="col-span-1">
+                        <h3 className="text-lg font-bold text-white mb-6">Legal</h3>
+                        <ul className="space-y-4">
+                            <li><a href="/terms-and-conditions" className="text-gray-400 hover:text-primary transition-colors text-sm">Terms and Conditions</a></li>
+                            <li><a href="/privacy-policy" className="text-gray-400 hover:text-primary transition-colors text-sm">Privacy Policy</a></li>
+                            <li><a href="/cookie-policy" className="text-gray-400 hover:text-primary transition-colors text-sm">Cookie Policy</a></li>
+                            <li><a href="/disclaimer" className="text-gray-400 hover:text-primary transition-colors text-sm">Disclaimer</a></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div className="col-span-1">
+                        <h3 className="text-lg font-bold text-white mb-6">Contact Us</h3>
+                        <ul className="space-y-4">
+                            <li className="flex items-start space-x-3 text-gray-400 text-sm">
+                                <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <span>Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034</span>
+                            </li>
+                            <li className="flex items-center space-x-3 text-gray-400 text-sm">
+                                <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                <a href="mailto:info@offermeloan.com" className="hover:text-primary transition-colors">info@offermeloan.com</a>
+                            </li>
+                            <li className="flex items-center space-x-3 text-gray-400 text-sm">
+                                <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                <span className="hover:text-primary transition-colors cursor-default">Coming Soon</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div className="flex items-center space-x-6">
-                    {socialLinks.map(link => (
-                        <a key={link.name} href={link.href} className="text-gray-400 hover:text-primary transition-colors" aria-label={link.name}>
-                            {link.icon}
-                        </a>
-                    ))}
+
+                <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-sm">
+                    <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
+                        <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
+                    </div>
                 </div>
             </div>
 
             {/* Partners / Trust Strip */}
             <div className="bg-white text-gray-800 py-6 border-t border-gray-100">
-                <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-8">
-                    
-                    {/* Standard Capital Markets Limited Logo recreated via SVG */}
-                    <div className="flex flex-col items-center sm:items-start">
-                        <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">Product of</p>
-                        <div className="flex items-center gap-3">
-                            <div className="relative w-16 h-10 flex items-center justify-center">
-                                <svg viewBox="0 0 100 60" className="w-full h-full">
-                                    <defs>
-                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" style={{stopColor:'#B8E44B', stopOpacity:1}} />
-                                            <stop offset="100%" style={{stopColor:'#74B559', stopOpacity:1}} />
-                                        </linearGradient>
-                                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" style={{stopColor:'#74B559', stopOpacity:1}} />
-                                            <stop offset="100%" style={{stopColor:'#4A8C2E', stopOpacity:1}} />
-                                        </linearGradient>
-                                    </defs>
-                                    {/* Two overlapping slanted capsules */}
-                                    <rect x="5" y="15" width="45" height="18" rx="9" transform="rotate(-30 27.5 24)" fill="url(#grad1)" />
-                                    <rect x="25" y="25" width="45" height="18" rx="9" transform="rotate(-30 47.5 34)" fill="url(#grad2)" />
-                                </svg>
-                            </div>
-                            <div className="flex flex-col justify-center">
-                                <span className="text-[#74B559] text-xl font-extrabold tracking-tight leading-none">Standard Capital</span>
-                                <span className="text-gray-500 text-sm font-medium tracking-tight leading-none mt-1">Markets Limited</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <div className="container mx-auto px-6 flex justify-center items-center">
                     {/* Made in India */}
                     <div className="text-center">
                         <p className="font-semibold text-gray-800 flex items-center justify-center gap-2 text-sm">
                             Made with <span className="text-red-500 text-lg">❤️</span> in India
                         </p>
-                    </div>
-
-                    {/* Listed on Section */}
-                    <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
-                        <div className="flex flex-col items-center sm:items-start">
-                            <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Listed on</p>
-                            <div className="flex items-center gap-2">
-                                <div className="w-9 h-9 relative flex-shrink-0">
-                                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                                        <polygon points="50 0, 95 25, 95 75, 50 100, 5 75, 5 25" fill="none" stroke="#652D90" strokeWidth="0" />
-                                        <path d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z" fill="white" />
-                                        <path d="M50 0 L93.3 25 L50 50 L6.7 25 Z" fill="#FDB913" opacity="0.9" />
-                                        <path d="M50 0 L93.3 25 L93.3 75 L50 50 Z" fill="#DA2128" opacity="0.9" />
-                                        <path d="M93.3 75 L50 100 L50 50 Z" fill="#652D90" opacity="0.9" />
-                                        <path d="M50 100 L6.7 75 L50 50 Z" fill="#2E3192" opacity="0.9" />
-                                        <path d="M6.7 75 L6.7 25 L50 50 Z" fill="#0091D2" opacity="0.9" />
-                                        <path d="M6.7 25 L50 0 L50 50 Z" fill="#FDB913" opacity="0.9" />
-                                    </svg>
-                                </div>
-                                <div className="font-bold text-xl leading-none flex items-center text-[#2E3192]">
-                                    NSE <span className="text-gray-300 mx-2 text-2xl font-light">|</span> <span className="text-[#DA2128]">Emerge</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

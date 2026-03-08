@@ -6,7 +6,6 @@ import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
 import { useUI } from '../App';
 import { UserRole } from '../types';
-import { generateLoanImage } from '../src/services/imageService';
 
 // FeatureCard component
 const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; description: string; }> = ({ icon, title, description }) => (
@@ -281,39 +280,20 @@ const LiveRatesTicker: React.FC = () => (
 const LandingScreen: React.FC = () => {
     const { openApplyModal } = useUI();
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
-    const [heroImage, setHeroImage] = useState<string | null>(null);
-    const [mobileAppImage, setMobileAppImage] = useState<string | null>(null);
     const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role: UserRole}>({
         isOpen: false,
         role: UserRole.BORROWER
     });
 
-    useEffect(() => {
-        const fetchImages = async () => {
-            try {
-                const heroPrompt = "High-end commercial photography for 'Offer Me Loan' fintech brand. A stunning, sun-drenched modern office in a Mumbai skyscraper with floor-to-ceiling windows showing the city skyline. A diverse, happy Indian family (mother, father, and daughter) are joyfully shaking hands with a professional, friendly loan officer. On the desk, a sleek tablet displays a vibrant 'LOAN APPROVED' interface with a large green checkmark. Cinematic lighting, shallow depth of field, 8k resolution, photorealistic, premium corporate aesthetic.";
-                const mobilePrompt = "A sleek, modern smartphone displaying the 'Offer Me Loan' mobile app dashboard. The screen shows a clean interface with loan progress bars, interest rates, and a 'Loan Approved' notification. The phone is held by a professional Indian hand in a modern office setting. High-quality, sharp focus, vibrant colors, professional fintech aesthetic.";
-                
-                const [heroImg, mobileImg] = await Promise.all([
-                    generateLoanImage(heroPrompt),
-                    generateLoanImage(mobilePrompt)
-                ]);
-
-                if (heroImg) setHeroImage(heroImg);
-                if (mobileImg) setMobileAppImage(mobileImg);
-            } catch (error) {
-                console.error("Failed to generate images:", error);
-            }
-        };
-        fetchImages();
-    }, []);
+    const heroImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80";
+    const mobileAppImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop";
 
     const openAuthModal = (role: UserRole) => {
         setAuthModalConfig({ isOpen: true, role });
     };
 
     return (
-        <div className="bg-gray-50">
+        <div className="bg-primary-light">
             {/* Live Ticker Bar */}
             <LiveRatesTicker />
 
@@ -370,8 +350,8 @@ const LandingScreen: React.FC = () => {
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                             <div className="relative z-10 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-primary h-[500px] lg:h-[650px] overflow-hidden group">
                                 <img 
-                                    src={heroImage || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"} 
-                                    alt="Happy Indian family celebrating loan approval in a modern Mumbai office" 
+                                    src={heroImage} 
+                                    alt="Modern loan platform software dashboard showing financial analytics" 
                                     className="rounded-[2rem] w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     referrerPolicy="no-referrer"
                                     onError={(e) => {
@@ -399,7 +379,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
              {/* EMI Calculator Section */}
-            <section id="emi-calculator" className="relative py-24 bg-white overflow-hidden">
+            <section id="emi-calculator" className="relative py-24 bg-primary/5 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Calculate Your EMI</h2>
@@ -414,7 +394,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
              {/* Loan Categories */}
-             <section id="loan-categories" className="py-20 bg-gray-50">
+             <section id="loan-categories" className="py-20 bg-primary/10">
                 <div className="container mx-auto px-6">
                     <div className="flex justify-between items-end mb-12">
                          <div>
@@ -436,7 +416,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Features Section */}
-            <section id="features" className="py-20 bg-white">
+            <section id="features" className="py-20 bg-primary/5">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Why Choose Offer Me Loan?</h2>
@@ -479,7 +459,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* How It Works */}
-            <section id="how-it-works" className="py-20 bg-gray-50 relative overflow-hidden">
+            <section id="how-it-works" className="py-20 bg-primary/10 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
                      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -636,7 +616,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
              {/* Testimonials */}
-             <section className="py-20 bg-gray-50">
+             <section className="py-20 bg-primary/5">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">What Our Users Say</h2>
