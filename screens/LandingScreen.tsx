@@ -368,7 +368,7 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-[2.5rem] shadow-2xl border border-gray-100 h-[500px] lg:h-[650px] overflow-hidden group">
+                            <div className="relative z-10 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-primary h-[500px] lg:h-[650px] overflow-hidden group">
                                 <img 
                                     src={heroImage || "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80"} 
                                     alt="Happy Indian family celebrating loan approval in a modern Mumbai office" 
@@ -591,7 +591,7 @@ const LandingScreen: React.FC = () => {
                                 <img 
                                     src={mobileAppImage || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop"} 
                                     alt="Offer Me Loan Mobile App Interface showing loan dashboard" 
-                                    className="rounded-[2.5rem] shadow-2xl border-8 border-gray-800 transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+                                    className="rounded-[2.5rem] shadow-2xl border-8 border-primary transform -rotate-3 hover:rotate-0 transition-transform duration-500"
                                     referrerPolicy="no-referrer"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;

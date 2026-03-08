@@ -46,7 +46,7 @@ const AboutUsScreen: React.FC = () => {
                              <img 
                                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                                 alt="Team brainstorming" 
-                                className="relative rounded-2xl shadow-2xl w-full object-cover hover:scale-[1.02] transition-transform duration-500"
+                                className="relative rounded-2xl shadow-2xl border-4 border-primary w-full object-cover hover:scale-[1.02] transition-transform duration-500"
                                 referrerPolicy="no-referrer"
                                 onError={(e) => {
                                     const target = e.target as HTMLImageElement;
@@ -121,7 +121,7 @@ const AboutUsScreen: React.FC = () => {
                             { name: 'Vikram Das', role: 'Chief Technology Officer', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop' },
                         ].map((member, idx) => (
                             <div key={idx} className="text-center group">
-                                <div className="relative mb-6 inline-block rounded-full overflow-hidden w-48 h-48 border-4 border-gray-50 shadow-lg group-hover:border-primary transition-all duration-300">
+                                <div className="relative mb-6 inline-block rounded-full overflow-hidden w-48 h-48 border-4 border-primary shadow-lg group-hover:border-primary transition-all duration-300">
                                     <img 
                                         src={member.img} 
                                         alt={member.name} 

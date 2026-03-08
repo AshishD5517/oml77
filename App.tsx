@@ -49,37 +49,38 @@ export const useUI = () => {
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="logo-grad-main" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor:'#74B559', stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor:'#4A8C2E', stopOpacity:1}} />
+            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#1D2B4F" />
+                <stop offset="100%" stopColor="#2A3F70" />
             </linearGradient>
-            <linearGradient id="text-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style={{stopColor:'#2A3B6F', stopOpacity:1}} />
-                <stop offset="100%" style={{stopColor:'#1D2B4F', stopOpacity:1}} />
+            <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#74B559" />
+                <stop offset="100%" stopColor="#5A9A42" />
             </linearGradient>
-            <filter id="logo-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#74B559" floodOpacity="0.2" />
-            </filter>
         </defs>
         
-        {/* Icon: Sophisticated 'O' with Rupee symbol and growth elements */}
-        <g filter="url(#logo-shadow)">
-            <circle cx="50" cy="50" r="42" fill="url(#logo-grad-main)" />
-            <path d="M50 20C33.4315 20 20 33.4315 20 50C20 66.5685 33.4315 80 50 80C66.5685 80 80 66.5685 80 50" stroke="white" strokeWidth="3" strokeLinecap="round" opacity="0.3" />
-            <path d="M50 35V65M35 50H65" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.2" />
-            <text x="50" y="68" textAnchor="middle" fill="white" fontSize="46" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
+        {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
+        <g transform="translate(10, 10)">
+            {/* Shield Base - Representing Security & Trust */}
+            <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
+            
+            {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
+            <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
+            
+            {/* Rupee Symbol - Finance Core */}
+            <text x="40" y="52" textAnchor="middle" fill="white" fontSize="32" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
         </g>
         
-        {/* Text: Premium brand typography */}
-        <text x="115" y="48" fontFamily="Inter, sans-serif" fontSize="44" fontWeight="900" letterSpacing="-1.8">
-            <tspan fill="url(#text-grad)">OFFER ME</tspan>
-        </text>
-        <text x="115" y="88" fontFamily="Inter, sans-serif" fontSize="44" fontWeight="900" letterSpacing="-1.8">
-            <tspan fill="#74B559">LOAN</tspan>
-        </text>
-        
-        {/* Decorative accent dot */}
-        <circle cx="345" cy="78" r="6" fill="#74B559" />
+        {/* Typography: Bold & Professional */}
+        <g transform="translate(105, 25)">
+            <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill="#1D2B4F">
+                OFFER
+            </text>
+            <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
+                <tspan fill="#74B559">ME</tspan>
+                <tspan fill="#1D2B4F" dx="8">LOAN</tspan>
+            </text>
+        </g>
     </svg>
 );
 
@@ -266,14 +267,11 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-sm relative z-10 mb-12">
-                <div className="flex flex-col items-center sm:items-start mb-6 sm:mb-0">
-                    <LogoIcon className="h-12 mb-4 opacity-80 brightness-0 invert" />
-                    <div className="text-center sm:text-left text-gray-400">
-                        <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
-                        <p className="mt-2">
-                            Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
-                        </p>
-                    </div>
+                <div className="text-center sm:text-left mb-4 sm:mb-0 text-gray-400">
+                    <p>&copy; {new Date().getFullYear()} Offer Me Loan. All rights reserved.</p>
+                    <p className="mt-2">
+                        Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034
+                    </p>
                 </div>
                 <div className="flex items-center space-x-6">
                     {socialLinks.map(link => (
