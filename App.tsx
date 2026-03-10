@@ -46,43 +46,50 @@ export const useUI = () => {
 // --- END NEW UI CONTEXT ---
 
 
-const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1D2B4F" />
-                <stop offset="100%" stopColor="#2A3F70" />
-            </linearGradient>
-            <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#74B559" />
-                <stop offset="100%" stopColor="#5A9A42" />
-            </linearGradient>
-        </defs>
-        
-        {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
-        <g transform="translate(10, 10)">
-            {/* Shield Base - Representing Security & Trust */}
-            <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
+const LogoIcon: React.FC<{ className?: string, lightText?: boolean }> = ({ className, lightText }) => {
+    const textColor = lightText ? "#FFFFFF" : "#1D2B4F";
+    const shieldColor1 = lightText ? "#FFFFFF" : "#1D2B4F";
+    const shieldColor2 = lightText ? "#E2E8F0" : "#2A3F70";
+    const rupeeColor = lightText ? "#1D2B4F" : "white";
+    
+    return (
+        <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor={shieldColor1} />
+                    <stop offset="100%" stopColor={shieldColor2} />
+                </linearGradient>
+                <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#74B559" />
+                    <stop offset="100%" stopColor="#5A9A42" />
+                </linearGradient>
+            </defs>
             
-            {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
-            <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
+            {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
+            <g transform="translate(10, 10)">
+                {/* Shield Base - Representing Security & Trust */}
+                <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
+                
+                {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
+                <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
+                
+                {/* Rupee Symbol - Finance Core */}
+                <text x="40" y="56" textAnchor="middle" fill={rupeeColor} fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
+            </g>
             
-            {/* Rupee Symbol - Finance Core */}
-            <text x="40" y="56" textAnchor="middle" fill="white" fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
-        </g>
-        
-        {/* Typography: Bold & Professional */}
-        <g transform="translate(105, 25)">
-            <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill="#1D2B4F">
-                OFFER
-            </text>
-            <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
-                <tspan fill="#74B559">ME</tspan>
-                <tspan fill="#1D2B4F" dx="8">LOAN</tspan>
-            </text>
-        </g>
-    </svg>
-);
+            {/* Typography: Bold & Professional */}
+            <g transform="translate(105, 25)">
+                <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill={textColor}>
+                    OFFER
+                </text>
+                <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
+                    <tspan fill="#74B559">ME</tspan>
+                    <tspan fill={textColor} dx="8">LOAN</tspan>
+                </text>
+            </g>
+        </svg>
+    );
+};
 
 
 const Header: React.FC = () => {
@@ -270,13 +277,8 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Logo and Description */}
                     <div className="col-span-1 md:col-span-1">
-                        <div className="flex items-center space-x-2 mb-6">
-                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
-                                <span className="text-white font-bold text-xl transform -rotate-3">O</span>
-                            </div>
-                            <span className="text-2xl font-extrabold tracking-tight text-white">
-                                OfferMe<span className="text-primary">Loan</span>
-                            </span>
+                        <div className="flex items-center mb-6">
+                            <LogoIcon className="h-16 md:h-20 -ml-4" lightText />
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6">
                             The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.
@@ -341,17 +343,6 @@ const Footer: React.FC = () => {
                 </div>
             </div>
 
-            {/* Partners / Trust Strip */}
-            <div className="bg-white text-gray-800 py-6 border-t border-gray-100">
-                <div className="container mx-auto px-6 flex justify-center items-center">
-                    {/* Made in India */}
-                    <div className="text-center">
-                        <p className="font-semibold text-gray-800 flex items-center justify-center gap-2 text-sm">
-                            Made with <span className="text-red-500 text-lg">❤️</span> in India
-                        </p>
-                    </div>
-                </div>
-            </div>
         </footer>
     );
 };

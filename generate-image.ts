@@ -1,5 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
+import path from "path";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -10,22 +11,27 @@ async function generate() {
       contents: {
         parts: [
           {
-            text: 'Modern fintech website hero banner showing a happy Indian family celebrating loan approval in a bright living room, father holding house keys, mother using laptop showing loan approval screen, child excited, representing home loan success',
+            text: 'A smiling Indian woman looking at her smartphone, wearing a light patterned shirt, isolated on a clean white background, professional studio lighting, portrait photography.',
           },
         ],
       },
       config: {
         imageConfig: {
-          aspectRatio: "1:1"
+          aspectRatio: "3:4"
         }
       }
     });
     
+    const publicDir = path.join(process.cwd(), 'public');
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+
     for (const part of response.candidates[0].content.parts) {
       if (part.inlineData) {
         const base64EncodeString = part.inlineData.data;
-        fs.writeFileSync('./public/hero-family.png', Buffer.from(base64EncodeString, 'base64'));
-        console.log('Image saved to ./public/hero-family.png');
+        fs.writeFileSync(path.join(publicDir, 'woman-phone.png'), Buffer.from(base64EncodeString, 'base64'));
+        console.log('Image saved to ./public/woman-phone.png');
       }
     }
   } catch (e) {
