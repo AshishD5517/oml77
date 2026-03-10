@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Home, GraduationCap, Car, Briefcase } from 'lucide-react';
+import { Home, GraduationCap, Car, Briefcase, IndianRupee } from 'lucide-react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
@@ -285,7 +285,7 @@ const LandingScreen: React.FC = () => {
         role: UserRole.BORROWER
     });
 
-    const heroImage = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80";
+    const heroImage = "https://image.pollinations.ai/prompt/Trustworthy%20modern%20Indian%20loan%20platform%20hero%20image,%20happy%20middle-class%20Indian%20family%20in%20a%20bright%20contemporary%20living%20room%20easily%20applying%20for%20a%20loan%20online,%20father%20smiling%20holding%20new%20house%20keys,%20mother%20using%20a%20clean%20user-friendly%20fintech%20app%20on%20a%20laptop,%20symbolizing%20quick%20approval%20and%20financial%20security,%20soft%20natural%20lighting,%20high%20quality%20professional%20photography,%20clean%20background?width=1200&height=1200&nologo=true";
     const mobileAppImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop";
 
     const openAuthModal = (role: UserRole) => {
@@ -317,7 +317,7 @@ const LandingScreen: React.FC = () => {
                 
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-12">
-                        <div className="lg:w-1/2 text-center lg:text-left animate-fade-in-up">
+                        <div className="lg:w-5/12 text-center lg:text-left animate-fade-in-up">
                             <div className="inline-block px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100 mb-6">
                                 <span className="text-primary font-bold text-sm uppercase tracking-wider">Fast • Secure • Easy</span>
                             </div>
@@ -347,27 +347,100 @@ const LandingScreen: React.FC = () => {
                                 <div className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Secure Process</div>
                             </div>
                         </div>
-                        <div className="lg:w-1/2 relative animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 bg-white p-4 rounded-[2.5rem] shadow-2xl border-4 border-primary h-[500px] lg:h-[650px] overflow-hidden group">
-                                <img 
-                                    src={heroImage} 
-                                    alt="Modern loan platform software dashboard showing financial analytics" 
-                                    className="rounded-[2rem] w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    referrerPolicy="no-referrer"
-                                    onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        target.src = "https://picsum.photos/seed/mumbai-office-loan/1200/800";
-                                    }}
-                                />
-                                
-                                {/* Loan Approved Badge Overlay */}
-                                <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md border border-green-200 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 z-20 animate-fade-in-up">
-                                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-200">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                        <div className="lg:w-7/12 relative animate-fade-in-up flex justify-center" style={{ animationDelay: '0.2s' }}>
+                            <div className="relative z-10 bg-[#f8f9fa] pt-8 px-6 md:px-8 pb-6 rounded-[2.5rem] shadow-2xl border-4 border-white w-full max-w-[500px] lg:max-w-[750px] overflow-hidden group flex flex-col items-center">
+                                {/* Floating background elements */}
+                                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                                    <div className="absolute top-1/4 left-1/4 w-12 h-6 bg-green-200 rounded opacity-40 transform rotate-45 animate-pulse"></div>
+                                    <div className="absolute top-1/3 right-1/4 w-8 h-8 bg-yellow-200 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                                    <div className="absolute bottom-1/3 left-1/5 w-10 h-5 bg-green-200 rounded opacity-40 transform -rotate-12 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                                    <div className="absolute top-1/2 right-1/5 w-10 h-10 bg-yellow-200 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+                                </div>
+
+                                {/* Top Text */}
+                                <div className="w-full text-left mb-6 z-20">
+                                    <div className="inline-flex items-center bg-[#4CAF50] text-white px-3 py-1.5 rounded font-bold text-sm md:text-base mb-3 shadow-sm">
+                                        <svg className="w-5 h-5 mr-1.5 bg-white text-[#4CAF50] rounded-full p-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                        Congratulations
                                     </div>
-                                    <div>
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest leading-none mb-1">Status</p>
-                                        <p className="text-sm font-extrabold text-secondary leading-none">LOAN APPROVED</p>
+                                    <h2 className="text-xl md:text-3xl font-bold text-gray-800 leading-snug">
+                                        You are just a few minutes away from a <span className="text-[#1e3a8a]">loan</span>
+                                    </h2>
+                                </div>
+
+                                {/* Center Image Area */}
+                                <div className="relative w-full flex justify-center items-end mt-2 h-[250px] md:h-[300px]">
+                                    {/* Background House Shape */}
+                                    <div className="absolute bottom-0 w-[80%] md:w-[60%] h-[110%] bg-gradient-to-t from-[#e6f2e6] to-[#fdfbf7] z-0" style={{ clipPath: 'polygon(50% 0%, 100% 30%, 100% 100%, 0% 100%, 0% 30%)' }}></div>
+                                    
+                                    {/* Woman Image */}
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1595986630530-969786b19b4d?q=80&w=600&auto=format&fit=crop" 
+                                        alt="Smiling Indian woman looking at phone" 
+                                        className="relative z-10 w-auto h-full object-cover object-top rounded-t-full"
+                                        referrerPolicy="no-referrer"
+                                    />
+
+                                    {/* Loan Approved Bubble */}
+                                    <div className="absolute top-1/4 right-[0%] md:right-[10%] bg-white border border-green-200 text-[#4CAF50] font-extrabold px-3 py-2 rounded-xl rounded-bl-none shadow-lg z-20 text-xs md:text-sm animate-bounce" style={{ animationDuration: '2.5s' }}>
+                                        LOAN APPROVED!
+                                    </div>
+
+                                    {/* Cash Stacks (Left) */}
+                                    <div className="absolute bottom-0 left-[0%] md:left-[10%] z-20 flex flex-col items-center">
+                                        <div className="relative">
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-600 rounded shadow-sm border border-green-700 flex items-center justify-center text-green-200 font-bold text-xs transform -skew-x-12"></div>
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-500 rounded shadow-sm border border-green-600 flex items-center justify-center text-green-100 font-bold text-xs transform -skew-x-12 -mt-4 md:-mt-6"></div>
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-400 rounded shadow-sm border border-green-500 flex items-center justify-center text-white font-bold text-xs md:text-sm transform -skew-x-12 -mt-4 md:-mt-6">₹</div>
+                                        </div>
+                                        <div className="relative -mt-2 md:-mt-4 ml-6 md:ml-10">
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-600 rounded shadow-sm border border-green-700 flex items-center justify-center text-green-200 font-bold text-xs transform -skew-x-12"></div>
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-500 rounded shadow-sm border border-green-600 flex items-center justify-center text-green-100 font-bold text-xs transform -skew-x-12 -mt-4 md:-mt-6"></div>
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-green-400 rounded shadow-sm border border-green-500 flex items-center justify-center text-white font-bold text-xs md:text-sm transform -skew-x-12 -mt-4 md:-mt-6">₹</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Gold Coins (Right) */}
+                                    <div className="absolute bottom-2 right-[0%] md:right-[10%] z-20 flex flex-col items-center">
+                                        <div className="relative">
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-600 rounded-[50%] shadow-sm border border-yellow-700 absolute bottom-0"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-500 rounded-[50%] shadow-sm border border-yellow-600 absolute bottom-1 md:bottom-1.5"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-400 rounded-[50%] shadow-sm border border-yellow-500 absolute bottom-2 md:bottom-3"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-300 rounded-[50%] shadow-sm border border-yellow-400 absolute bottom-3 md:bottom-4.5 flex items-center justify-center text-yellow-700 font-bold text-[8px] md:text-[10px]">₹</div>
+                                        </div>
+                                        <div className="relative ml-8 md:ml-12 -mt-2">
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-600 rounded-[50%] shadow-sm border border-yellow-700 absolute bottom-0"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-500 rounded-[50%] shadow-sm border border-yellow-600 absolute bottom-1 md:bottom-1.5"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-400 rounded-[50%] shadow-sm border border-yellow-500 absolute bottom-2 md:bottom-3"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-300 rounded-[50%] shadow-sm border border-yellow-400 absolute bottom-3 md:bottom-4.5 flex items-center justify-center text-yellow-700 font-bold text-[8px] md:text-[10px]">₹</div>
+                                        </div>
+                                        <div className="relative -ml-4 md:-ml-6 mt-4 md:mt-6">
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-600 rounded-[50%] shadow-sm border border-yellow-700 absolute bottom-0"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-500 rounded-[50%] shadow-sm border border-yellow-600 absolute bottom-1 md:bottom-1.5"></div>
+                                            <div className="w-10 md:w-14 h-3 md:h-4 bg-yellow-400 rounded-[50%] shadow-sm border border-yellow-500 absolute bottom-2 md:bottom-3 flex items-center justify-center text-yellow-700 font-bold text-[8px] md:text-[10px]">₹</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Bottom Features Card */}
+                                <div className="relative z-30 w-full bg-white rounded-xl border border-gray-200 shadow-sm p-3 md:p-4 mt-4 flex justify-around items-center">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="w-8 h-8 md:w-10 md:h-10 text-[#1e3a8a] mb-1">
+                                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                        </div>
+                                        <span className="text-[10px] md:text-sm font-medium text-gray-700">Quick Approvals</span>
+                                    </div>
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="w-8 h-8 md:w-10 md:h-10 text-[#1e3a8a] mb-1">
+                                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M4 10v7h3v-7H4zm6 0v7h3v-7h-3zM2 22h19v-3H2v3zm14-12v7h3v-7h-3zm-8.5-9L2 6v2h19V6l-9.5-5z"/></svg>
+                                        </div>
+                                        <span className="text-[10px] md:text-sm font-medium text-gray-700">Instant Disbursals</span>
+                                    </div>
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="w-8 h-8 md:w-10 md:h-10 text-[#1e3a8a] mb-1">
+                                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                                        </div>
+                                        <span className="text-[10px] md:text-sm font-medium text-gray-700">100% Secure</span>
                                     </div>
                                 </div>
                             </div>
@@ -494,7 +567,7 @@ const LandingScreen: React.FC = () => {
                             number="3"
                             title="Get Funded"
                             description="Choose the best offer and get funds transferred to your account."
-                            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>}
+                            icon={<IndianRupee className="h-8 w-8" />}
                         />
                     </div>
                 </div>

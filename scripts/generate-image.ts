@@ -2,45 +2,37 @@ import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
 
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
 async function generate() {
-  try {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-    const prompt = "Create a modern landing page hero image for a digital loan platform showing an Indian borrower and an Indian loan agent interacting professionally. The borrower can be a young Indian professional or small business owner discussing loan options with a friendly loan agent using a laptop or tablet. The scene should represent trust, financial support, and digital lending.";
-    
-    console.log("Generating image...");
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash-image',
-      contents: {
-        parts: [
-          { text: prompt },
-        ],
-      },
-      config: {
-        imageConfig: {
-          aspectRatio: "16:9",
+  const response = await ai.models.generateContent({
+    model: 'gemini-3.1-flash-image-preview',
+    contents: {
+      parts: [
+        {
+          text: 'A happy Indian middle-class family sitting together at a table celebrating loan approval, father holding a smartphone showing a green screen with "Loan Approved" and a checkmark, a laptop on the table also displaying "Loan Approved", mother smiling beside him, two children cheering happily, small house model and toy car placed on the table symbolizing home and car loan, bright modern living room background, natural lighting, professional fintech advertisement style, realistic photography, sharp focus, high resolution, clean composition, website landing page hero image',
         },
-      },
-    });
-
-    let foundImage = false;
-    for (const part of response.candidates?.[0]?.content?.parts || []) {
-      if (part.inlineData) {
-        const base64EncodeString = part.inlineData.data;
-        const buffer = Buffer.from(base64EncodeString, 'base64');
-        const outputPath = path.join(process.cwd(), 'public', 'hero-generated.png');
-        fs.writeFileSync(outputPath, buffer);
-        console.log("Image saved to", outputPath);
-        foundImage = true;
-        break;
+      ],
+    },
+    config: {
+      imageConfig: {
+        aspectRatio: "16:9",
+        imageSize: "1K"
       }
-    }
+    },
+  });
 
-    if (!foundImage) {
-      console.error("No image data found in response");
+  for (const part of response.candidates[0].content.parts) {
+    if (part.inlineData) {
+      const base64EncodeString = part.inlineData.data;
+      const dir = path.join(process.cwd(), 'public');
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.writeFileSync(path.join(dir, 'hero-image.png'), Buffer.from(base64EncodeString, 'base64'));
+      console.log('Image saved to public/hero-image.png');
     }
-  } catch (error) {
-    console.error("Error generating image:", error);
   }
 }
 
-generate();
+generate().catch(console.error);

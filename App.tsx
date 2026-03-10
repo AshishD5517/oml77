@@ -298,6 +298,7 @@ const Footer: React.FC = () => {
                             <li><a href="/#emi-calculator" className="text-gray-400 hover:text-primary transition-colors text-sm">EMI Calculator</a></li>
                             <li><a href="/#how-it-works" className="text-gray-400 hover:text-primary transition-colors text-sm">How It Works</a></li>
                             <li><a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm">Blog & Insights</a></li>
+                            <li><a href="/logo-designs" className="text-gray-400 hover:text-primary transition-colors text-sm">Logo Designs</a></li>
                             <li><a href="/faqs" className="text-gray-400 hover:text-primary transition-colors text-sm">FAQs</a></li>
                         </ul>
                     </div>
