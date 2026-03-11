@@ -46,50 +46,43 @@ export const useUI = () => {
 // --- END NEW UI CONTEXT ---
 
 
-const LogoIcon: React.FC<{ className?: string, lightText?: boolean }> = ({ className, lightText }) => {
-    const textColor = lightText ? "#FFFFFF" : "#1D2B4F";
-    const shieldColor1 = lightText ? "#FFFFFF" : "#1D2B4F";
-    const shieldColor2 = lightText ? "#E2E8F0" : "#2A3F70";
-    const rupeeColor = lightText ? "#1D2B4F" : "white";
-    
-    return (
-        <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor={shieldColor1} />
-                    <stop offset="100%" stopColor={shieldColor2} />
-                </linearGradient>
-                <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#74B559" />
-                    <stop offset="100%" stopColor="#5A9A42" />
-                </linearGradient>
-            </defs>
+const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#1D2B4F" />
+                <stop offset="100%" stopColor="#2A3F70" />
+            </linearGradient>
+            <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#74B559" />
+                <stop offset="100%" stopColor="#5A9A42" />
+            </linearGradient>
+        </defs>
+        
+        {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
+        <g transform="translate(10, 10)">
+            {/* Shield Base - Representing Security & Trust */}
+            <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
             
-            {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
-            <g transform="translate(10, 10)">
-                {/* Shield Base - Representing Security & Trust */}
-                <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
-                
-                {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
-                <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
-                
-                {/* Rupee Symbol - Finance Core */}
-                <text x="40" y="56" textAnchor="middle" fill={rupeeColor} fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
-            </g>
+            {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
+            <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
             
-            {/* Typography: Bold & Professional */}
-            <g transform="translate(105, 25)">
-                <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill={textColor}>
-                    OFFER
-                </text>
-                <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
-                    <tspan fill="#74B559">ME</tspan>
-                    <tspan fill={textColor} dx="8">LOAN</tspan>
-                </text>
-            </g>
-        </svg>
-    );
-};
+            {/* Rupee Symbol - Finance Core */}
+            <text x="40" y="56" textAnchor="middle" fill="white" fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
+        </g>
+        
+        {/* Typography: Bold & Professional */}
+        <g transform="translate(105, 25)">
+            <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill="#1D2B4F">
+                OFFER
+            </text>
+            <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
+                <tspan fill="#74B559">ME</tspan>
+                <tspan fill="#1D2B4F" dx="8">LOAN</tspan>
+            </text>
+        </g>
+    </svg>
+);
 
 
 const Header: React.FC = () => {
@@ -277,10 +270,15 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Logo and Description */}
                     <div className="col-span-1 md:col-span-1">
-                        <div className="flex items-center mb-6">
-                            <LogoIcon className="h-16 md:h-20 -ml-4" lightText />
+                        <div className="flex items-center space-x-2 mb-6">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
+                                <span className="text-white font-bold text-xl transform -rotate-3">O</span>
+                            </div>
+                            <span className="text-2xl font-extrabold tracking-tight text-white">
+                                OfferMe<span className="text-primary">Loan</span>
+                            </span>
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                        <p className="text-gray-400 text-base leading-relaxed mb-6">
                             The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.
                         </p>
                         <div className="flex items-center space-x-4">
@@ -294,42 +292,42 @@ const Footer: React.FC = () => {
 
                     {/* Quick Links */}
                     <div className="col-span-1">
-                        <h3 className="text-lg font-bold text-white mb-6">Quick Links</h3>
+                        <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
                         <ul className="space-y-4">
-                            <li><a href="/about-us" className="text-gray-400 hover:text-primary transition-colors text-sm">About Us</a></li>
-                            <li><a href="/#emi-calculator" className="text-gray-400 hover:text-primary transition-colors text-sm">EMI Calculator</a></li>
-                            <li><a href="/#how-it-works" className="text-gray-400 hover:text-primary transition-colors text-sm">How It Works</a></li>
-                            <li><a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm">Blog & Insights</a></li>
-                            <li><a href="/logo-designs" className="text-gray-400 hover:text-primary transition-colors text-sm">Logo Designs</a></li>
-                            <li><a href="/faqs" className="text-gray-400 hover:text-primary transition-colors text-sm">FAQs</a></li>
+                            <li><a href="/about-us" className="text-gray-400 hover:text-primary transition-colors text-base">About Us</a></li>
+                            <li><a href="/#emi-calculator" className="text-gray-400 hover:text-primary transition-colors text-base">EMI Calculator</a></li>
+                            <li><a href="/#how-it-works" className="text-gray-400 hover:text-primary transition-colors text-base">How It Works</a></li>
+                            <li><a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-base">Blog & Insights</a></li>
+                            <li><a href="/logo-designs" className="text-gray-400 hover:text-primary transition-colors text-base">Logo Designs</a></li>
+                            <li><a href="/faqs" className="text-gray-400 hover:text-primary transition-colors text-base">FAQs</a></li>
                         </ul>
                     </div>
 
                     {/* Legal */}
                     <div className="col-span-1">
-                        <h3 className="text-lg font-bold text-white mb-6">Legal</h3>
+                        <h3 className="text-xl font-bold text-white mb-6">Legal</h3>
                         <ul className="space-y-4">
-                            <li><a href="/terms-and-conditions" className="text-gray-400 hover:text-primary transition-colors text-sm">Terms and Conditions</a></li>
-                            <li><a href="/privacy-policy" className="text-gray-400 hover:text-primary transition-colors text-sm">Privacy Policy</a></li>
-                            <li><a href="/cookie-policy" className="text-gray-400 hover:text-primary transition-colors text-sm">Cookie Policy</a></li>
-                            <li><a href="/disclaimer" className="text-gray-400 hover:text-primary transition-colors text-sm">Disclaimer</a></li>
+                            <li><a href="/terms-and-conditions" className="text-gray-400 hover:text-primary transition-colors text-base">Terms and Conditions</a></li>
+                            <li><a href="/privacy-policy" className="text-gray-400 hover:text-primary transition-colors text-base">Privacy Policy</a></li>
+                            <li><a href="/cookie-policy" className="text-gray-400 hover:text-primary transition-colors text-base">Cookie Policy</a></li>
+                            <li><a href="/disclaimer" className="text-gray-400 hover:text-primary transition-colors text-base">Disclaimer</a></li>
                         </ul>
                     </div>
 
                     {/* Contact Info */}
                     <div className="col-span-1">
-                        <h3 className="text-lg font-bold text-white mb-6">Contact Us</h3>
+                        <h3 className="text-xl font-bold text-white mb-6">Contact Us</h3>
                         <ul className="space-y-4">
-                            <li className="flex items-start space-x-3 text-gray-400 text-sm">
-                                <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <li className="flex items-start space-x-3 text-gray-400 text-base">
+                                <svg className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>Unit No. 226, 2nd Floor, D Mall, Netaji Subhash Place, Pitampura, New Delhi - 110034</span>
                             </li>
-                            <li className="flex items-center space-x-3 text-gray-400 text-sm">
-                                <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <li className="flex items-center space-x-3 text-gray-400 text-base">
+                                <svg className="w-6 h-6 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 <a href="mailto:info@offermeloan.com" className="hover:text-primary transition-colors">info@offermeloan.com</a>
                             </li>
-                            <li className="flex items-center space-x-3 text-gray-400 text-sm">
-                                <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <li className="flex items-center space-x-3 text-gray-400 text-base">
+                                <svg className="w-6 h-6 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                                 <span className="hover:text-primary transition-colors cursor-default">Coming Soon</span>
                             </li>
                         </ul>
