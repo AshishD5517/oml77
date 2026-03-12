@@ -365,76 +365,78 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Quick Apply Form Section */}
-            <section className="py-20 bg-gray-50 relative z-20 overflow-hidden">
-                <div className="container mx-auto px-6 relative z-10 flex justify-center">
-                    <div className="bg-primary rounded-3xl shadow-2xl p-8 md:p-10 w-full max-w-[450px] sm:aspect-square flex flex-col justify-center relative overflow-hidden">
-                        {/* Decorative background elements inside the square */}
-                        <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"></div>
-                        <div className="absolute bottom-0 left-0 w-40 h-40 bg-black/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/3"></div>
+            <section className="py-16 bg-gray-50 relative z-20 overflow-hidden">
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="text-center mb-8 relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Quick Apply</h2>
+                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Find the perfect loan tailored to your needs.</p>
+                    </div>
+                    
+                    <div className="flex justify-center">
+                        <div className="bg-primary rounded-3xl shadow-2xl p-8 md:p-10 w-full max-w-5xl flex flex-col items-center justify-between relative overflow-hidden gap-8">
+                            {/* Decorative background elements inside the rectangle */}
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
 
-                        <div className="text-center mb-6 relative z-10">
-                            <h2 className="text-3xl font-extrabold text-white mb-2">Quick Apply</h2>
-                            <p className="text-white/80 text-sm">Find the perfect loan tailored to your needs.</p>
-                        </div>
-                        
-                        <div className="flex flex-col gap-4 relative z-10">
-                            <div className="w-full relative">
-                                <label className="block text-sm font-bold text-white/90 mb-1">Location</label>
-                                <div className="relative">
-                                    <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                        <option value="" disabled>Select City</option>
-                                        <option value="mumbai">Mumbai</option>
-                                        <option value="delhi">Delhi NCR</option>
-                                        <option value="bangalore">Bangalore</option>
-                                        <option value="hyderabad">Hyderabad</option>
-                                        <option value="chennai">Chennai</option>
-                                        <option value="pune">Pune</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                            <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full items-end">
+                                <div className="w-full sm:w-1/3 relative">
+                                    <label className="block text-sm font-bold text-white/90 mb-1">Location</label>
+                                    <div className="relative">
+                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
+                                            <option value="" disabled>Select City</option>
+                                            <option value="mumbai">Mumbai</option>
+                                            <option value="delhi">Delhi NCR</option>
+                                            <option value="bangalore">Bangalore</option>
+                                            <option value="hyderabad">Hyderabad</option>
+                                            <option value="chennai">Chennai</option>
+                                            <option value="pune">Pune</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="w-full relative">
-                                <label className="block text-sm font-bold text-white/90 mb-1">Loan Type</label>
-                                <div className="relative">
-                                    <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                        <option value="" disabled>Select Loan Type</option>
-                                        <option value="personal">Personal Loan</option>
-                                        <option value="home">Home Loan</option>
-                                        <option value="business">Business Loan</option>
-                                        <option value="auto">Auto Loan</option>
-                                        <option value="education">Education Loan</option>
-                                    </select>
-                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                <div className="w-full sm:w-1/3 relative">
+                                    <label className="block text-sm font-bold text-white/90 mb-1">Loan Type</label>
+                                    <div className="relative">
+                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
+                                            <option value="" disabled>Select Loan Type</option>
+                                            <option value="personal">Personal Loan</option>
+                                            <option value="home">Home Loan</option>
+                                            <option value="business">Business Loan</option>
+                                            <option value="auto">Auto Loan</option>
+                                            <option value="education">Education Loan</option>
+                                        </select>
+                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="w-full relative">
-                                <label className="block text-sm font-bold text-white/90 mb-1">Loan Amount</label>
-                                <div className="relative">
-                                    <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                        <option value="" disabled>Select Amount</option>
-                                        <option value="10k-50k">₹10,000 - ₹50,000</option>
-                                        <option value="50k-1l">₹50,000 - ₹1 Lakh</option>
-                                        <option value="1l-5l">₹1 Lakh - ₹5 Lakhs</option>
-                                        <option value="5l-10l">₹5 Lakhs - ₹10 Lakhs</option>
-                                        <option value="10l+">₹10 Lakhs +</option>
-                                    </select>
-                                    <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                <div className="w-full sm:w-1/3 relative">
+                                    <label className="block text-sm font-bold text-white/90 mb-1">Loan Amount</label>
+                                    <div className="relative">
+                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
+                                            <option value="" disabled>Select Amount</option>
+                                            <option value="10k-50k">₹10,000 - ₹50,000</option>
+                                            <option value="50k-1l">₹50,000 - ₹1 Lakh</option>
+                                            <option value="1l-5l">₹1 Lakh - ₹5 Lakhs</option>
+                                            <option value="5l-10l">₹5 Lakhs - ₹10 Lakhs</option>
+                                            <option value="10l+">₹10 Lakhs +</option>
+                                        </select>
+                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="w-full mt-2">
-                                <button 
-                                    onClick={openApplyModal}
-                                    className="w-full bg-white text-primary font-extrabold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-50 transition-colors h-[50px] flex items-center justify-center"
-                                >
-                                    Apply for a Loan
-                                </button>
+                                <div className="w-full sm:w-auto mt-4 sm:mt-0">
+                                    <button 
+                                        onClick={openApplyModal}
+                                        className="w-full sm:w-auto bg-white text-primary font-extrabold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-50 transition-colors h-[50px] flex items-center justify-center whitespace-nowrap"
+                                    >
+                                        Apply Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
