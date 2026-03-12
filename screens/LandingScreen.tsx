@@ -4,6 +4,7 @@ import { Home, GraduationCap, Car, Briefcase, IndianRupee } from 'lucide-react';
 import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
+import ApplyLoanModal from '../components/ApplyLoanModal';
 import { useUI } from '../App';
 import { UserRole } from '../types';
 
@@ -278,19 +279,18 @@ const LiveRatesTicker: React.FC = () => (
 );
 
 const LandingScreen: React.FC = () => {
-    const { openApplyModal } = useUI();
+    const { openAuthModal } = useUI();
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
-    const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role: UserRole}>({
-        isOpen: false,
-        role: UserRole.BORROWER
-    });
+
+    const handleApplyClick = () => {
+        const element = document.getElementById('quick-apply');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     const heroImage = "https://image.pollinations.ai/prompt/Trustworthy%20modern%20Indian%20loan%20platform%20hero%20image,%20happy%20middle-class%20Indian%20family%20in%20a%20bright%20contemporary%20living%20room%20easily%20applying%20for%20a%20loan%20online,%20father%20smiling%20holding%20new%20house%20keys,%20mother%20using%20a%20clean%20user-friendly%20fintech%20app%20on%20a%20laptop,%20symbolizing%20quick%20approval%20and%20financial%20security,%20soft%20natural%20lighting,%20high%20quality%20professional%20photography,%20clean%20background?width=1200&height=1200&nologo=true";
     const mobileAppImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop";
-
-    const openAuthModal = (role: UserRole) => {
-        setAuthModalConfig({ isOpen: true, role });
-    };
 
     return (
         <div className="bg-primary-light">
@@ -365,7 +365,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Quick Apply Form Section */}
-            <section className="py-16 bg-gray-50 relative z-20 overflow-hidden">
+            <section id="quick-apply" className="py-16 bg-gray-50 relative z-20 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-8 relative z-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Quick Apply</h2>
@@ -373,72 +373,7 @@ const LandingScreen: React.FC = () => {
                     </div>
                     
                     <div className="flex justify-center">
-                        <div className="bg-primary rounded-3xl shadow-2xl p-8 md:p-10 w-full max-w-5xl flex flex-col items-center justify-between relative overflow-hidden gap-8">
-                            {/* Decorative background elements inside the rectangle */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
-
-                            <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full items-end">
-                                <div className="w-full sm:w-1/3 relative">
-                                    <label className="block text-sm font-bold text-white/90 mb-1">Location</label>
-                                    <div className="relative">
-                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                            <option value="" disabled>Select City</option>
-                                            <option value="mumbai">Mumbai</option>
-                                            <option value="delhi">Delhi NCR</option>
-                                            <option value="bangalore">Bangalore</option>
-                                            <option value="hyderabad">Hyderabad</option>
-                                            <option value="chennai">Chennai</option>
-                                            <option value="pune">Pune</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-full sm:w-1/3 relative">
-                                    <label className="block text-sm font-bold text-white/90 mb-1">Loan Type</label>
-                                    <div className="relative">
-                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                            <option value="" disabled>Select Loan Type</option>
-                                            <option value="personal">Personal Loan</option>
-                                            <option value="home">Home Loan</option>
-                                            <option value="business">Business Loan</option>
-                                            <option value="auto">Auto Loan</option>
-                                            <option value="education">Education Loan</option>
-                                        </select>
-                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-full sm:w-1/3 relative">
-                                    <label className="block text-sm font-bold text-white/90 mb-1">Loan Amount</label>
-                                    <div className="relative">
-                                        <select defaultValue="" className="w-full p-3 pr-10 border border-white/20 rounded-lg focus:ring-2 focus:ring-white outline-none appearance-none bg-black/10 text-white font-medium backdrop-blur-sm [&>option]:text-gray-800 [&>option]:bg-white">
-                                            <option value="" disabled>Select Amount</option>
-                                            <option value="10k-50k">₹10,000 - ₹50,000</option>
-                                            <option value="50k-1l">₹50,000 - ₹1 Lakh</option>
-                                            <option value="1l-5l">₹1 Lakh - ₹5 Lakhs</option>
-                                            <option value="5l-10l">₹5 Lakhs - ₹10 Lakhs</option>
-                                            <option value="10l+">₹10 Lakhs +</option>
-                                        </select>
-                                        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none text-white/70">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-full sm:w-auto mt-4 sm:mt-0">
-                                    <button 
-                                        onClick={openApplyModal}
-                                        className="w-full sm:w-auto bg-white text-primary font-extrabold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-50 transition-colors h-[50px] flex items-center justify-center whitespace-nowrap"
-                                    >
-                                        Apply Now
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <ApplyLoanModal inline onClose={() => {}} />
                     </div>
                 </div>
             </section>
@@ -722,7 +657,7 @@ const LandingScreen: React.FC = () => {
                         Join our growing community today. Whether you need funds or want to lend, we have the right solution for you.
                     </p>
                     <button 
-                        onClick={openApplyModal}
+                        onClick={handleApplyClick}
                         className="px-10 py-5 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-lg hover:from-yellow-500 hover:to-green-600 transform hover:-translate-y-1 transition-all"
                     >
                         Apply for Loan
@@ -733,19 +668,11 @@ const LandingScreen: React.FC = () => {
 
             <ContactUsSection />
             
-            {authModalConfig.isOpen && (
-                <AuthModal 
-                    onClose={() => setAuthModalConfig(prev => ({ ...prev, isOpen: false }))}
-                    initialRole={authModalConfig.role}
-                    initialView="register"
-                />
-            )}
-
             {selectedCategory && (
                 <LoanCategoryModal 
                     category={selectedCategory} 
                     onClose={() => setSelectedCategory(null)}
-                    onApply={openApplyModal}
+                    onApply={handleApplyClick}
                 />
             )}
         </div>

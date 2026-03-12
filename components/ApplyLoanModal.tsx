@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useUI } from '../App';
+import { UserRole } from '../types';
 
 interface ApplyLoanModalProps {
   onClose: () => void;
+  inline?: boolean;
 }
 
 // --- ICONS ---
@@ -22,38 +25,12 @@ const AmountIcon = () => (
        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" />
     </svg>
 );
-const UserIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>
-);
-const MailIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
-);
-const SpinnerIcon = () => (
-    <svg className="animate-spin h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-    </svg>
-);
-const CheckCircleIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-primary" viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-    </svg>
-);
 const ChevronDownIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
     </svg>
 );
 // --- END ICONS ---
-
-const ProgressBar: React.FC<{ step: number }> = ({ step }) => {
-    const width = step === 1 ? '0%' : step === 2 ? '50%' : '100%';
-    return (
-        <div className="w-full bg-gray-200 rounded-full h-2 mb-6">
-            <div className="bg-primary h-2 rounded-full transition-all duration-500" style={{ width }}></div>
-        </div>
-    );
-};
 
 const locations = [
     "Agra, Uttar Pradesh", "Ahmedabad, Gujarat", "Ajmer, Rajasthan", "Aligarh, Uttar Pradesh",
@@ -179,8 +156,7 @@ const SearchableDropdown: React.FC<{
     );
 };
 
-const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose }) => {
-    const [step, setStep] = useState(1);
+const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose, inline }) => {
     const [formData, setFormData] = useState({
         location: '',
         loanType: '',
@@ -188,27 +164,8 @@ const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose }) => {
         name: '',
         email: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submissionMessage, setSubmissionMessage] = useState('Submitting your request...');
     
-    useEffect(() => {
-        if (isSubmitting) {
-            const messages = ['Analyzing your profile...', 'Connecting with top agents...', 'Finding the best offers...'];
-            let msgIndex = 0;
-            const intervalId = setInterval(() => {
-                setSubmissionMessage(messages[msgIndex % messages.length]);
-                msgIndex++;
-            }, 1500);
-
-            setTimeout(() => {
-                clearInterval(intervalId);
-                setIsSubmitting(false);
-                setStep(4); // Move to success step
-            }, 4500);
-
-            return () => clearInterval(intervalId);
-        }
-    }, [isSubmitting]);
+    const { openAuthModal } = useUI();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | {name: string, value: string}>) => {
         const target = e.target as HTMLInputElement | HTMLSelectElement;
@@ -217,91 +174,92 @@ const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose }) => {
 
     const handleNextStep = (e: React.FormEvent) => {
         e.preventDefault();
-        setStep(prev => prev + 1);
+        openAuthModal(UserRole.BORROWER, 'register');
+        if (!inline) {
+            onClose();
+        }
     };
 
-    const handlePrevStep = () => setStep(prev => prev - 1);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+    const handleClose = () => {
+        if (inline) {
+            setFormData({
+                location: '',
+                loanType: '',
+                amount: '50000',
+                name: '',
+                email: ''
+            });
+        } else {
+            onClose();
+        }
     };
 
     const renderContent = () => {
-        if (isSubmitting) {
-            return (
-                <div className="absolute inset-0 bg-secondary bg-opacity-90 flex flex-col items-center justify-center rounded-2xl">
-                    <SpinnerIcon />
-                    <p className="text-white text-lg mt-4 font-semibold transition-opacity duration-300">{submissionMessage}</p>
-                </div>
-            );
-        }
-
-        switch (step) {
-            case 1: return <Step1 formData={formData} handleChange={handleChange} handleNextStep={handleNextStep} />;
-            case 2: return <Step2 formData={formData} handleChange={handleChange} handleNextStep={handleNextStep} handlePrevStep={handlePrevStep} />;
-            case 3: return <Step3 formData={formData} handleSubmit={handleSubmit} handlePrevStep={handlePrevStep} />;
-            case 4: return <Step4 onClose={onClose} />;
-            default: return null;
-        }
+        return <Step1 formData={formData} handleChange={handleChange} handleNextStep={handleNextStep} />;
     };
     
-    return (
-        <div className="fixed inset-0 bg-primary/30 flex items-center justify-center z-50 backdrop-blur-md" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl m-4 transform transition-all duration-300 scale-95 hover:scale-100 relative overflow-hidden flex flex-col md:flex-row border border-primary/20" onClick={(e) => e.stopPropagation()}>
+    const content = (
+        <div className={`bg-white rounded-2xl shadow-2xl w-full max-w-3xl ${inline ? 'mt-8' : 'm-4 transform transition-all duration-300 scale-95 hover:scale-100'} relative overflow-hidden flex flex-col md:flex-row border border-primary/20`} onClick={(e) => e.stopPropagation()}>
+            
+            {/* Left Side - Green Branding */}
+            <div className="hidden md:flex md:w-5/12 bg-primary p-10 flex-col justify-between text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
                 
-                {/* Left Side - Green Branding */}
-                <div className="hidden md:flex md:w-5/12 bg-primary p-10 flex-col justify-between text-white relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+                <div className="relative z-10">
+                    <h2 className="text-3xl font-extrabold mb-4 leading-tight">Fast & Easy<br/>Loan Application</h2>
+                    <p className="text-white/80 mb-8 text-sm leading-relaxed">Get matched with the best lenders in minutes. Secure, transparent, and completely hassle-free.</p>
                     
-                    <div className="relative z-10">
-                        <h2 className="text-3xl font-extrabold mb-4 leading-tight">Fast & Easy<br/>Loan Application</h2>
-                        <p className="text-white/80 mb-8 text-sm leading-relaxed">Get matched with the best lenders in minutes. Secure, transparent, and completely hassle-free.</p>
-                        
-                        <ul className="space-y-5">
-                            <li className="flex items-center text-sm font-medium">
-                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                Instant Approval
-                            </li>
-                            <li className="flex items-center text-sm font-medium">
-                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                Lowest Interest Rates
-                            </li>
-                            <li className="flex items-center text-sm font-medium">
-                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                                Zero Hidden Fees
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div className="relative z-10 mt-12">
-                        <div className="flex -space-x-3 mb-3">
-                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=1" alt="User" />
-                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=2" alt="User" />
-                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=3" alt="User" />
-                            <div className="w-10 h-10 rounded-full border-2 border-primary bg-white text-primary flex items-center justify-center text-xs font-bold">+10k</div>
-                        </div>
-                        <p className="text-xs text-white/80 font-medium">Trusted by thousands of happy customers</p>
-                    </div>
+                    <ul className="space-y-5">
+                        <li className="flex items-center text-sm font-medium">
+                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                            Instant Approval
+                        </li>
+                        <li className="flex items-center text-sm font-medium">
+                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                            Lowest Interest Rates
+                        </li>
+                        <li className="flex items-center text-sm font-medium">
+                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                            Zero Hidden Fees
+                        </li>
+                    </ul>
                 </div>
-
-                {/* Right Side - Form */}
-                <div className="w-full md:w-7/12 p-8 md:p-10 relative z-10 bg-gradient-to-br from-white to-green-50 flex flex-col justify-center min-h-[500px]">
-                    <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl leading-none transition-colors z-20">&times;</button>
-                    
-                    {step < 4 && (
-                        <div className="mb-6">
-                            <h2 className="text-2xl font-bold text-secondary mb-1">Apply for a Loan</h2>
-                            <p className="text-gray-500 text-sm mb-6">A few simple steps to connect with lenders.</p>
-                            <ProgressBar step={step} />
-                        </div>
-                    )}
-                    <div className="relative">
-                        {renderContent()}
+                
+                <div className="relative z-10 mt-12">
+                    <div className="flex -space-x-3 mb-3">
+                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=1" alt="User" />
+                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=2" alt="User" />
+                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=3" alt="User" />
+                        <div className="w-10 h-10 rounded-full border-2 border-primary bg-white text-primary flex items-center justify-center text-xs font-bold">+10k</div>
                     </div>
+                    <p className="text-xs text-white/80 font-medium">Trusted by thousands of happy customers</p>
                 </div>
             </div>
+
+            {/* Right Side - Form */}
+            <div className="w-full md:w-7/12 p-8 md:p-10 relative z-10 bg-gradient-to-br from-white to-green-50 flex flex-col justify-center min-h-[500px]">
+                {!inline && <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl leading-none transition-colors z-20">&times;</button>}
+                
+                <div className="mb-6">
+                    <h2 className="text-2xl font-bold text-secondary mb-1">Apply for a Loan</h2>
+                    <p className="text-gray-500 text-sm mb-6">A few simple steps to connect with lenders.</p>
+                </div>
+                
+                <div className="relative">
+                    {renderContent()}
+                </div>
+            </div>
+        </div>
+    );
+
+    if (inline) {
+        return <div className="w-full flex justify-center animate-fade-in-up">{content}</div>;
+    }
+
+    return (
+        <div className="fixed inset-0 bg-primary/30 flex items-center justify-center z-50 backdrop-blur-md" onClick={onClose}>
+            {content}
         </div>
     );
 };
@@ -310,88 +268,19 @@ const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose }) => {
 
 const Step1: React.FC<{ formData: any, handleChange: any, handleNextStep: any }> = ({ formData, handleChange, handleNextStep }) => (
     <form onSubmit={handleNextStep}>
-        <div className="space-y-5">
-            <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Location</label>
-                <SearchableDropdown
-                    name="location"
-                    options={locations}
-                    value={formData.location}
-                    onChange={handleChange}
-                    placeholder="Select City"
-                />
-            </div>
-            <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Loan Type</label>
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LoanTypeIcon /></div>
-                    <select name="loanType" value={formData.loanType} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition appearance-none bg-white">
-                        <option value="" disabled>Select Loan</option>
-                        <option>Personal Loan</option>
-                        <option>Home Improvement</option>
-                        <option>Auto Loan</option>
-                        <option>Business Startup</option>
-                        <option>Debt Consolidation</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">Loan Amount</label>
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><AmountIcon /></div>
-                    <select name="amount" value={formData.amount} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition appearance-none bg-white">
-                        <option value="" disabled>Select Amount</option>
-                        <option value="10k-50k">₹10,000 - ₹50,000</option>
-                        <option value="50k-1l">₹50,000 - ₹1 Lakh</option>
-                        <option value="1l-5l">₹1 Lakh - ₹5 Lakhs</option>
-                        <option value="5l-10l">₹5 Lakhs - ₹10 Lakhs</option>
-                        <option value="10l+">₹10 Lakhs +</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <button type="submit" className="w-full mt-8 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Next</button>
-    </form>
-);
-
-const Step2: React.FC<{ formData: any, handleChange: any, handleNextStep: any, handlePrevStep: any }> = ({ formData, handleChange, handleNextStep, handlePrevStep }) => (
-    <form onSubmit={handleNextStep}>
         <div className="space-y-4">
-            <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><UserIcon /></div><input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" /></div>
-            <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><MailIcon /></div><input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" /></div>
+            <SearchableDropdown
+                name="location"
+                options={locations}
+                value={formData.location}
+                onChange={handleChange}
+                placeholder="Select Location"
+            />
+            <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LoanTypeIcon /></div><select name="loanType" value={formData.loanType} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition appearance-none"><option value="" disabled>Select Loan Type</option><option>Personal Loan</option><option>Home Improvement</option><option>Auto Loan</option><option>Business Startup</option><option>Debt Consolidation</option></select></div>
+            <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><AmountIcon /></div><input type="number" name="amount" placeholder="Loan Amount (₹)" value={formData.amount} onChange={handleChange} required min="50000" step="1000" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" /></div>
         </div>
-        <div className="flex space-x-4 mt-8">
-            <button type="button" onClick={handlePrevStep} className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">Back</button>
-            <button type="submit" className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Next</button>
-        </div>
+        <button type="submit" className="w-full mt-8 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Apply</button>
     </form>
 );
-
-const Step3: React.FC<{ formData: any, handleSubmit: any, handlePrevStep: any }> = ({ formData, handleSubmit, handlePrevStep }) => (
-    <form onSubmit={handleSubmit}>
-        <h3 className="text-lg font-semibold text-secondary mb-4">Review Your Application</h3>
-        <div className="bg-primary-light p-4 rounded-lg space-y-3 text-sm">
-            <div className="flex justify-between"><span className="text-gray-600">Location:</span><span className="font-semibold text-secondary">{formData.location || 'Not set'}</span></div>
-            <div className="flex justify-between"><span className="text-gray-600">Loan Type:</span><span className="font-semibold text-secondary">{formData.loanType || 'Not set'}</span></div>
-            <div className="flex justify-between"><span className="text-gray-600">Amount:</span><span className="font-semibold text-secondary">₹{Number(formData.amount).toLocaleString('en-IN') || 'Not set'}</span></div>
-            <div className="flex justify-between"><span className="text-gray-600">Name:</span><span className="font-semibold text-secondary">{formData.name || 'Not set'}</span></div>
-            <div className="flex justify-between"><span className="text-gray-600">Email:</span><span className="font-semibold text-secondary">{formData.email || 'Not set'}</span></div>
-        </div>
-        <div className="flex space-x-4 mt-8">
-            <button type="button" onClick={handlePrevStep} className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">Back</button>
-            <button type="submit" className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Submit Application</button>
-        </div>
-    </form>
-);
-
-const Step4: React.FC<{ onClose: () => void }> = ({ onClose }) => (
-    <div className="text-center flex flex-col items-center">
-        <CheckCircleIcon />
-        <h2 className="text-2xl font-bold text-secondary mt-4">Application Submitted!</h2>
-        <p className="text-gray-600 mt-2 mb-6">We've sent your request to our network of loan agents. You'll receive notifications as offers come in.</p>
-        <button onClick={onClose} className="w-full max-w-xs bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Done</button>
-    </div>
-);
-
 
 export default ApplyLoanModal;

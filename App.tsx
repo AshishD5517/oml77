@@ -32,6 +32,7 @@ export const useAuth = () => {
 // --- NEW UI CONTEXT ---
 interface UIContextType {
   openApplyModal: () => void;
+  openAuthModal: (role?: UserRole, view?: 'login' | 'register') => void;
 }
 
 const UIContext = createContext<UIContextType | null>(null);
@@ -87,7 +88,7 @@ const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
 
 const Header: React.FC = () => {
     const { user, logout } = useAuth();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const { openAuthModal } = useUI();
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     
@@ -214,7 +215,7 @@ const Header: React.FC = () => {
                                 </div>
                             ) : (
                                 <button
-                                    onClick={() => setIsAuthModalOpen(true)}
+                                    onClick={openAuthModal}
                                     className="px-6 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md"
                                 >
                                     Login / Sign Up
@@ -224,7 +225,6 @@ const Header: React.FC = () => {
                     </div>
                  </div>
             </header>
-            {isAuthModalOpen && <AuthModal onClose={() => setIsAuthModalOpen(false)} />}
         </>
     );
 };
@@ -350,20 +350,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const [user, setUser] = useState<User | null>(null);
 
   const login = useCallback((role: UserRole) => {
-    const mockUser: User = role === UserRole.BORROWER ? {
-        id: 'user-123',
-        name: 'Alex Doe',
-        email: 'alex.doe@example.com',
-        role: UserRole.BORROWER,
-        avatarUrl: `https://i.pravatar.cc/150?u=alex`
-    } : {
-        id: 'agent-456',
-        name: 'Jane Smith',
-        email: 'jane.smith@example.com',
-        role: UserRole.AGENT,
-        avatarUrl: `https://i.pravatar.cc/150?u=jane`
-    };
-    setUser(mockUser);
+    // Intentionally not setting the user to prevent opening the dashboard
+    // and to keep the "Login / Sign Up" button displayed.
+    // setUser(mockUser);
   }, []);
 
   const logout = useCallback(() => {
@@ -380,6 +369,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 // --- NEW UI CONTEXT ---
 const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role?: UserRole, view?: 'login' | 'register'}>({
+    isOpen: false
+  });
   
   const openApplyModal = useCallback(() => {
     setIsApplyModalOpen(true);
@@ -389,10 +381,19 @@ const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     setIsApplyModalOpen(false);
   }, []);
 
+  const openAuthModal = useCallback((role?: UserRole, view?: 'login' | 'register') => {
+    setAuthModalConfig({ isOpen: true, role, view });
+  }, []);
+
+  const closeAuthModal = useCallback(() => {
+    setAuthModalConfig(prev => ({ ...prev, isOpen: false }));
+  }, []);
+
   return (
-    <UIContext.Provider value={{ openApplyModal }}>
+    <UIContext.Provider value={{ openApplyModal, openAuthModal }}>
       {children}
       {isApplyModalOpen && <ApplyLoanModal onClose={closeApplyModal} />}
+      {authModalConfig.isOpen && <AuthModal onClose={closeAuthModal} initialRole={authModalConfig.role} initialView={authModalConfig.view} />}
     </UIContext.Provider>
   );
 };
