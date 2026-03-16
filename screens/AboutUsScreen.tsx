@@ -1,14 +1,17 @@
 
 import React from 'react';
-import { useUI } from '../App';
 
 const AboutUsScreen: React.FC = () => {
-    const { openApplyModal } = useUI();
-
     return (
         <div className="bg-white font-sans text-gray-700 min-h-screen">
             {/* Hero Section */}
             <div className="relative bg-secondary py-24 sm:py-32 isolate overflow-hidden">
+                <img
+                    src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                    alt="Digital Bridge"
+                    className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
+                    referrerPolicy="no-referrer"
+                />
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10 text-center">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
                         The Digital Bridge Between <span className="text-primary">You and Your Loan</span>
@@ -33,7 +36,7 @@ const AboutUsScreen: React.FC = () => {
                                 </p>
                             </div>
                             <div className="flex-1 w-full">
-                                <img src="https://picsum.photos/seed/loan-options/800/600" alt="Endless Loan Options" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
+                                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Endless Loan Options" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
                             </div>
                         </div>
 
@@ -49,7 +52,7 @@ const AboutUsScreen: React.FC = () => {
                                 </p>
                             </div>
                             <div className="flex-1 w-full">
-                                <img src="https://picsum.photos/seed/business-objective/800/600" alt="Our Objective" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Our Objective" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
                             </div>
                         </div>
 
@@ -65,16 +68,16 @@ const AboutUsScreen: React.FC = () => {
                                 </p>
                             </div>
                             <div className="flex-1 w-full">
-                                <img src="https://picsum.photos/seed/expert-team/800/600" alt="Our Team" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Our Team" className="rounded-2xl shadow-md w-full h-64 object-cover" referrerPolicy="no-referrer" />
                             </div>
                         </div>
 
                     </div>
 
                     <div className="mt-16 text-center">
-                        <button onClick={openApplyModal} className="inline-block px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-primary-dark transition-colors">
+                        <a href="/" className="inline-block px-8 py-4 bg-primary text-white font-bold rounded-full shadow-lg hover:bg-primary-dark transition-colors">
                             Apply for a Loan Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
