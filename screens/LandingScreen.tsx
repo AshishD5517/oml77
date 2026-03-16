@@ -283,7 +283,7 @@ const LandingScreen: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
 
     const handleApplyClick = () => {
-        const element = document.getElementById('plan-and-apply');
+        const element = document.getElementById('quick-apply');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -364,24 +364,57 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
-            {/* Quick Apply & EMI Calculator Section */}
-            <section id="plan-and-apply" className="py-20 bg-gray-50 relative z-20 overflow-hidden">
+            {/* Plan & Apply Combined Section */}
+            <section id="quick-apply" className="py-24 relative z-20 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+                {/* Decorative Background Elements */}
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                    <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-100/60 rounded-full blur-3xl translate-y-1/3 translate-x-1/3"></div>
+                </div>
+
                 <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-12 relative z-10">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
-                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Calculate your EMI and find the perfect loan tailored to your needs in one place.</p>
+                    <div className="text-center mb-16">
+                        <span className="inline-block py-1.5 px-4 rounded-full bg-white text-primary font-bold text-sm mb-4 border border-gray-100 shadow-sm">All-in-One Solution</span>
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-secondary mb-4">Plan & Apply Seamlessly</h2>
+                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Calculate your EMI to understand your repayment schedule, then submit your application instantly.</p>
                     </div>
                     
-                    <div className="flex flex-col xl:flex-row gap-8 justify-center items-stretch max-w-7xl mx-auto">
-                        <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Calculate Your EMI</h3>
-                            <div className="flex-grow h-full">
+                    <div className="max-w-[1400px] mx-auto flex flex-col xl:flex-row gap-12 items-center xl:items-stretch">
+                        {/* EMI Calculator Column */}
+                        <div className="w-full xl:w-1/2 flex flex-col h-full relative">
+                            <div className="mb-6 text-center xl:text-left">
+                                <h3 className="text-2xl font-bold text-secondary flex items-center justify-center xl:justify-start">
+                                    <span className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                    </span>
+                                    Step 1: Calculate EMI
+                                </h3>
+                                <p className="text-gray-500 text-sm mt-2">Adjust the sliders to find an EMI that fits your monthly budget.</p>
+                            </div>
+                            <div className="flex-grow w-full">
                                 <EMICalculator />
                             </div>
+                            
+                            {/* Connector Arrow (Visible on XL) */}
+                            <div className="hidden xl:flex absolute top-1/2 -right-8 transform -translate-y-1/2 z-20 items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg border border-gray-100 text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </div>
                         </div>
-                        <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Quick Apply</h3>
-                            <div className="flex-grow flex justify-center h-full">
+
+                        {/* Quick Apply Column */}
+                        <div className="w-full xl:w-1/2 flex flex-col h-full">
+                            <div className="mb-6 text-center xl:text-left xl:pl-6">
+                                <h3 className="text-2xl font-bold text-secondary flex items-center justify-center xl:justify-start">
+                                    <span className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mr-3 shadow-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                                    </span>
+                                    Step 2: Quick Apply
+                                </h3>
+                                <p className="text-gray-500 text-sm mt-2">Fill out this quick form to get competitive offers from verified agents.</p>
+                            </div>
+                            <div className="flex-grow flex justify-center xl:justify-start xl:pl-6 w-full">
                                 <ApplyLoanModal inline onClose={() => {}} />
                             </div>
                         </div>
