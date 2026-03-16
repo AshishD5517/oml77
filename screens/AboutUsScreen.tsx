@@ -153,6 +153,9 @@ const AboutUsScreen: React.FC = () => {
                         <a href="/#apply-now" className="px-8 py-3 bg-secondary text-white font-bold rounded-full hover:bg-gray-900 transition shadow-lg transform hover:-translate-y-1">
                             Apply for a Loan
                         </a>
+                        <a href="/about-us/loans" className="px-8 py-3 bg-primary text-white font-bold rounded-full hover:bg-primary-dark transition shadow-lg transform hover:-translate-y-1">
+                            Learn About Our Loans
+                        </a>
                         <a href="/contact-us" className="px-8 py-3 bg-white text-secondary font-bold rounded-full hover:bg-gray-50 transition shadow-lg transform hover:-translate-y-1">
                             Contact Support
                         </a>
