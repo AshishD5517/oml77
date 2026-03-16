@@ -37,7 +37,7 @@ const EMICalculator: React.FC = () => {
     const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(value);
 
     return (
-        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center h-full">
             {/* Calculator Inputs */}
             <div className="lg:col-span-3 space-y-6">
                 <div>

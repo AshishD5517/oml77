@@ -283,7 +283,7 @@ const LandingScreen: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
 
     const handleApplyClick = () => {
-        const element = document.getElementById('quick-apply');
+        const element = document.getElementById('plan-and-apply');
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -364,31 +364,27 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
-            {/* Quick Apply Form Section */}
-            <section id="quick-apply" className="py-16 bg-gray-50 relative z-20 overflow-hidden">
+            {/* Quick Apply & EMI Calculator Section */}
+            <section id="plan-and-apply" className="py-20 bg-gray-50 relative z-20 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-8 relative z-10">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Quick Apply</h2>
-                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Find the perfect loan tailored to your needs.</p>
+                    <div className="text-center mb-12 relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
+                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Calculate your EMI and find the perfect loan tailored to your needs in one place.</p>
                     </div>
                     
-                    <div className="flex justify-center">
-                        <ApplyLoanModal inline onClose={() => {}} />
-                    </div>
-                </div>
-            </section>
-
-             {/* EMI Calculator Section */}
-            <section id="emi-calculator" className="relative py-24 bg-gray-50 overflow-hidden">
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Calculate Your EMI</h2>
-                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                            Plan your repayment with our easy-to-use EMI calculator. Adjust the amount, tenure, and interest rate to see your monthly outflow.
-                        </p>
-                    </div>
-                    <div className="max-w-4xl mx-auto">
-                        <EMICalculator />
+                    <div className="flex flex-col xl:flex-row gap-8 justify-center items-stretch max-w-7xl mx-auto">
+                        <div className="w-full xl:w-1/2 flex flex-col">
+                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Calculate Your EMI</h3>
+                            <div className="flex-grow h-full">
+                                <EMICalculator />
+                            </div>
+                        </div>
+                        <div className="w-full xl:w-1/2 flex flex-col">
+                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Quick Apply</h3>
+                            <div className="flex-grow flex justify-center h-full">
+                                <ApplyLoanModal inline onClose={() => {}} />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

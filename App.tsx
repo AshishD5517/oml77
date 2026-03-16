@@ -8,7 +8,6 @@ import BorrowerDashboard from './screens/BorrowerDashboard';
 import AgentDashboard from './screens/AgentDashboard';
 import ComingSoonScreen from './screens/ComingSoonScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
-import AboutLoansScreen from './screens/AboutLoansScreen';
 import ContactUsScreen from './screens/ContactUsScreen';
 import EMICalculatorScreen from './screens/EMICalculatorScreen';
 import Chatbot from './components/Chatbot';
@@ -154,20 +153,7 @@ const Header: React.FC = () => {
                             
                             <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
                             
-                            <div className="relative group">
-                                <a href="/about-us" className={`${navLinkClasses} flex items-center`}>
-                                    About Us
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                </a>
-                                <div className="absolute opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 bg-white shadow-xl rounded-xl mt-2 py-2 w-48 z-50 border border-gray-100">
-                                    <a href="/about-us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
-                                        Our Company
-                                    </a>
-                                    <a href="/about-us/loans" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
-                                        About Our Loans
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="/about-us" className={navLinkClasses}>About Us</a>
 
                             <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
                         </nav>
@@ -439,10 +425,6 @@ function AppContent() {
 
     if (window.location.pathname === '/about-us') {
         return <AboutUsScreen />;
-    }
-
-    if (window.location.pathname === '/about-us/loans') {
-        return <AboutLoansScreen />;
     }
 
     if (window.location.pathname === '/contact-us') {
