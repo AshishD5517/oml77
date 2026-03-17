@@ -290,7 +290,7 @@ const LandingScreen: React.FC = () => {
     };
 
     const heroImage = "https://image.pollinations.ai/prompt/Trustworthy%20modern%20Indian%20loan%20platform%20hero%20image,%20happy%20middle-class%20Indian%20family%20in%20a%20bright%20contemporary%20living%20room%20easily%20applying%20for%20a%20loan%20online,%20father%20smiling%20holding%20new%20house%20keys,%20mother%20using%20a%20clean%20user-friendly%20fintech%20app%20on%20a%20laptop,%20symbolizing%20quick%20approval%20and%20financial%20security,%20soft%20natural%20lighting,%20high%20quality%20professional%20photography,%20clean%20background?width=1200&height=1200&nologo=true";
-    const mobileAppImage = "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop";
+    const mobileAppImage = "https://i.postimg.cc/c4xLXskG/Screenshot-14.png";
 
     return (
         <div className="bg-primary-light">
@@ -577,11 +577,11 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-1/2 relative flex justify-center">
-                            <div className="relative z-10 w-64 md:w-80">
+                            <div className="relative z-10 w-80 md:w-96 lg:w-[28rem] xl:w-[32rem]">
                                 <img 
                                     src={mobileAppImage || "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop"} 
                                     alt="Offer Me Loan Mobile App Interface showing loan dashboard" 
-                                    className="rounded-[2.5rem] shadow-2xl border-8 border-primary transform -rotate-3 hover:rotate-0 transition-transform duration-500"
+                                    className="rounded-[2.5rem] shadow-2xl border-8 border-primary transform -rotate-3 hover:rotate-0 transition-transform duration-500 w-full h-auto"
                                     referrerPolicy="no-referrer"
                                     onError={(e) => {
                                         const target = e.target as HTMLImageElement;
