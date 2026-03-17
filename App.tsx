@@ -143,16 +143,18 @@ const Header: React.FC = () => {
                                     Loan Categories
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </a>
-                                <div className="absolute opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 bg-white shadow-xl rounded-xl mt-2 py-2 w-56 z-50 border border-gray-100">
-                                    {loanCategories.map(category => (
-                                        <a 
-                                            key={category.title}
-                                            href={`${linkPrefix}#loan-categories`} 
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors"
-                                        >
-                                            {category.title}
-                                        </a>
-                                    ))}
+                                <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 w-56">
+                                    <div className="bg-white shadow-xl rounded-xl py-2 border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                        {loanCategories.map(category => (
+                                            <a 
+                                                key={category.title}
+                                                href={`${linkPrefix}#loan-categories`} 
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors"
+                                            >
+                                                {category.title}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                             
