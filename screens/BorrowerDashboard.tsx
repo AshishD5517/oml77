@@ -12,10 +12,10 @@ const mockOffers: Offer[] = [
 
 
 const mockLoanRequests: LoanRequest[] = [
-    { id: 'loan-1', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 2500000, purpose: 'Home Improvement', term: 60, interestRate: 5.5, status: LoanStatus.OFFERS_RECEIVED, dateRequested: '2023-10-26', creditScore: 720, offers: mockOffers },
-    { id: 'loan-2', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 500000, purpose: 'Debt Consolidation', term: 36, interestRate: 8.2, status: LoanStatus.APPROVED, dateRequested: '2023-09-15', creditScore: 720 },
-    { id: 'loan-3', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 5000000, purpose: 'Business Startup', term: 120, interestRate: 6.1, status: LoanStatus.FUNDED, dateRequested: '2023-05-01', creditScore: 720 },
-    { id: 'loan-4', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Car Purchase', term: 48, interestRate: 4.9, status: LoanStatus.REJECTED, dateRequested: '2023-04-20', creditScore: 720 },
+    { id: 'loan-1', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 2500000, purpose: 'Home Loan', term: 60, interestRate: 5.5, status: LoanStatus.OFFERS_RECEIVED, dateRequested: '2023-10-26', creditScore: 720, offers: mockOffers },
+    { id: 'loan-2', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 500000, purpose: 'Mortgage Loan', term: 36, interestRate: 8.2, status: LoanStatus.APPROVED, dateRequested: '2023-09-15', creditScore: 720 },
+    { id: 'loan-3', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 5000000, purpose: 'Business Loan', term: 120, interestRate: 6.1, status: LoanStatus.FUNDED, dateRequested: '2023-05-01', creditScore: 720 },
+    { id: 'loan-4', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Vehicle Loan', term: 48, interestRate: 4.9, status: LoanStatus.REJECTED, dateRequested: '2023-04-20', creditScore: 720 },
 ];
 
 {/* Updated fill color to use new primary green #74B559 */}

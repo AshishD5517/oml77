@@ -7,11 +7,11 @@ import MakeOfferModal from '../components/MakeOfferModal';
 
 
 const mockLoanRequests: LoanRequest[] = [
-    { id: 'loan-101', borrowerId: 'user-001', borrowerName: 'Michael Brown', amount: 1500000, purpose: 'Home Improvement', term: 48, interestRate: 6.8, status: LoanStatus.PENDING, dateRequested: '2023-10-25', creditScore: 750 },
-    { id: 'loan-102', borrowerId: 'user-002', borrowerName: 'Sarah Johnson', amount: 2000000, purpose: 'Debt Consolidation', term: 60, interestRate: 7.5, status: LoanStatus.PENDING, dateRequested: '2023-10-24', creditScore: 680 },
-    { id: 'loan-103', borrowerId: 'user-003', borrowerName: 'Kevin Lee', amount: 7500000, purpose: 'Business Startup', term: 120, interestRate: 8.1, status: LoanStatus.PENDING, dateRequested: '2023-10-22', creditScore: 780 },
-    { id: 'loan-104', borrowerId: 'user-004', borrowerName: 'Jessica Williams', amount: 800000, purpose: 'Medical Expenses', term: 24, interestRate: 9.0, status: LoanStatus.PENDING, dateRequested: '2023-10-21', creditScore: 640 },
-    { id: 'loan-105', borrowerId: 'user-005', borrowerName: 'David Chen', amount: 3000000, purpose: 'Car Purchase', term: 72, interestRate: 5.2, status: LoanStatus.PENDING, dateRequested: '2023-10-20', creditScore: 810 },
+    { id: 'loan-101', borrowerId: 'user-001', borrowerName: 'Michael Brown', amount: 1500000, purpose: 'Home Loan', term: 48, interestRate: 6.8, status: LoanStatus.PENDING, dateRequested: '2023-10-25', creditScore: 750 },
+    { id: 'loan-102', borrowerId: 'user-002', borrowerName: 'Sarah Johnson', amount: 2000000, purpose: 'Mortgage Loan', term: 60, interestRate: 7.5, status: LoanStatus.PENDING, dateRequested: '2023-10-24', creditScore: 680 },
+    { id: 'loan-103', borrowerId: 'user-003', borrowerName: 'Kevin Lee', amount: 7500000, purpose: 'Business Loan', term: 120, interestRate: 8.1, status: LoanStatus.PENDING, dateRequested: '2023-10-22', creditScore: 780 },
+    { id: 'loan-104', borrowerId: 'user-004', borrowerName: 'Jessica Williams', amount: 800000, purpose: 'Gold Loan', term: 24, interestRate: 9.0, status: LoanStatus.PENDING, dateRequested: '2023-10-21', creditScore: 640 },
+    { id: 'loan-105', borrowerId: 'user-005', borrowerName: 'David Chen', amount: 3000000, purpose: 'Vehicle Loan', term: 72, interestRate: 5.2, status: LoanStatus.PENDING, dateRequested: '2023-10-20', creditScore: 810 },
 ];
 
 const chartData = [

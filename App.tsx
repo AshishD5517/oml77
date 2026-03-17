@@ -68,12 +68,12 @@ const Header: React.FC = () => {
     const loanCategories = [
         { title: "Personal Loans" },
         { title: "Home Loans" },
-        { title: "Auto Loans" },
+        { title: "Vehicle Loan" },
         { title: "Business Loans" },
         { title: "Student Loans" },
-        { title: "Debt Consolidation" },
-        { title: "Medical Loans" },
-        { title: "Wedding Loans" }
+        { title: "Mortgage Loan" },
+        { title: "Gold Loan" },
+        { title: "Loan Transfer" }
     ];
 
     // Close dropdown when clicking outside

@@ -62,9 +62,9 @@ const loanCategories: LoanCategoryData[] = [
         rates: "Starting from 8.35% p.a."
     },
     { 
-        title: "Auto Loans", 
-        imageUrl: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop",
-        description: "Get behind the wheel of your dream car with our customized auto loans for new and used vehicles.",
+        title: "Vehicle Loan", 
+        imageUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2070&auto=format&fit=crop",
+        description: "Get behind the wheel of your dream car with our customized vehicle loans for new and used vehicles.",
         features: ["Up to 100% on-road funding", "Pocket-friendly EMI options", "Instant approval for pre-approved customers", "Special rates for EVs"],
         eligibility: "Salaried or Self-employed individuals aged 21+ with min. 1 year work experience.",
         rates: "Starting from 8.75% p.a."
@@ -86,28 +86,28 @@ const loanCategories: LoanCategoryData[] = [
         rates: "Starting from 9.00% p.a."
     },
     { 
-        title: "Debt Consolidation", 
-        imageUrl: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=2070&auto=format&fit=crop",
-        description: "Combine multiple high-interest debts into a single loan with a lower interest rate and one easy monthly payment.",
-        features: ["Single monthly EMI", "Reduced overall interest burden", "Improve credit score", "Fixed repayment timeline"],
-        eligibility: "Individuals with existing multiple debts and stable income to support consolidated EMI.",
-        rates: "Starting from 11.00% p.a."
+        title: "Mortgage Loan", 
+        imageUrl: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2070&auto=format&fit=crop",
+        description: "Secure financing against your property for personal or business needs with lower interest rates.",
+        features: ["High loan amounts", "Lower interest rates", "Flexible repayment options", "Funds for any purpose"],
+        eligibility: "Property owners with clear titles and stable income.",
+        rates: "Starting from 9.50% p.a."
     },
     { 
-        title: "Medical Loans", 
-        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop",
-        description: "Emergency funds to cover medical treatments, surgeries, or hospitalization costs without depleting your savings.",
-        features: ["Instant approval & disbursal", "No restriction on hospital choice", "Covers pre/post hospitalization", "Minimal documentation"],
-        eligibility: "Individuals aged 21-60 years facing medical requirements.",
-        rates: "Starting from 10.99% p.a."
+        title: "Gold Loan", 
+        imageUrl: "https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=2070&auto=format&fit=crop",
+        description: "Unlock the value of your gold instantly with minimal documentation and attractive interest rates.",
+        features: ["Instant approval & disbursal", "High per gram rate", "Flexible repayment options", "Safe and secure storage"],
+        eligibility: "Anyone aged 18+ with valid ID and gold ornaments.",
+        rates: "Starting from 8.99% p.a."
     },
     { 
-        title: "Wedding Loans", 
-        imageUrl: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
-        description: "Make your special day perfect with a loan to cover venue, catering, attire, and other wedding-related expenses.",
-        features: ["Usage flexibility", "High loan value", "Quick processing", "Short to medium term tenure"],
-        eligibility: "Salaried individuals with monthly income > ₹20,000.",
-        rates: "Starting from 11.25% p.a."
+        title: "Loan Transfer", 
+        imageUrl: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=2070&auto=format&fit=crop",
+        description: "Transfer your existing high-interest loans to us and enjoy lower EMIs and better terms.",
+        features: ["Lower interest rates", "Reduced EMI burden", "Top-up loan facility", "Quick processing"],
+        eligibility: "Individuals with an existing loan and a good repayment track record.",
+        rates: "Starting from 10.25% p.a."
     }
 ];
 
@@ -256,7 +256,7 @@ const LiveRatesTicker: React.FC = () => (
             <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
             <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🚗 Auto Loans @ 8.75% p.a.</span>
+            <span className="mx-4 text-sm opacity-90">🚗 Vehicle Loan @ 8.75% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
             <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
@@ -267,7 +267,7 @@ const LiveRatesTicker: React.FC = () => (
              <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
             <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🚗 Auto Loans @ 8.75% p.a.</span>
+            <span className="mx-4 text-sm opacity-90">🚗 Vehicle Loan @ 8.75% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
             <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
             <span className="mx-4 text-gray-500">|</span>
