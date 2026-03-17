@@ -49,7 +49,7 @@ export const useUI = () => {
 
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
     <img 
-        src="https://i.postimg.cc/d09WPBsh/Screenshot-15-removebg-preview.png" 
+        src="https://i.postimg.cc/j5tSCsrt/Gemini-Generated-Image-xd7ycnxd7ycnxd7y.png" 
         alt="Offer Me Loan Logo" 
         className={`object-contain ${className}`}
         referrerPolicy="no-referrer" 
