@@ -78,7 +78,7 @@ const EMICalculator: React.FC = () => {
                 
                 <div className="w-full mt-4">
                      <p className="text-gray-600">Your Monthly Payment (EMI)</p>
-                     <p className="text-lg xl:text-xl font-extrabold text-primary mb-4 whitespace-nowrap">{formatCurrency(emi)}</p>
+                     <p className="text-2xl xl:text-3xl font-extrabold text-primary mb-4 whitespace-nowrap">{formatCurrency(emi)}</p>
                      <div className="w-full space-y-2 border-t pt-4">
                         <div className="w-full flex justify-between text-sm text-gray-500">
                             <span>Principal Amount</span>
