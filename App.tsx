@@ -48,41 +48,12 @@ export const useUI = () => {
 
 
 const LogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-    <svg className={className} viewBox="0 0 420 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1D2B4F" />
-                <stop offset="100%" stopColor="#2A3F70" />
-            </linearGradient>
-            <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#74B559" />
-                <stop offset="100%" stopColor="#5A9A42" />
-            </linearGradient>
-        </defs>
-        
-        {/* Modern Fintech Icon: Shield + Arrow + Rupee */}
-        <g transform="translate(10, 10)">
-            {/* Shield Base - Representing Security & Trust */}
-            <path d="M40 0 L75 15 V45 C75 65 40 80 40 80 C40 80 5 65 5 45 V15 L40 0Z" fill="url(#shieldGrad)" />
-            
-            {/* Upward Growth Arrow - Representing Quick Processing & Progress */}
-            <path d="M40 10 L60 28 H50 V55 H30 V28 H20 L40 10Z" fill="url(#accentGrad)" />
-            
-            {/* Rupee Symbol - Finance Core */}
-            <text x="40" y="56" textAnchor="middle" fill="white" fontSize="48" fontWeight="900" fontFamily="Inter, sans-serif">₹</text>
-        </g>
-        
-        {/* Typography: Bold & Professional */}
-        <g transform="translate(105, 25)">
-            <text y="25" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8" fill="#1D2B4F">
-                OFFER
-            </text>
-            <text y="64" fontFamily="Inter, sans-serif" fontSize="36" fontWeight="900" letterSpacing="-1.8">
-                <tspan fill="#74B559">ME</tspan>
-                <tspan fill="#1D2B4F" dx="8">LOAN</tspan>
-            </text>
-        </g>
-    </svg>
+    <img 
+        src="https://i.postimg.cc/d09WPBsh/Screenshot-15-removebg-preview.png" 
+        alt="Offer Me Loan Logo" 
+        className={`object-contain ${className}`}
+        referrerPolicy="no-referrer" 
+    />
 );
 
 
