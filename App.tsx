@@ -224,10 +224,10 @@ const Header: React.FC = () => {
                                 <div className="relative" ref={headerDropdownRef}>
                                     <button 
                                         onClick={() => setIsHeaderDropdownOpen(!isHeaderDropdownOpen)}
-                                        className="px-6 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md flex items-center"
+                                        className="px-8 py-3 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md flex items-center"
                                     >
                                         Login / Sign Up
-                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 ml-2 transition-transform duration-300 ${isHeaderDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ml-2 transition-transform duration-300 ${isHeaderDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
