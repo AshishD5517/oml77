@@ -37,7 +37,7 @@ const EMICalculator: React.FC = () => {
     const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(value);
 
     return (
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center h-full w-full">
+        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center h-full">
             {/* Calculator Inputs */}
             <div className="lg:col-span-3 space-y-6">
                 <div>
@@ -78,7 +78,7 @@ const EMICalculator: React.FC = () => {
                 
                 <div className="w-full mt-4">
                      <p className="text-gray-600">Your Monthly Payment (EMI)</p>
-                     <p className="text-4xl font-extrabold text-primary mb-4">{formatCurrency(emi)}</p>
+                     <p className="text-3xl xl:text-4xl font-extrabold text-primary mb-4 break-all sm:break-words">{formatCurrency(emi)}</p>
                      <div className="w-full space-y-2 border-t pt-4">
                         <div className="w-full flex justify-between text-sm text-gray-500">
                             <span>Principal Amount</span>

@@ -374,13 +374,27 @@ const LandingScreen: React.FC = () => {
                     
                     <div className="flex flex-col xl:flex-row gap-8 justify-center items-stretch max-w-7xl mx-auto">
                         <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Calculate Your EMI</h3>
+                            <h3 className="text-2xl font-bold text-secondary mb-6 flex items-center justify-center gap-3">
+                                <div className="bg-primary/10 text-primary p-2 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                Step 1: Calculate Your EMI
+                            </h3>
                             <div className="flex-grow h-full">
                                 <EMICalculator />
                             </div>
                         </div>
                         <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 text-center">Quick Apply</h3>
+                            <h3 className="text-2xl font-bold text-secondary mb-6 flex items-center justify-center gap-3">
+                                <div className="bg-green-100 text-green-600 p-2 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                Step 2: Quick Apply
+                            </h3>
                             <div className="flex-grow flex justify-center h-full">
                                 <ApplyLoanModal inline onClose={() => {}} />
                             </div>
