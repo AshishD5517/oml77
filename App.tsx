@@ -102,7 +102,7 @@ const Header: React.FC = () => {
             <header className="relative z-50 py-4 bg-gray-50">
                  <div className="container mx-auto px-6">
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center">
+                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-4 md:-ml-8">
                             <LogoIcon className="h-16 md:h-20" />
                         </a>
                         
@@ -283,10 +283,8 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     {/* Logo and Description */}
                     <div className="col-span-1 md:col-span-1">
-                        <div className="flex items-center space-x-2 mb-6">
-                            <span className="text-2xl font-extrabold tracking-tight text-white">
-                                OfferMe<span className="text-primary">Loan</span>
-                            </span>
+                        <div className="flex items-center mb-6">
+                            <LogoIcon className="h-16 md:h-20" />
                         </div>
                         <p className="text-gray-400 text-base leading-relaxed mb-6">
                             The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.
