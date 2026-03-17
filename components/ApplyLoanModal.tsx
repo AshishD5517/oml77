@@ -199,7 +199,7 @@ const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose, inline }) => {
     };
     
     const content = (
-        <div className={`bg-white rounded-2xl shadow-2xl w-full max-w-3xl ${inline ? 'h-full' : 'm-4 transform transition-all duration-300 scale-95 hover:scale-100'} relative overflow-hidden flex flex-col md:flex-row border border-primary/20`} onClick={(e) => e.stopPropagation()}>
+        <div className={`bg-white rounded-2xl shadow-xl w-full ${inline ? 'h-full max-w-none' : 'max-w-3xl m-4 transform transition-all duration-300 scale-95 hover:scale-100'} relative overflow-hidden flex flex-col md:flex-row border border-gray-200/80`} onClick={(e) => e.stopPropagation()}>
             
             {/* Left Side - Green Branding */}
             <div className="hidden md:flex md:w-5/12 bg-primary p-10 flex-col justify-between text-white relative overflow-hidden">

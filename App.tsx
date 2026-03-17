@@ -90,7 +90,9 @@ const Header: React.FC = () => {
     const { user, logout } = useAuth();
     const { openAuthModal } = useUI();
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+    const [isHeaderDropdownOpen, setIsHeaderDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const headerDropdownRef = useRef<HTMLDivElement>(null);
     
     const loanCategories = [
         { title: "Personal Loans" },
@@ -108,6 +110,9 @@ const Header: React.FC = () => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsProfileDropdownOpen(false);
+            }
+            if (headerDropdownRef.current && !headerDropdownRef.current.contains(event.target as Node)) {
+                setIsHeaderDropdownOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -216,12 +221,46 @@ const Header: React.FC = () => {
                                     )}
                                 </div>
                             ) : (
-                                <button
-                                    onClick={openAuthModal}
-                                    className="px-6 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md"
-                                >
-                                    Login / Sign Up
-                                </button>
+                                <div className="relative" ref={headerDropdownRef}>
+                                    <button 
+                                        onClick={() => setIsHeaderDropdownOpen(!isHeaderDropdownOpen)}
+                                        className="px-6 py-2 text-sm font-semibold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md flex items-center"
+                                    >
+                                        Login / Sign Up
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 ml-2 transition-transform duration-300 ${isHeaderDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    {isHeaderDropdownOpen && (
+                                        <div className="absolute right-0 mt-3 w-60 bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 z-50 animate-fade-in-up origin-top-right">
+                                            <button 
+                                                onClick={() => {
+                                                    openAuthModal(UserRole.BORROWER, 'login');
+                                                    setIsHeaderDropdownOpen(false);
+                                                }}
+                                                className="w-full flex items-center space-x-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-primary-light hover:text-primary rounded-xl transition-all duration-200 group"
+                                            >
+                                                <div className="bg-gray-50 p-2 rounded-lg group-hover:bg-white transition-colors">
+                                                    <svg className="w-5 h-5 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                                </div>
+                                                <span className="tracking-wide uppercase">BORROWER LOGIN</span>
+                                            </button>
+                                            <div className="h-px bg-gray-50 my-1 mx-2"></div>
+                                            <button 
+                                                onClick={() => {
+                                                    openAuthModal(UserRole.AGENT, 'login');
+                                                    setIsHeaderDropdownOpen(false);
+                                                }}
+                                                className="w-full flex items-center space-x-3 px-4 py-3 text-sm font-bold text-gray-700 hover:bg-primary-light hover:text-primary rounded-xl transition-all duration-200 group"
+                                            >
+                                                <div className="bg-gray-50 p-2 rounded-lg group-hover:bg-white transition-colors">
+                                                    <svg className="w-5 h-5 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                                </div>
+                                                <span className="tracking-wide uppercase">AGENT LOGIN</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
                             )}
                         </div>
                     </div>

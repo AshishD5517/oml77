@@ -212,7 +212,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
   };
 
   useEffect(() => {
-    setEmail(`demo@${isRegister ? selectedRole : 'borrower'}.com`);
+    setEmail(`demo@${selectedRole}.com`);
     setPassword('password');
     // Reset PAN fields when switching forms
     setPan('');
