@@ -284,7 +284,7 @@ const Footer: React.FC = () => {
                     {/* Logo and Description */}
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center mb-6">
-                            <LogoIcon className="h-16 md:h-20 bg-white p-2 rounded-xl" />
+                            <LogoIcon className="h-16 md:h-20 bg-white p-1 rounded-xl" />
                         </div>
                         <p className="text-gray-400 text-base leading-relaxed mb-6">
                             The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.

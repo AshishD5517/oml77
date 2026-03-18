@@ -18,11 +18,11 @@ const mockLoanRequests: LoanRequest[] = [
     { id: 'loan-4', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Vehicle Loan', term: 48, interestRate: 4.9, status: LoanStatus.REJECTED, dateRequested: '2023-04-20', creditScore: 720 },
 ];
 
-{/* Updated fill color to use new primary green #74B559 */}
+{/* Updated fill color to use new primary green #16a34a */}
 const chartData = [
-  { name: 'Offers', value: 2500000, fill: '#FFBB28' },
+  { name: 'Offers', value: 2500000, fill: '#facc15' },
   { name: 'Approved', value: 500000, fill: '#82ca9d' },
-  { name: 'Funded', value: 5000000, fill: '#74B559' },
+  { name: 'Funded', value: 5000000, fill: '#16a34a' },
 ];
 
 const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);

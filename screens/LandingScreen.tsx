@@ -298,7 +298,7 @@ const LandingScreen: React.FC = () => {
             <LiveRatesTicker />
 
             {/* Hero Section */}
-            <section id="home" className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+            <section id="home" className="relative pt-12 pb-10 lg:pt-24 lg:pb-16 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                    <img 
                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80" 
@@ -365,7 +365,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Quick Apply & EMI Calculator Section */}
-            <section id="plan-and-apply" className="py-20 bg-gray-50 relative z-20 overflow-hidden">
+            <section id="plan-and-apply" className="pt-8 pb-10 bg-gray-50 relative z-20 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-12 relative z-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
@@ -404,7 +404,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
              {/* Loan Categories */}
-             <section id="loan-categories" className="py-20 bg-gray-50">
+             <section id="loan-categories" className="pt-8 pb-10 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="flex justify-between items-end mb-12">
                          <div>
@@ -426,7 +426,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Features Section */}
-            <section id="features" className="py-20 bg-gray-50">
+            <section id="features" className="pt-10 pb-10 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16 max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-4">Why Choose Offer Me Loan?</h2>
@@ -469,7 +469,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* How It Works */}
-            <section id="how-it-works" className="py-20 bg-gray-50 relative overflow-hidden">
+            <section id="how-it-works" className="pt-10 pb-20 bg-gray-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
                      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                         <defs>
