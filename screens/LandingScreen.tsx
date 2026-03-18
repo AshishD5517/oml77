@@ -402,7 +402,7 @@ const LandingScreen: React.FC = () => {
                     </div>
                     <div className="mt-16 text-center">
                         <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-xl md:text-2xl font-bold rounded-full shadow-lg hover:from-yellow-500 hover:to-green-600 hover:shadow-xl transition-all transform hover:-translate-y-1 tracking-wide">
-                            Fast, Fair and Flexible
+                            Fast Fair and Flexible
                         </button>
                     </div>
                 </div>
