@@ -21,8 +21,8 @@ const chartData = [
   { name: 'Medical', value: 1 },
   { name: 'Auto', value: 1 },
 ];
-{/* Updated COLORS array to use new primary green #16a34a */}
-const COLORS = ['#16a34a', '#facc15', '#0088FE', '#FF8042', '#82ca9d'];
+{/* Updated COLORS array to use new primary green #74B559 */}
+const COLORS = ['#74B559', '#FFBB28', '#0088FE', '#FF8042', '#82ca9d'];
 
 const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
 
