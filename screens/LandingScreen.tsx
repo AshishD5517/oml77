@@ -250,30 +250,31 @@ const TestimonialCard: React.FC<{ name: string; role: string; quote: string; ava
     </div>
 );
 
+const TickerContent = () => (
+    <>
+        <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
+        <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
+        <span className="mx-4 text-gray-500">|</span>
+        <span className="mx-4 text-sm opacity-90">🚗 Vehicle Loan @ 8.75% p.a.</span>
+        <span className="mx-4 text-gray-500">|</span>
+        <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
+        <span className="mx-4 text-gray-500">|</span>
+        <span className="mx-4 text-sm opacity-90">💰 Personal Loans @ 10.50% p.a.</span>
+        <span className="mx-4 text-gray-500">|</span>
+        <span className="mx-4 text-sm opacity-90">🎓 Education Loans @ 9.00% p.a.</span>
+        <span className="mx-8"> </span>
+    </>
+);
+
 const LiveRatesTicker: React.FC = () => (
-    <div className="bg-secondary text-white py-3 overflow-hidden whitespace-nowrap border-b border-white/10 relative z-20">
-        <div className="animate-marquee inline-block">
-            <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
-            <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🚗 Vehicle Loan @ 8.75% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">💰 Personal Loans @ 10.50% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🎓 Education Loans @ 9.00% p.a.</span>
-             <span className="mx-8"> </span> {/* Spacer */}
-             <span className="mx-4 font-medium text-sm">⚡ <span className="text-accent font-bold">LIVE RATES UPDATE:</span></span>
-            <span className="mx-4 text-sm opacity-90">🏠 Home Loans @ 8.35% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🚗 Vehicle Loan @ 8.75% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">💼 Business Loans @ 12.00% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">💰 Personal Loans @ 10.50% p.a.</span>
-            <span className="mx-4 text-gray-500">|</span>
-            <span className="mx-4 text-sm opacity-90">🎓 Education Loans @ 9.00% p.a.</span>
+    <div className="bg-secondary text-white py-3 overflow-hidden border-b border-white/10 relative z-20 group flex">
+        <div className="animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused] flex min-w-full shrink-0 items-center">
+            <TickerContent />
+            <TickerContent />
+        </div>
+        <div className="animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused] flex min-w-full shrink-0 items-center" aria-hidden="true">
+            <TickerContent />
+            <TickerContent />
         </div>
     </div>
 );
