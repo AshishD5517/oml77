@@ -365,7 +365,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Quick Apply & EMI Calculator Section */}
-            <section id="plan-and-apply" className="pt-20 pb-12 bg-gray-50 relative z-20 overflow-hidden">
+            <section id="plan-and-apply" className="py-20 bg-gray-50 relative z-20 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-12 relative z-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
@@ -400,11 +400,16 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="mt-16 text-center">
+                        <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-xl md:text-2xl font-bold rounded-full shadow-lg hover:from-yellow-500 hover:to-green-600 hover:shadow-xl transition-all transform hover:-translate-y-1 tracking-wide">
+                            Fast, Fair and Flexible
+                        </button>
+                    </div>
                 </div>
             </section>
 
              {/* Loan Categories */}
-             <section id="loan-categories" className="pt-8 pb-20 bg-gray-50">
+             <section id="loan-categories" className="py-20 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="flex justify-between items-end mb-12">
                          <div>
