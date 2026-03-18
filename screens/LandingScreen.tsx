@@ -42,6 +42,7 @@ interface LoanCategoryData {
     features: string[];
     eligibility: string;
     rates: string;
+    href?: string;
 }
 
 const loanCategories: LoanCategoryData[] = [
@@ -51,7 +52,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "A flexible, unsecured loan that you can use for almost any purpose, from consolidating debt to funding a vacation or covering unexpected expenses.",
         features: ["No collateral required", "Quick disbursal within 24 hours", "Flexible tenure up to 5 years", "Minimal documentation"],
         eligibility: "Salaried employees with monthly income > ₹25,000 or Self-employed professionals.",
-        rates: "Starting from 10.50% p.a."
+        rates: "Starting from 10.50% p.a.",
+        href: "/personal-loan"
     },
     { 
         title: "Home Loans", 
@@ -113,7 +115,13 @@ const loanCategories: LoanCategoryData[] = [
 
 const LoanCategoryCard: React.FC<{ category: LoanCategoryData; onClick: () => void }> = ({ category, onClick }) => (
     <div 
-        onClick={onClick}
+        onClick={() => {
+            if (category.href) {
+                window.location.href = category.href;
+            } else {
+                onClick();
+            }
+        }}
         className="relative rounded-xl overflow-hidden shadow-lg group transform hover:-translate-y-2 transition-transform duration-300 h-48 cursor-pointer"
     >
         <img 

@@ -10,6 +10,7 @@ import ComingSoonScreen from './screens/ComingSoonScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
 import ContactUsScreen from './screens/ContactUsScreen';
 import EMICalculatorScreen from './screens/EMICalculatorScreen';
+import PersonalLoanScreen from './screens/PersonalLoanScreen';
 import Chatbot from './components/Chatbot';
 import ApplyLoanModal from './components/ApplyLoanModal';
 
@@ -66,14 +67,14 @@ const Header: React.FC = () => {
     const headerDropdownRef = useRef<HTMLDivElement>(null);
     
     const loanCategories = [
-        { title: "Personal Loans" },
-        { title: "Home Loans" },
-        { title: "Vehicle Loan" },
-        { title: "Business Loans" },
-        { title: "Student Loans" },
-        { title: "Mortgage Loan" },
-        { title: "Gold Loan" },
-        { title: "Loan Transfer" }
+        { title: "Personal Loans", href: "/personal-loan" },
+        { title: "Home Loans", href: "/coming-soon" },
+        { title: "Vehicle Loan", href: "/coming-soon" },
+        { title: "Business Loans", href: "/coming-soon" },
+        { title: "Student Loans", href: "/coming-soon" },
+        { title: "Mortgage Loan", href: "/coming-soon" },
+        { title: "Gold Loan", href: "/coming-soon" },
+        { title: "Loan Transfer", href: "/coming-soon" }
     ];
 
     // Close dropdown when clicking outside
@@ -119,7 +120,7 @@ const Header: React.FC = () => {
                                         {loanCategories.map(category => (
                                             <a 
                                                 key={category.title}
-                                                href={`${linkPrefix}#loan-categories`} 
+                                                href={category.href || `${linkPrefix}#loan-categories`} 
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors"
                                             >
                                                 {category.title}
@@ -434,6 +435,10 @@ function AppContent() {
 
     if (window.location.pathname === '/about-us') {
         return <AboutUsScreen />;
+    }
+
+    if (window.location.pathname === '/personal-loan') {
+        return <PersonalLoanScreen />;
     }
 
     if (window.location.pathname === '/contact-us') {
