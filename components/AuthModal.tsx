@@ -351,7 +351,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
                     </button>
                 </div>
                 {verificationError && <p className="text-xs text-red-500 -mt-3 mb-3">{verificationError}</p>}
-                {isVerified && <p className="text-xs text-green-600 -mt-3 mb-3">✓ PAN Verified Successfully!</p>}
+                {isVerified && <p className="text-xs text-primary -mt-3 mb-3">✓ PAN Verified Successfully!</p>}
                 
                 <div className="relative mb-4">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><UserIcon /></div>

@@ -37,9 +37,9 @@ const EMICalculator: React.FC = () => {
     const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(value);
 
     return (
-        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center h-full">
+        <div className="bg-white rounded-xl shadow-xl p-6 border border-gray-200/80 grid grid-cols-1 lg:grid-cols-5 gap-6 items-center h-full">
             {/* Calculator Inputs */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-5">
                 <div>
                     <div className="flex justify-between items-center mb-2">
                         <label className="font-semibold text-secondary">Loan Amount</label>
@@ -64,8 +64,8 @@ const EMICalculator: React.FC = () => {
             </div>
 
             {/* Results & Chart */}
-            <div className="lg:col-span-2 flex flex-col items-center justify-center text-center lg:border-l lg:border-gray-200/80 lg:pl-8">
-                <div className="w-48 h-48">
+            <div className="lg:col-span-2 flex flex-col items-center justify-center text-center lg:border-l lg:border-gray-200/80 lg:pl-6">
+                <div className="w-40 h-40">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie data={chartData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#8884d8" paddingAngle={5} dataKey="value">
@@ -76,10 +76,10 @@ const EMICalculator: React.FC = () => {
                     </ResponsiveContainer>
                 </div>
                 
-                <div className="w-full mt-4">
-                     <p className="text-gray-600">Your Monthly Payment (EMI)</p>
-                     <p className="text-2xl xl:text-3xl font-extrabold text-primary mb-4 whitespace-nowrap">{formatCurrency(emi)}</p>
-                     <div className="w-full space-y-2 border-t pt-4">
+                <div className="w-full mt-2">
+                     <p className="text-gray-600 text-sm">Your Monthly Payment (EMI)</p>
+                     <p className="text-xl xl:text-2xl font-extrabold text-primary mb-3 whitespace-nowrap">{formatCurrency(emi)}</p>
+                     <div className="w-full space-y-2 border-t pt-3">
                         <div className="w-full flex justify-between text-sm text-gray-500">
                             <span>Principal Amount</span>
                             <span className="font-semibold text-secondary">{formatCurrency(amount)}</span>

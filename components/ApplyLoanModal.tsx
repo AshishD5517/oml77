@@ -202,48 +202,50 @@ const ApplyLoanModal: React.FC<ApplyLoanModalProps> = ({ onClose, inline }) => {
         <div className={`bg-white rounded-2xl shadow-xl w-full ${inline ? 'h-full max-w-none' : 'max-w-3xl m-4 transform transition-all duration-300 scale-95 hover:scale-100'} relative overflow-hidden flex flex-col md:flex-row border border-gray-200/80`} onClick={(e) => e.stopPropagation()}>
             
             {/* Left Side - Green Branding */}
-            <div className="hidden md:flex md:w-5/12 bg-primary p-10 flex-col justify-between text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
-                
-                <div className="relative z-10">
-                    <h2 className="text-3xl font-extrabold mb-4 leading-tight">Fast & Easy<br/>Loan Application</h2>
-                    <p className="text-white/80 mb-8 text-sm leading-relaxed">Get matched with the best lenders in minutes. Secure, transparent, and completely hassle-free.</p>
+            {!inline && (
+                <div className="hidden md:flex md:w-5/12 bg-primary p-10 flex-col justify-between text-white relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
                     
-                    <ul className="space-y-5">
-                        <li className="flex items-center text-sm font-medium">
-                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                            Instant Approval
-                        </li>
-                        <li className="flex items-center text-sm font-medium">
-                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                            Lowest Interest Rates
-                        </li>
-                        <li className="flex items-center text-sm font-medium">
-                            <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                            Zero Hidden Fees
-                        </li>
-                    </ul>
-                </div>
-                
-                <div className="relative z-10 mt-12">
-                    <div className="flex -space-x-3 mb-3">
-                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=1" alt="User" />
-                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=2" alt="User" />
-                        <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=3" alt="User" />
-                        <div className="w-10 h-10 rounded-full border-2 border-primary bg-white text-primary flex items-center justify-center text-xs font-bold">+10k</div>
+                    <div className="relative z-10">
+                        <h2 className="text-3xl font-extrabold mb-4 leading-tight">Fast & Easy<br/>Loan Application</h2>
+                        <p className="text-white/80 mb-8 text-sm leading-relaxed">Get matched with the best lenders in minutes. Secure, transparent, and completely hassle-free.</p>
+                        
+                        <ul className="space-y-5">
+                            <li className="flex items-center text-sm font-medium">
+                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                Instant Approval
+                            </li>
+                            <li className="flex items-center text-sm font-medium">
+                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                Lowest Interest Rates
+                            </li>
+                            <li className="flex items-center text-sm font-medium">
+                                <svg className="w-5 h-5 mr-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                Zero Hidden Fees
+                            </li>
+                        </ul>
                     </div>
-                    <p className="text-xs text-white/80 font-medium">Trusted by thousands of happy customers</p>
+                    
+                    <div className="relative z-10 mt-12">
+                        <div className="flex -space-x-3 mb-3">
+                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=1" alt="User" />
+                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=2" alt="User" />
+                            <img className="w-10 h-10 rounded-full border-2 border-primary" src="https://i.pravatar.cc/100?img=3" alt="User" />
+                            <div className="w-10 h-10 rounded-full border-2 border-primary bg-white text-primary flex items-center justify-center text-xs font-bold">+10k</div>
+                        </div>
+                        <p className="text-xs text-white/80 font-medium">Trusted by thousands of happy customers</p>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Right Side - Form */}
-            <div className="w-full md:w-7/12 p-8 md:p-10 relative z-10 bg-gradient-to-br from-white to-green-50 flex flex-col justify-center min-h-[500px]">
+            <div className={`w-full ${inline ? '' : 'md:w-7/12'} p-6 md:p-8 relative z-10 bg-gradient-to-br from-white to-primary/5 flex flex-col justify-center ${inline ? 'min-h-[350px]' : 'min-h-[500px]'}`}>
                 {!inline && <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-3xl leading-none transition-colors z-20">&times;</button>}
                 
-                <div className="mb-6">
-                    <h2 className="text-2xl font-bold text-secondary mb-1">Apply for a Loan</h2>
-                    <p className="text-gray-500 text-sm mb-6">A few simple steps to connect with lenders.</p>
+                <div className="mb-4">
+                    <h2 className="text-xl font-bold text-secondary mb-1">Apply for a Loan</h2>
+                    <p className="text-gray-500 text-sm mb-4">A few simple steps to connect with lenders.</p>
                 </div>
                 
                 <div className="relative">
@@ -279,7 +281,7 @@ const Step1: React.FC<{ formData: any, handleChange: any, handleNextStep: any }>
             <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LoanTypeIcon /></div><select name="loanType" value={formData.loanType} onChange={handleChange} required className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition appearance-none"><option value="" disabled>Select Loan Type</option><option>Personal Loan</option><option>Home Loan</option><option>Vehicle Loan</option><option>Business Loan</option><option>Student Loan</option><option>Mortgage Loan</option><option>Gold Loan</option><option>Loan Transfer</option></select></div>
             <div className="relative"><div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><AmountIcon /></div><input type="number" name="amount" placeholder="Loan Amount (₹)" value={formData.amount} onChange={handleChange} required min="50000" step="1000" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" /></div>
         </div>
-        <button type="submit" className="w-full mt-8 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Apply</button>
+        <button type="submit" className="w-full mt-6 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg">Apply</button>
     </form>
 );
 

@@ -5,6 +5,7 @@ import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
 import ApplyLoanModal from '../components/ApplyLoanModal';
+import PlanAndApplySection from '../components/PlanAndApplySection';
 import { useUI } from '../App';
 import { UserRole } from '../types';
 
@@ -195,7 +196,7 @@ const LoanCategoryModal: React.FC<{ category: LoanCategoryData; onClose: () => v
                         <ul className="space-y-2">
                             {category.features.map((feature, idx) => (
                                 <li key={idx} className="flex items-start text-sm text-gray-600">
-                                    <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="w-4 h-4 text-primary mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                     {feature}
@@ -351,9 +352,9 @@ const LandingScreen: React.FC = () => {
                                 </button>
                             </div>
                             <div className="mt-10 flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500 font-medium">
-                                <div className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Instant Approval</div>
-                                <div className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Minimal Paperwork</div>
-                                <div className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Secure Process</div>
+                                <div className="flex items-center"><span className="w-2 h-2 bg-primary rounded-full mr-2"></span>Instant Approval</div>
+                                <div className="flex items-center"><span className="w-2 h-2 bg-primary rounded-full mr-2"></span>Minimal Paperwork</div>
+                                <div className="flex items-center"><span className="w-2 h-2 bg-primary rounded-full mr-2"></span>Secure Process</div>
                             </div>
                         </div>
                         <div className="lg:w-7/12 relative animate-fade-in-up flex justify-center" style={{ animationDelay: '0.2s' }}>
@@ -373,49 +374,8 @@ const LandingScreen: React.FC = () => {
                 </div>
             </section>
 
-            {/* Quick Apply & EMI Calculator Section */}
-            <section id="plan-and-apply" className="pt-10 pb-20 bg-gray-50 relative z-20 overflow-hidden">
-                <div className="container mx-auto px-6 relative z-10">
-                    <div className="text-center mb-12 relative z-10">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
-                        <p className="text-gray-600 text-lg max-w-2xl mx-auto">Calculate your EMI and find the perfect loan tailored to your needs in one place.</p>
-                    </div>
-                    
-                    <div className="flex flex-col xl:flex-row gap-8 justify-center items-stretch max-w-7xl mx-auto">
-                        <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 flex items-center justify-center gap-3">
-                                <div className="bg-primary/10 text-primary p-2 rounded-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                Step 1: Calculate Your EMI
-                            </h3>
-                            <div className="flex-grow h-full">
-                                <EMICalculator />
-                            </div>
-                        </div>
-                        <div className="w-full xl:w-1/2 flex flex-col">
-                            <h3 className="text-2xl font-bold text-secondary mb-6 flex items-center justify-center gap-3">
-                                <div className="bg-green-100 text-green-600 p-2 rounded-xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                Step 2: Quick Apply
-                            </h3>
-                            <div className="flex-grow flex justify-center h-full">
-                                <ApplyLoanModal inline onClose={() => {}} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-16 text-center">
-                        <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-xl md:text-2xl font-bold rounded-full shadow-lg hover:from-yellow-500 hover:to-green-600 hover:shadow-xl transition-all transform hover:-translate-y-1 tracking-wide">
-                            Fast Fair and Flexible
-                        </button>
-                    </div>
-                </div>
-            </section>
+            {/* Plan & Apply Section */}
+            <PlanAndApplySection />
 
              {/* Loan Categories */}
              <section id="loan-categories" className="pt-8 pb-20 bg-gray-50">
@@ -603,7 +563,7 @@ const LandingScreen: React.FC = () => {
                                 {/* Floating elements */}
                                 <div className="absolute -top-6 -right-6 bg-white p-3 rounded-xl shadow-xl animate-bounce">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">%</div>
+                                        <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">%</div>
                                         <div>
                                             <p className="text-[10px] text-gray-500 font-bold uppercase">Interest Rate</p>
                                             <p className="text-sm font-bold text-secondary">Starting @ 8.5%</p>
@@ -680,7 +640,7 @@ const LandingScreen: React.FC = () => {
                     </p>
                     <button 
                         onClick={handleApplyClick}
-                        className="px-10 py-5 bg-gradient-to-r from-yellow-400 to-green-500 text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-lg hover:from-yellow-500 hover:to-green-600 transform hover:-translate-y-1 transition-all"
+                        className="px-10 py-5 bg-gradient-to-r from-yellow-400 to-primary text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-lg hover:from-yellow-500 hover:to-primary-dark transform hover:-translate-y-1 transition-all"
                     >
                         Apply for Loan
                     </button>
