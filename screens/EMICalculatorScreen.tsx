@@ -39,8 +39,8 @@ const EMICalculatorScreen: React.FC = () => {
                                 <input
                                     type="range"
                                     min="10000"
-                                    max="10000000"
-                                    step="10000"
+                                    max="100000000"
+                                    step="100000"
                                     value={principal}
                                     onChange={(e) => setPrincipal(Number(e.target.value))}
                                     className="w-full mt-4 accent-primary"
@@ -60,7 +60,7 @@ const EMICalculatorScreen: React.FC = () => {
                                 <input
                                     type="range"
                                     min="1"
-                                    max="30"
+                                    max="20"
                                     step="0.1"
                                     value={rate}
                                     onChange={(e) => setRate(Number(e.target.value))}

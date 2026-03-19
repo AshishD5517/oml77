@@ -6,6 +6,7 @@ const PlanAndApplySection: React.FC = () => {
     const [amount, setAmount] = useState(500000);
     const [rate, setRate] = useState(8.5);
     const [tenure, setTenure] = useState(5);
+    const [eligibilityAmount, setEligibilityAmount] = useState("5,00,000");
 
     // EMI Calculation
     const principal = amount;
@@ -74,11 +75,7 @@ const PlanAndApplySection: React.FC = () => {
                                         <div className="inline-block px-3 py-1 bg-primary/10 text-primary-dark rounded-md text-sm font-semibold mb-2 border border-primary/20">
                                             {formatCurrency(amount)}
                                         </div>
-                                        <input type="range" min="50000" max="5000000" step="10000" value={amount} onChange={(e) => setAmount(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm text-gray-600 mb-2">Interest Rate <br/><span className="text-xs">(% p.a.)</span></label>
-                                        <input type="range" min="5" max="20" step="0.1" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
+                                        <input type="range" min="50000" max="100000000" step="100000" value={amount} onChange={(e) => setAmount(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
                                     </div>
                                 </div>
                                 <div className="w-1/2 h-24 flex justify-end items-center">
@@ -94,14 +91,25 @@ const PlanAndApplySection: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className="mb-6">
-                                <div className="flex justify-between items-center mb-2">
-                                    <label className="text-sm text-gray-600">Loan Tenure (Years)</label>
-                                    <div className="px-3 py-1 bg-primary/10 text-primary-dark rounded-md text-sm font-semibold border border-primary/20">
-                                        {tenure} Years
+                            <div className="mb-6 space-y-4">
+                                <div>
+                                    <div className="flex justify-between items-center mb-2">
+                                        <label className="text-sm text-gray-600">Interest Rate (% p.a.)</label>
+                                        <div className="px-3 py-1 bg-primary/10 text-primary-dark rounded-md text-sm font-semibold border border-primary/20">
+                                            {rate.toFixed(1)}%
+                                        </div>
                                     </div>
+                                    <input type="range" min="1" max="20" step="0.1" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
                                 </div>
-                                <input type="range" min="1" max="30" step="1" value={tenure} onChange={(e) => setTenure(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
+                                <div>
+                                    <div className="flex justify-between items-center mb-2">
+                                        <label className="text-sm text-gray-600">Loan Tenure (Years)</label>
+                                        <div className="px-3 py-1 bg-primary/10 text-primary-dark rounded-md text-sm font-semibold border border-primary/20">
+                                            {tenure} Years
+                                        </div>
+                                    </div>
+                                    <input type="range" min="1" max="30" step="1" value={tenure} onChange={(e) => setTenure(Number(e.target.value))} className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary" />
+                                </div>
                             </div>
 
                             <div className="bg-white/50 rounded-2xl p-4 mb-4 border border-white/60">
@@ -126,7 +134,7 @@ const PlanAndApplySection: React.FC = () => {
                         </div>
 
                         <div className="flex justify-between items-center text-primary font-medium pt-4 border-t border-gray-200/50 mt-auto">
-                            <span>Step 2: Next</span>
+                            <span>Step 1: Calculate Your EMI</span>
                             <ChevronRight className="w-5 h-5" />
                         </div>
                     </div>
@@ -153,7 +161,15 @@ const PlanAndApplySection: React.FC = () => {
                             <div className="space-y-3 pt-2">
                                 <div className="relative">
                                     <select className="w-full bg-white/80 border border-gray-200 text-gray-600 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 appearance-none">
-                                        <option>Select Location</option>
+                                        <option value="">Select Location</option>
+                                        <option value="mumbai">Mumbai</option>
+                                        <option value="delhi">Delhi</option>
+                                        <option value="bangalore">Bangalore</option>
+                                        <option value="hyderabad">Hyderabad</option>
+                                        <option value="chennai">Chennai</option>
+                                        <option value="kolkata">Kolkata</option>
+                                        <option value="pune">Pune</option>
+                                        <option value="ahmedabad">Ahmedabad</option>
                                     </select>
                                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                         <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -161,7 +177,13 @@ const PlanAndApplySection: React.FC = () => {
                                 </div>
                                 <div className="relative">
                                     <select className="w-full bg-white/80 border border-gray-200 text-gray-600 text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5 appearance-none">
-                                        <option>Select Loan Type</option>
+                                        <option value="">Select Loan Type</option>
+                                        <option value="personal">Personal Loan</option>
+                                        <option value="home">Home Loan</option>
+                                        <option value="car">Car Loan</option>
+                                        <option value="education">Education Loan</option>
+                                        <option value="business">Business Loan</option>
+                                        <option value="gold">Gold Loan</option>
                                     </select>
                                     <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                                         <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -171,7 +193,13 @@ const PlanAndApplySection: React.FC = () => {
                                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
                                         ₹
                                     </div>
-                                    <input type="text" className="bg-white/80 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-8 p-2.5" value="5,00,000" readOnly />
+                                    <input 
+                                        type="text" 
+                                        className="bg-white/80 border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-8 p-2.5" 
+                                        value={eligibilityAmount} 
+                                        onChange={(e) => setEligibilityAmount(e.target.value)} 
+                                        placeholder="Enter amount"
+                                    />
                                 </div>
                             </div>
 
