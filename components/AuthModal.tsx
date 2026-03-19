@@ -295,14 +295,32 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
 
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50" onClick={onClose}>
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 m-4 transform transition-all duration-300 scale-95 hover:scale-100" onClick={(e) => e.stopPropagation()}>
-        <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-secondary">{isRegister ? 'Create Account' : 'Welcome Back'}</h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">&times;</button>
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex overflow-hidden transform transition-all duration-300 scale-95 hover:scale-100" onClick={(e) => e.stopPropagation()}>
+        {/* Left side image */}
+        <div className="hidden md:block md:w-1/2 relative bg-primary-light">
+            <img 
+                src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1000&auto=format&fit=crop" 
+                alt="Login" 
+                className="w-full h-full object-cover" 
+                referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent flex flex-col justify-end p-8">
+                <div className="text-white animate-fade-in-up">
+                    <h3 className="text-3xl font-bold mb-3">Welcome to QuickTouch</h3>
+                    <p className="text-sm opacity-90 leading-relaxed">Your trusted partner for quick, easy, and transparent loans. Join thousands of satisfied customers today.</p>
+                </div>
+            </div>
         </div>
-        
-        <form onSubmit={handleSubmit}>
+
+        {/* Right side form */}
+        <div className="w-full md:w-1/2 p-8 max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-secondary">{isRegister ? 'Create Account' : 'Welcome Back'}</h2>
+              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+          </div>
+          
+          <form onSubmit={handleSubmit}>
           {isRegister ? (
             <>
                 <div className="relative mb-4">
@@ -458,6 +476,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
             </button>
           </p>
         </form>
+        </div>
       </div>
     </div>
   );

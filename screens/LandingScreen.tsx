@@ -307,7 +307,7 @@ const LandingScreen: React.FC = () => {
             <LiveRatesTicker />
 
             {/* Hero Section */}
-            <section id="home" className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+            <section id="home" className="relative pt-12 pb-10 lg:pt-24 lg:pb-16 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                    <img 
                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=80" 
@@ -374,7 +374,7 @@ const LandingScreen: React.FC = () => {
             </section>
 
             {/* Quick Apply & EMI Calculator Section */}
-            <section id="plan-and-apply" className="py-20 bg-gray-50 relative z-20 overflow-hidden">
+            <section id="plan-and-apply" className="pt-10 pb-20 bg-gray-50 relative z-20 overflow-hidden">
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="text-center mb-12 relative z-10">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-3">Plan & Apply</h2>
