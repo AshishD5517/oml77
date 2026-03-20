@@ -93,7 +93,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-[15px] px-3 py-2 rounded-full";
+    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-sm px-2.5 py-1.5 rounded-full";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
 
@@ -101,14 +101,14 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-3 md:py-4 bg-gray-50">
+            <header className="relative z-50 py-2 md:py-3 bg-gray-50">
                  <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
-                            <LogoIcon className="h-12 md:h-14 lg:h-16" />
+                            <LogoIcon className="h-10 md:h-12" />
                         </a>
                         
-                        <nav className="hidden lg:flex items-center space-x-1.5 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-4 py-2">
+                        <nav className="hidden lg:flex items-center space-x-1 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-3 py-1.5">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
