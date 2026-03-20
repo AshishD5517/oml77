@@ -93,7 +93,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-sm px-2.5 py-1.5 rounded-full";
+    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium px-4 py-2 rounded-full";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
 
@@ -101,14 +101,14 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-2 md:py-3 bg-gray-50">
-                 <div className="container mx-auto px-4 md:px-6">
+            <header className="relative z-50 py-4 bg-gray-50">
+                 <div className="container mx-auto px-6">
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
-                            <LogoIcon className="h-10 md:h-12" />
+                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-4 md:-ml-8">
+                            <LogoIcon className="h-16 md:h-20" />
                         </a>
                         
-                        <nav className="hidden lg:flex items-center space-x-1 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-3 py-1.5">
+                        <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-4 py-2">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
@@ -133,8 +133,6 @@ const Header: React.FC = () => {
                             
                             <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
                             
-                            <a href={`${linkPrefix}#credit-score`} className={navLinkClasses}>Credit Score</a>
-                            
                             <a href="/about-us" className={navLinkClasses}>About Us</a>
 
                             <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
@@ -145,14 +143,14 @@ const Header: React.FC = () => {
                                 <div className="relative" ref={dropdownRef}>
                                     <button 
                                         onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                                        className="flex items-center space-x-2 bg-white p-1 pr-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+                                        className="flex items-center space-x-3 bg-white p-1 pr-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
                                     >
-                                        <img src={user.avatarUrl} alt={user.name} className="h-8 w-8 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
+                                        <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
                                         <div className="hidden sm:flex flex-col items-start leading-tight">
-                                            <span className="text-xs font-bold text-secondary">{user.name}</span>
-                                            <span className="text-[9px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
+                                            <span className="text-sm font-bold text-secondary">{user.name}</span>
+                                            <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
                                         </div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
@@ -200,10 +198,10 @@ const Header: React.FC = () => {
                             ) : (
                                 <div className="relative group" ref={headerDropdownRef}>
                                     <button 
-                                        className="px-4 py-1.5 text-xs font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
+                                        className="px-8 py-3 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md flex items-center"
                                     >
                                         Login / Sign Up
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1.5 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
