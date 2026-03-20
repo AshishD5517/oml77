@@ -1,13 +1,6 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../App';
 import { UserRole } from '../types';
-
-interface AuthModalProps {
-  onClose: () => void;
-  initialRole?: UserRole;
-  initialView?: 'login' | 'register';
-}
 
 // --- ICONS ---
 const UserIcon = () => (
@@ -47,7 +40,6 @@ const PhoneIcon = () => (
     </svg>
 );
 // --- END ICONS ---
-
 
 const locations = [
     "Agra, Uttar Pradesh", "Ahmedabad, Gujarat", "Ajmer, Rajasthan", "Aligarh, Uttar Pradesh",
@@ -174,11 +166,33 @@ const SearchableDropdown: React.FC<{
     );
 };
 
-
-const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.BORROWER, initialView = 'login' }) => {
+const AuthScreen: React.FC = () => {
   const { login } = useAuth();
+  
+  // Parse query parameters
+  const [initialRole, setInitialRole] = useState<UserRole>(UserRole.BORROWER);
+  const [initialView, setInitialView] = useState<'login' | 'register'>('login');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const roleParam = params.get('role');
+    const viewParam = params.get('view');
+    
+    if (roleParam === UserRole.AGENT || roleParam === UserRole.BORROWER) {
+      setInitialRole(roleParam as UserRole);
+    }
+    if (viewParam === 'login' || viewParam === 'register') {
+      setInitialView(viewParam);
+    }
+  }, []);
+
   const [isRegister, setIsRegister] = useState(initialView === 'register');
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole);
+
+  useEffect(() => {
+    setIsRegister(initialView === 'register');
+    setSelectedRole(initialRole);
+  }, [initialRole, initialView]);
 
   // Form state
   const [email, setEmail] = useState('');
@@ -200,7 +214,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [otpError, setOtpError] = useState('');
-
 
   const resetOtpFields = () => {
     setMobile('');
@@ -226,7 +239,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
     }
   }, [isRegister, selectedRole]);
 
-
   const handleVerifyPan = async () => {
     setVerificationError('');
     setIsVerified(false);
@@ -235,7 +247,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
         return;
     }
     setIsVerifying(true);
-    // Reduced artificial delay from 1500ms to 500ms
     await new Promise(resolve => setTimeout(resolve, 500));
 
     // Mock response for demo purposes
@@ -260,7 +271,6 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
         return;
     }
     setIsSendingOtp(true);
-    // Reduced artificial delay from 1500ms to 500ms
     await new Promise(resolve => setTimeout(resolve, 500));
 
     const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -269,19 +279,18 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
     setIsSendingOtp(false);
   };
 
-  // Fix: Replaced incorrect type 'HTMLFormEvent' with 'HTMLFormElement' for the form submission event handler.
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(isRegister) {
         login(selectedRole);
-        onClose();
+        window.location.href = '/';
         return;
     }
 
     if (loginMethod === 'otp') {
         if (otp === mockOtp) {
-            login(selectedRole); // Default to borrower role on OTP login
-            onClose();
+            login(selectedRole);
+            window.location.href = '/';
         } else {
             setOtpError('Invalid OTP. Please try again.');
         }
@@ -290,13 +299,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
 
     // Default email login
     login(selectedRole);
-    onClose();
+    window.location.href = '/';
   };
 
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex overflow-hidden transform transition-all duration-300 scale-95 hover:scale-100" onClick={(e) => e.stopPropagation()}>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl flex overflow-hidden">
         {/* Left side image */}
         <div className="hidden md:block md:w-1/2 relative bg-primary-light">
             <img 
@@ -307,17 +315,21 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent flex flex-col justify-end p-8">
                 <div className="text-white animate-fade-in-up">
-                    <h3 className="text-3xl font-bold mb-3">Welcome to QuickTouch</h3>
+                    <h3 className="text-3xl font-bold mb-3">Welcome to Offer me loan</h3>
                     <p className="text-sm opacity-90 leading-relaxed">Your trusted partner for quick, easy, and transparent loans. Join thousands of satisfied customers today.</p>
                 </div>
             </div>
         </div>
 
         {/* Right side form */}
-        <div className="w-full md:w-1/2 p-8 max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-secondary">{isRegister ? 'Create Account' : 'Welcome Back'}</h2>
-              <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+        <div className="w-full md:w-1/2 p-8 lg:p-12 relative">
+          <a href="/" className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </a>
+          <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold text-secondary">{isRegister ? 'Create Account' : 'Welcome Back'}</h2>
           </div>
           
           <form onSubmit={handleSubmit}>
@@ -444,7 +456,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
           <button
             type="submit"
             disabled={(isRegister && !isVerified) || (!isRegister && loginMethod === 'otp' && !isOtpSent)}
-            className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-primary text-white py-2.5 text-sm rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {isRegister ? 'Sign Up' : 'Login'}
           </button>
@@ -482,4 +494,4 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose, initialRole = UserRole.B
   );
 };
 
-export default AuthModal;
+export default AuthScreen;

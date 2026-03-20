@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Home, GraduationCap, Car, Briefcase, IndianRupee } from 'lucide-react';
-import AuthModal from '../components/AuthModal';
 import EMICalculator from '../components/EMICalculator';
 import ContactUsSection from '../components/ContactUsSection';
 import ApplyLoanModal from '../components/ApplyLoanModal';

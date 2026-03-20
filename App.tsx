@@ -2,7 +2,7 @@
 import React, { useState, useContext, createContext, useCallback, useRef, useEffect } from 'react';
 import type { User } from './types';
 import { UserRole } from './types';
-import AuthModal from './components/AuthModal';
+import AuthScreen from './screens/AuthScreen';
 import LandingScreen from './screens/LandingScreen';
 import BorrowerDashboard from './screens/BorrowerDashboard';
 import AgentDashboard from './screens/AgentDashboard';
@@ -93,21 +93,22 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium px-4 py-2 rounded-full";
+    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-sm px-3 py-1.5 rounded-full";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
+    const isAuthPage = window.location.pathname === '/auth';
 
-    if (isComingSoonPage) return null;
+    if (isComingSoonPage || isAuthPage) return null;
 
     return (
         <>
-            <header className="relative z-50 py-4 bg-gray-50">
-                 <div className="container mx-auto px-6">
+            <header className="relative z-50 py-2 md:py-3 bg-gray-50">
+                 <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-4 md:-ml-8">
-                            <LogoIcon className="h-16 md:h-20" />
+                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-2 md:-ml-4">
+                            <LogoIcon className="h-10 md:h-12" />
                         </a>
                         
-                        <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-lg px-4 py-2">
+                        <nav className="hidden lg:flex items-center space-x-1 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-3 py-1.5">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
@@ -142,14 +143,14 @@ const Header: React.FC = () => {
                                 <div className="relative" ref={dropdownRef}>
                                     <button 
                                         onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                                        className="flex items-center space-x-3 bg-white p-1 pr-4 rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+                                        className="flex items-center space-x-2 bg-white p-1 pr-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                                     >
-                                        <img src={user.avatarUrl} alt={user.name} className="h-10 w-10 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
+                                        <img src={user.avatarUrl} alt={user.name} className="h-8 w-8 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
                                         <div className="hidden sm:flex flex-col items-start leading-tight">
-                                            <span className="text-sm font-bold text-secondary">{user.name}</span>
-                                            <span className="text-[10px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
+                                            <span className="text-xs font-bold text-secondary">{user.name}</span>
+                                            <span className="text-[9px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
                                         </div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
@@ -197,10 +198,10 @@ const Header: React.FC = () => {
                             ) : (
                                 <div className="relative group" ref={headerDropdownRef}>
                                     <button 
-                                        className="px-8 py-3 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-md flex items-center"
+                                        className="px-4 py-1.5 text-xs font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
                                     >
                                         Login / Sign Up
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1.5 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
@@ -252,8 +253,9 @@ const Footer: React.FC = () => {
     ];
 
     const isComingSoonPage = window.location.pathname === '/coming-soon';
+    const isAuthPage = window.location.pathname === '/auth';
 
-    if (isComingSoonPage) return null;
+    if (isComingSoonPage || isAuthPage) return null;
 
     return (
         <footer className="relative bg-secondary text-white pt-16">
@@ -378,9 +380,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 // --- NEW UI CONTEXT ---
 const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
-  const [authModalConfig, setAuthModalConfig] = useState<{isOpen: boolean, role?: UserRole, view?: 'login' | 'register'}>({
-    isOpen: false
-  });
   
   const openApplyModal = useCallback(() => {
     setIsApplyModalOpen(true);
@@ -391,18 +390,20 @@ const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }, []);
 
   const openAuthModal = useCallback((role?: UserRole, view?: 'login' | 'register') => {
-    setAuthModalConfig({ isOpen: true, role, view });
-  }, []);
-
-  const closeAuthModal = useCallback(() => {
-    setAuthModalConfig(prev => ({ ...prev, isOpen: false }));
+    let url = '/auth';
+    const params = new URLSearchParams();
+    if (role) params.append('role', role);
+    if (view) params.append('view', view);
+    if (params.toString()) {
+      url += `?${params.toString()}`;
+    }
+    window.location.href = url;
   }, []);
 
   return (
     <UIContext.Provider value={{ openApplyModal, openAuthModal }}>
       {children}
       {isApplyModalOpen && <ApplyLoanModal onClose={closeApplyModal} />}
-      {authModalConfig.isOpen && <AuthModal onClose={closeAuthModal} initialRole={authModalConfig.role} initialView={authModalConfig.view} />}
     </UIContext.Provider>
   );
 };
@@ -410,6 +411,7 @@ const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 
 export default function App() {
+    const isAuthPage = window.location.pathname === '/auth';
     return (
         <AuthProvider>
             <UIProvider>
@@ -419,7 +421,7 @@ export default function App() {
                         <AppContent />
                     </main>
                     <Footer />
-                    <Chatbot />
+                    {!isAuthPage && <Chatbot />}
                 </div>
             </UIProvider>
         </AuthProvider>
@@ -429,6 +431,10 @@ export default function App() {
 function AppContent() {
     const { user } = useAuth();
     
+    if (window.location.pathname === '/auth') {
+        return <AuthScreen />;
+    }
+
     if (window.location.pathname === '/coming-soon') {
         return <ComingSoonScreen />;
     }
