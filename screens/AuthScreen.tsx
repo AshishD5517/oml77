@@ -456,7 +456,7 @@ const AuthScreen: React.FC = () => {
           <button
             type="submit"
             disabled={(isRegister && !isVerified) || (!isRegister && loginMethod === 'otp' && !isOtpSent)}
-            className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-primary text-white py-2.5 text-sm rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {isRegister ? 'Sign Up' : 'Login'}
           </button>
