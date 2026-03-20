@@ -93,7 +93,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-sm px-3 py-1.5 rounded-full";
+    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-sm px-2.5 py-1.5 rounded-full";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
 
@@ -104,7 +104,7 @@ const Header: React.FC = () => {
             <header className="relative z-50 py-2 md:py-3 bg-gray-50">
                  <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-2 md:-ml-4">
+                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
                             <LogoIcon className="h-10 md:h-12" />
                         </a>
                         
@@ -132,6 +132,8 @@ const Header: React.FC = () => {
                             </div>
                             
                             <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
+                            
+                            <a href={`${linkPrefix}#credit-score`} className={navLinkClasses}>Credit Score</a>
                             
                             <a href="/about-us" className={navLinkClasses}>About Us</a>
 
