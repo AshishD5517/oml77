@@ -270,8 +270,11 @@ const PlanAndApplySection: React.FC = () => {
                                 <p className="text-xs text-gray-500 text-center">Trusted by <span className="font-bold text-gray-700">10,000+</span> happy customers</p>
                             </div>
 
-                            <button className="w-full text-white bg-primary hover:bg-primary-dark font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md transition-all">
-                                Get Loan Now
+                            <button 
+                                onClick={() => document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="w-full text-white bg-primary hover:bg-primary-dark font-medium rounded-lg text-sm px-5 py-3 text-center shadow-md transition-all"
+                            >
+                                Get in Touch
                             </button>
                             
                             <div className="flex items-center justify-center gap-1 text-xs text-gray-500">
