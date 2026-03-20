@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                  <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
-                            <LogoIcon className="h-10 md:h-12" />
+                            <LogoIcon className="h-16 md:h-20" />
                         </a>
                         
                         <nav className="hidden lg:flex items-center space-x-1 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-3 py-1.5">
@@ -289,7 +289,7 @@ const Footer: React.FC = () => {
                     {/* Logo and Description */}
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center mb-6">
-                            <LogoIcon className="h-16 md:h-20 bg-white p-1 rounded-xl" />
+                            <LogoIcon className="h-24 md:h-32 bg-white p-1 rounded-xl" />
                         </div>
                         <p className="text-gray-400 text-base leading-relaxed mb-6">
                             The smartest way to borrow and lend. We connect borrowers with the right lenders, making the loan process seamless, transparent, and fast.
