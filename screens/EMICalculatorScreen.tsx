@@ -19,7 +19,7 @@ const EMICalculatorScreen: React.FC = () => {
     const totalInterest = totalAmount - principal;
 
     return (
-        <div className="bg-white font-sans text-gray-700 min-h-screen py-24">
+        <div className="bg-white text-gray-700 min-h-screen py-24">
             <div className="container mx-auto px-6 max-w-4xl">
                 <h1 className="text-4xl font-extrabold text-secondary mb-8 text-center">EMI Calculator</h1>
                 

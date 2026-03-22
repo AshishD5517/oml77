@@ -101,7 +101,7 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm">
+            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-inter">
                  <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
@@ -278,7 +278,7 @@ const Footer: React.FC = () => {
     if (isComingSoonPage || isAuthPage) return null;
 
     return (
-        <footer className="relative bg-secondary text-white pt-16">
+        <footer className="relative bg-secondary text-white pt-16 font-inter">
              <div
                 className="absolute top-0 left-0 w-full overflow-hidden leading-none"
                 style={{ transform: 'translateY(calc(-100% + 1px))', height: '60px' }}
@@ -435,7 +435,7 @@ export default function App() {
     return (
         <AuthProvider>
             <UIProvider>
-                <div className="min-h-screen flex flex-col font-sans">
+                <div className="min-h-screen flex flex-col">
                     <Header />
                     <main className="flex-grow">
                         <AppContent />
