@@ -93,7 +93,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-700 hover:text-primary transition-all duration-300 font-medium text-base px-4 py-3 flex items-center";
+    const navLinkClasses = "text-gray-600 hover:bg-primary-light hover:text-primary-dark transition-all duration-300 font-medium text-base px-3 py-2 rounded-full";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
 
@@ -101,52 +101,20 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 bg-white shadow-sm">
-                {/* Top Bar */}
-                <div className="border-b border-gray-100">
-                    <div className="container mx-auto px-4 md:px-6 py-2 flex justify-between items-center text-sm">
-                        <div className="flex items-center space-x-6">
-                            <a href={`${linkPrefix}#home`} className="flex items-center">
-                                <LogoIcon className="h-16 md:h-20" />
-                            </a>
-                            <div className="hidden md:flex items-center space-x-4 text-gray-600">
-                                <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg> +91 98765 43210</span>
-                                <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> contact@offermeloan.com</span>
-                                <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg> Customer Support</span>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <div className="flex space-x-2">
-                                <a href="#" className="text-secondary hover:text-primary"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                                <a href="#" className="text-secondary hover:text-primary"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
-                            </div>
-                            <div className="flex space-x-2">
-                                <button onClick={() => openAuthModal(UserRole.BORROWER, 'login')} className="px-4 py-1 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50">Login</button>
-                                <button onClick={() => openAuthModal(UserRole.BORROWER, 'register')} className="px-4 py-1 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary-dark flex items-center">Sign Up <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg></button>
-                            </div>
-                            <div className="flex space-x-2">
-                                <a href="#" className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-primary"><svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
-                                <a href="#" className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-primary"><svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
-                                <a href="#" className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-white hover:bg-primary"><svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Main Nav */}
+            <header className="relative z-50 py-3 md:py-4 bg-gray-50">
                  <div className="container mx-auto px-4 md:px-6">
-                    <div className="flex justify-between items-center py-2">
-                        <nav className="hidden lg:flex items-center space-x-4">
-                            <a href={`${linkPrefix}#home`} className="bg-primary text-white px-4 py-2 rounded-full font-medium text-sm flex items-center">
-                                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
-                                Home
-                            </a>
+                    <div className="flex justify-between items-center">
+                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
+                            <LogoIcon className="h-16 md:h-20" />
+                        </a>
+                        
+                        <nav className="hidden lg:flex items-center space-x-2 bg-white/70 backdrop-blur-xl rounded-full shadow-md px-4 py-2">
+                            <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
-                                <a href={`${linkPrefix}#loan-categories`} className={navLinkClasses}>
-                                    <svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                                <a href={`${linkPrefix}#loan-categories`} className={`${navLinkClasses} flex items-center`}>
                                     Loan Categories
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </a>
                                 <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 w-56">
                                     <div className="bg-white shadow-xl rounded-xl py-2 border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -163,19 +131,12 @@ const Header: React.FC = () => {
                                 </div>
                             </div>
                             
-                            <div className="relative group">
-                                <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>
-                                    <svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                                    EMI Calculator
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                </a>
-                            </div>
+                            <a href={`${linkPrefix}#emi-calculator`} className={navLinkClasses}>EMI Calculator</a>
                             
                             <div className="relative group">
-                                <a href={`${linkPrefix}#credit-score`} className={navLinkClasses}>
-                                    <svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                <a href={`${linkPrefix}#credit-score`} className={`${navLinkClasses} flex items-center`}>
                                     Credit Score
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </a>
                                 <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 w-64">
                                     <div className="bg-white shadow-xl rounded-xl py-2 border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -191,63 +152,114 @@ const Header: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="relative group">
-                                <a href={`${linkPrefix}#business-loans`} className={navLinkClasses}>
-                                    <svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                    Business Loans
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                </a>
-                            </div>
-
-                            <div className="relative group">
-                                <a href={`${linkPrefix}#personal-loans`} className={navLinkClasses}>
-                                    <svg className="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                                    Personal Loans
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                </a>
-                            </div>
                             
-                            <div className="relative group">
-                                <a href="/about-us" className={navLinkClasses}>
-                                    About Us
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                                </a>
-                            </div>
+                            <a href="/about-us" className={navLinkClasses}>About Us</a>
+
+                            <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
                         </nav>
 
-                        <div className="flex items-center">
-                            <button className="bg-primary text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-primary-dark transition-colors flex items-center shadow-md">
-                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                Get a Loan
-                            </button>
+                        <div className="flex items-center space-x-4">
+                            {user ? (
+                                <div className="relative" ref={dropdownRef}>
+                                    <button 
+                                        onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                                        className="flex items-center space-x-2 bg-white p-1 pr-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+                                    >
+                                        <img src={user.avatarUrl} alt={user.name} className="h-8 w-8 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
+                                        <div className="hidden sm:flex flex-col items-start leading-tight">
+                                            <span className="text-xs font-bold text-secondary">{user.name}</span>
+                                            <span className="text-[9px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
+                                        </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 text-gray-400 transition-transform duration-300 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+
+                                    {isProfileDropdownOpen && (
+                                        <div className="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-fade-in-up origin-top-right overflow-hidden">
+                                            <div className="px-4 py-3 border-b border-gray-50 mb-1">
+                                                <p className="text-xs text-gray-500 font-medium">Signed in as</p>
+                                                <p className="text-sm font-bold text-secondary truncate">{user.email}</p>
+                                            </div>
+                                            
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                                <span>Dashboard</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                                <span>Active Loans</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                                                <span>Messages</span>
+                                                <span className="ml-auto bg-primary text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+                                            </a>
+                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                                <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                                <span>Update Profile</span>
+                                            </a>
+                                            
+                                            <div className="border-t border-gray-50 mt-1">
+                                                <button
+                                                    onClick={() => {
+                                                        setIsProfileDropdownOpen(false);
+                                                        logout();
+                                                    }}
+                                                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors text-left"
+                                                >
+                                                    <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                                                    <span className="font-semibold">Logout</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="relative group" ref={headerDropdownRef}>
+                                    <button 
+                                        className="px-5 py-2 text-sm font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
+                                    >
+                                        Login / Sign Up
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1.5 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div className="absolute right-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 w-56">
+                                        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-2 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                            <button 
+                                                onClick={() => {
+                                                    openAuthModal(UserRole.BORROWER, 'login');
+                                                    setIsHeaderDropdownOpen(false);
+                                                }}
+                                                className="w-full flex items-center space-x-3 px-3 py-2 text-xs font-bold text-gray-700 hover:bg-primary-light hover:text-primary rounded-xl transition-all duration-200 group/btn"
+                                            >
+                                                <div className="bg-gray-50 p-1.5 rounded-lg group-hover/btn:bg-white transition-colors">
+                                                    <svg className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                                                </div>
+                                                <span className="tracking-wide uppercase">BORROWER LOGIN</span>
+                                            </button>
+                                            <div className="h-px bg-gray-50 my-1 mx-2"></div>
+                                            <button 
+                                                onClick={() => {
+                                                    openAuthModal(UserRole.AGENT, 'login');
+                                                    setIsHeaderDropdownOpen(false);
+                                                }}
+                                                className="w-full flex items-center space-x-3 px-3 py-2 text-xs font-bold text-gray-700 hover:bg-primary-light hover:text-primary rounded-xl transition-all duration-200 group/btn"
+                                            >
+                                                <div className="bg-gray-50 p-1.5 rounded-lg group-hover/btn:bg-white transition-colors">
+                                                    <svg className="w-4 h-4 opacity-70 group-hover/btn:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                                </div>
+                                                <span className="tracking-wide uppercase">AGENT LOGIN</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                  </div>
             </header>
-
-            {/* Live Rates Ticker */}
-            <div className="bg-secondary text-white py-2 overflow-hidden flex items-center text-sm relative z-40">
-                <div className="container mx-auto px-4 flex items-center">
-                    <div className="flex items-center font-bold text-accent mr-4 whitespace-nowrap z-10 bg-secondary pr-4">
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                        Live Rates:
-                    </div>
-                    <div className="flex-1 overflow-hidden relative">
-                        <div className="animate-marquee whitespace-nowrap flex items-center space-x-8">
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Home Loans @ 8.35% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Vehicle Loans @ 8.75% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Business Loans @ 12.00% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg> Personal Loans @ 10.50% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg> Education Loans @ 9.00% p.a.</span>
-                            {/* Duplicate for seamless loop */}
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Home Loans @ 8.35% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg> Vehicle Loans @ 8.75% p.a.</span>
-                            <span className="flex items-center"><svg className="w-4 h-4 mr-1 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Business Loans @ 12.00% p.a.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </>
     );
 };
