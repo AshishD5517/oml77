@@ -287,9 +287,24 @@ const LiveRatesTicker: React.FC = () => (
     </div>
 );
 
+const heroImages = [
+    "https://i.postimg.cc/nLzs91DN/Chat-GPT-Image-Mar-12-2026-06-18-14-PM.png",
+    "https://i.postimg.cc/yNz56gL2/Check-your-score-with-confidence.png"
+];
+
 const LandingScreen: React.FC = () => {
     const { openAuthModal } = useUI();
     const [selectedCategory, setSelectedCategory] = useState<LoanCategoryData | null>(null);
+    const [currentHeroImageIndex, setCurrentHeroImageIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        if (isHovered) return;
+        const interval = setInterval(() => {
+            setCurrentHeroImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [isHovered]);
 
     const handleApplyClick = () => {
         const element = document.getElementById('plan-and-apply');
@@ -357,14 +372,23 @@ const LandingScreen: React.FC = () => {
                             </div>
                         </div>
                         <div className="lg:w-7/12 relative animate-fade-in-up flex justify-center" style={{ animationDelay: '0.2s' }}>
-                            <div className="relative z-10 w-full max-w-full lg:max-w-[900px] xl:max-w-[1000px] overflow-hidden group flex flex-col items-center rounded-3xl shadow-2xl bg-white border border-gray-100">
-                                <img 
-                                    src="https://i.postimg.cc/nLzs91DN/Chat-GPT-Image-Mar-12-2026-06-18-14-PM.png" 
-                                    alt="Loan Approval Illustration" 
-                                    className="w-full h-auto object-cover"
-                                    style={{ imageRendering: 'high-quality' }}
-                                    referrerPolicy="no-referrer"
-                                />
+                            <div 
+                                className="relative z-10 w-full max-w-full lg:max-w-[900px] xl:max-w-[1000px] overflow-hidden group flex flex-col items-center rounded-3xl shadow-2xl bg-white border border-gray-100"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
+                                <div className="grid w-full place-items-center">
+                                    {heroImages.map((img, index) => (
+                                        <img 
+                                            key={index}
+                                            src={img} 
+                                            alt={`Hero Illustration ${index + 1}`} 
+                                            className={`w-full h-auto object-cover col-start-1 row-start-1 transition-opacity duration-1000 ${index === currentHeroImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                                            style={{ imageRendering: 'high-quality' }}
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    ))}
+                                </div>
                             </div>
                             {/* Background glow */}
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-gradient-to-tr from-primary-light/40 to-accent/30 rounded-full blur-[100px] -z-10 opacity-60"></div>
