@@ -61,7 +61,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Financing specifically designed to help you purchase, construct, or renovate your dream home with long-term repayment options.",
         features: ["Higher loan amounts", "Long tenure up to 30 years", "Tax benefits under Sec 80C & 24(b)", "Balance transfer facility available"],
         eligibility: "Indian residents aged 21-65 years with a stable income source.",
-        rates: "Starting from 8.35% p.a."
+        rates: "Starting from 8.35% p.a.",
+        href: "/home-loan"
     },
     { 
         title: "Vehicle Loan", 
@@ -69,7 +70,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Get behind the wheel of your dream car with our customized vehicle loans for new and used vehicles.",
         features: ["Up to 100% on-road funding", "Pocket-friendly EMI options", "Instant approval for pre-approved customers", "Special rates for EVs"],
         eligibility: "Salaried or Self-employed individuals aged 21+ with min. 1 year work experience.",
-        rates: "Starting from 8.75% p.a."
+        rates: "Starting from 8.75% p.a.",
+        href: "/vehicle-loan"
     },
     { 
         title: "Business Loans", 
@@ -77,7 +79,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Capital tailored to help your business grow, whether you need working capital, machinery, or funds for expansion.",
         features: ["Collateral-free options available", "Overdraft facility", "Flexible repayment schedules", "High loan amounts up to ₹50 Lakhs"],
         eligibility: "Business vintage of at least 3 years with profitable turnover.",
-        rates: "Starting from 12.00% p.a."
+        rates: "Starting from 12.00% p.a.",
+        href: "/business-loan"
     },
     { 
         title: "Student Loans", 
@@ -85,7 +88,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Invest in your future with education loans that cover tuition fees, accommodation, and travel for studies in India or abroad.",
         features: ["Covers 100% of educational expenses", "Moratorium period (course duration + 1 year)", "Tax deduction on interest", "Preferential rates for premier institutes"],
         eligibility: "Indian students with secured admission in recognized institutions.",
-        rates: "Starting from 9.00% p.a."
+        rates: "Starting from 9.00% p.a.",
+        href: "/student-loan"
     },
     { 
         title: "Mortgage Loan", 
@@ -93,7 +97,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Secure financing against your property for personal or business needs with lower interest rates.",
         features: ["High loan amounts", "Lower interest rates", "Flexible repayment options", "Funds for any purpose"],
         eligibility: "Property owners with clear titles and stable income.",
-        rates: "Starting from 9.50% p.a."
+        rates: "Starting from 9.50% p.a.",
+        href: "/mortgage-loan"
     },
     { 
         title: "Gold Loan", 
@@ -101,7 +106,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Unlock the value of your gold instantly with minimal documentation and attractive interest rates.",
         features: ["Instant approval & disbursal", "High per gram rate", "Flexible repayment options", "Safe and secure storage"],
         eligibility: "Anyone aged 18+ with valid ID and gold ornaments.",
-        rates: "Starting from 8.99% p.a."
+        rates: "Starting from 8.99% p.a.",
+        href: "/gold-loan"
     },
     { 
         title: "Loan Transfer", 
@@ -109,7 +115,8 @@ const loanCategories: LoanCategoryData[] = [
         description: "Transfer your existing high-interest loans to us and enjoy lower EMIs and better terms.",
         features: ["Lower interest rates", "Reduced EMI burden", "Top-up loan facility", "Quick processing"],
         eligibility: "Individuals with an existing loan and a good repayment track record.",
-        rates: "Starting from 10.25% p.a."
+        rates: "Starting from 10.25% p.a.",
+        href: "/loan-transfer"
     }
 ];
 

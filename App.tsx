@@ -11,6 +11,7 @@ import AboutUsScreen from './screens/AboutUsScreen';
 import ContactUsScreen from './screens/ContactUsScreen';
 import EMICalculatorScreen from './screens/EMICalculatorScreen';
 import PersonalLoanScreen from './screens/PersonalLoanScreen';
+import GenericLoanScreen from './screens/GenericLoanScreen';
 import Chatbot from './components/Chatbot';
 import ApplyLoanModal from './components/ApplyLoanModal';
 
@@ -68,13 +69,13 @@ const Header: React.FC = () => {
     
     const loanCategories = [
         { title: "Personal Loans", href: "/personal-loan" },
-        { title: "Home Loans", href: "/coming-soon" },
-        { title: "Vehicle Loan", href: "/coming-soon" },
-        { title: "Business Loans", href: "/coming-soon" },
-        { title: "Student Loans", href: "/coming-soon" },
-        { title: "Mortgage Loan", href: "/coming-soon" },
-        { title: "Gold Loan", href: "/coming-soon" },
-        { title: "Loan Transfer", href: "/coming-soon" }
+        { title: "Home Loans", href: "/home-loan" },
+        { title: "Vehicle Loan", href: "/vehicle-loan" },
+        { title: "Business Loans", href: "/business-loan" },
+        { title: "Student Loans", href: "/student-loan" },
+        { title: "Mortgage Loan", href: "/mortgage-loan" },
+        { title: "Gold Loan", href: "/gold-loan" },
+        { title: "Loan Transfer", href: "/loan-transfer" }
     ];
 
     // Close dropdown when clicking outside
@@ -101,7 +102,7 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-inter">
+            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
                  <div className="container mx-auto px-4 md:px-6">
                     <div className="flex justify-between items-center">
                         <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
@@ -278,7 +279,7 @@ const Footer: React.FC = () => {
     if (isComingSoonPage || isAuthPage) return null;
 
     return (
-        <footer className="relative bg-secondary text-white pt-16 font-inter">
+        <footer className="relative bg-secondary text-white pt-16 font-poppins">
              <div
                 className="absolute top-0 left-0 w-full overflow-hidden leading-none"
                 style={{ transform: 'translateY(calc(-100% + 1px))', height: '60px' }}
@@ -435,7 +436,7 @@ export default function App() {
     return (
         <AuthProvider>
             <UIProvider>
-                <div className="min-h-screen flex flex-col">
+                <div className="min-h-screen flex flex-col font-sans">
                     <Header />
                     <main className="flex-grow">
                         <AppContent />
@@ -465,6 +466,20 @@ function AppContent() {
 
     if (window.location.pathname === '/personal-loan') {
         return <PersonalLoanScreen />;
+    }
+
+    const genericLoanRoutes = [
+        '/home-loan',
+        '/vehicle-loan',
+        '/business-loan',
+        '/student-loan',
+        '/mortgage-loan',
+        '/gold-loan',
+        '/loan-transfer'
+    ];
+
+    if (genericLoanRoutes.includes(window.location.pathname)) {
+        return <GenericLoanScreen />;
     }
 
     if (window.location.pathname === '/contact-us') {
