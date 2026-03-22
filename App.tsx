@@ -94,7 +94,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-base";
+    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-lg";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
 
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                                             <a 
                                                 key={category.title}
                                                 href={category.href || `${linkPrefix}#loan-categories`} 
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:text-primary transition-colors"
+                                                className="block px-4 py-2 text-base text-gray-700 hover:text-primary transition-colors"
                                             >
                                                 {category.title}
                                             </a>
@@ -141,13 +141,13 @@ const Header: React.FC = () => {
                                 </a>
                                 <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 w-64">
                                     <div className="bg-white shadow-xl rounded-xl py-2 border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                                        <a href={`${linkPrefix}#credit-score-free`} className="block px-4 py-2 text-sm text-gray-700 hover:text-primary transition-colors">
+                                        <a href={`${linkPrefix}#credit-score-free`} className="block px-4 py-2 text-base text-gray-700 hover:text-primary transition-colors">
                                             Credit Score FREE
                                         </a>
-                                        <a href={`${linkPrefix}#increase-cibil`} className="block px-4 py-2 text-sm text-gray-700 hover:text-primary transition-colors">
+                                        <a href={`${linkPrefix}#increase-cibil`} className="block px-4 py-2 text-base text-gray-700 hover:text-primary transition-colors">
                                             How to Increase Cibil score
                                         </a>
-                                        <a href={`${linkPrefix}#cibil-personal-loan`} className="block px-4 py-2 text-sm text-gray-700 hover:text-primary transition-colors">
+                                        <a href={`${linkPrefix}#cibil-personal-loan`} className="block px-4 py-2 text-base text-gray-700 hover:text-primary transition-colors">
                                             CIBIL Score for Personal Loan
                                         </a>
                                     </div>
@@ -219,7 +219,7 @@ const Header: React.FC = () => {
                             ) : (
                                 <div className="relative group" ref={headerDropdownRef}>
                                     <button 
-                                        className="px-5 py-2 text-sm font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
+                                        className="px-5 py-2 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
                                     >
                                         Login / Sign Up
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1.5 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
