@@ -289,7 +289,8 @@ const LiveRatesTicker: React.FC = () => (
 
 const heroImages = [
     "https://i.postimg.cc/nLzs91DN/Chat-GPT-Image-Mar-12-2026-06-18-14-PM.png",
-    "https://i.postimg.cc/yNz56gL2/Check-your-score-with-confidence.png"
+    "https://i.postimg.cc/yNz56gL2/Check-your-score-with-confidence.png",
+    "https://i.postimg.cc/0Q9H1TVR/Exploring-loan-agents-in-your-city.png"
 ];
 
 const LandingScreen: React.FC = () => {
