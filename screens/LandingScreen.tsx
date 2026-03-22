@@ -310,7 +310,7 @@ const LandingScreen: React.FC = () => {
         if (isHovered) return;
         const interval = setInterval(() => {
             setCurrentHeroImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-        }, 5000);
+        }, 3000);
         return () => clearInterval(interval);
     }, [isHovered]);
 
@@ -379,7 +379,7 @@ const LandingScreen: React.FC = () => {
                                 <div className="flex items-center"><span className="w-2 h-2 bg-primary rounded-full mr-2"></span>Secure Process</div>
                             </div>
                         </div>
-                        <div className="lg:w-7/12 relative animate-fade-in-up flex justify-center" style={{ animationDelay: '0.2s' }}>
+                        <div className="lg:w-7/12 relative animate-fade-in-up flex flex-col items-center justify-center" style={{ animationDelay: '0.2s' }}>
                             <div 
                                 className="relative z-10 w-full max-w-full lg:max-w-[900px] xl:max-w-[1000px] overflow-hidden group flex flex-col items-center rounded-3xl shadow-2xl bg-white border border-gray-100"
                                 onMouseEnter={() => setIsHovered(true)}
@@ -397,6 +397,17 @@ const LandingScreen: React.FC = () => {
                                         />
                                     ))}
                                 </div>
+                            </div>
+                            {/* Slider Indicators */}
+                            <div className="mt-6 flex justify-center gap-2 z-20">
+                                {heroImages.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentHeroImageIndex(index)}
+                                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 shadow-sm ${index === currentHeroImageIndex ? 'bg-primary w-8' : 'bg-gray-300 hover:bg-gray-400'}`}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
                             </div>
                             {/* Background glow */}
                             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-gradient-to-tr from-primary-light/40 to-accent/30 rounded-full blur-[100px] -z-10 opacity-60"></div>
