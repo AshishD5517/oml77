@@ -283,14 +283,14 @@ const AuthScreen: React.FC = () => {
     e.preventDefault();
     if(isRegister) {
         login(selectedRole);
-        window.location.href = '/';
+        window.location.href = '/dashboard';
         return;
     }
 
     if (loginMethod === 'otp') {
         if (otp === mockOtp) {
             login(selectedRole);
-            window.location.href = '/';
+            window.location.href = '/dashboard';
         } else {
             setOtpError('Invalid OTP. Please try again.');
         }
@@ -299,7 +299,7 @@ const AuthScreen: React.FC = () => {
 
     // Default email login
     login(selectedRole);
-    window.location.href = '/';
+    window.location.href = '/dashboard';
   };
 
   return (

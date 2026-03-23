@@ -4,6 +4,21 @@ import type { LoanRequest, Offer } from '../types';
 import { LoanStatus } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useUI } from '../App';
+import { 
+    LayoutDashboard, 
+    UserCircle, 
+    FileText, 
+    List, 
+    Users, 
+    Activity, 
+    MessageSquare, 
+    Bell, 
+    Star, 
+    Phone, 
+    LogOut,
+    Menu,
+    X
+} from 'lucide-react';
 
 const mockOffers: Offer[] = [
     { id: 'offer-1', agentId: 'agent-456', agentName: 'Jane Smith', agentAvatarUrl: 'https://i.pravatar.cc/150?u=jane', loanRequestId: 'loan-1', offeredRate: 5.2, processingFee: 5000, message: "Hi Alex, I can offer a competitive rate for your home improvement project. My processing is fast and transparent.", dateOffered: '2023-10-27' },
@@ -130,8 +145,9 @@ const BorrowerDashboardSkeleton: React.FC = () => (
 const BorrowerDashboard: React.FC = () => {
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
     const { openApplyModal } = useUI();
-    // Removed artificial loading state to make the dashboard instant
     const [isLoading, setIsLoading] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('dashboard');
 
     const totalRequested = loanRequests.reduce((sum, req) => sum + req.amount, 0);
     const activeRequests = loanRequests.filter(req => req.status === LoanStatus.PENDING || req.status === LoanStatus.APPROVED || req.status === LoanStatus.OFFERS_RECEIVED).length;
@@ -140,53 +156,161 @@ const BorrowerDashboard: React.FC = () => {
         return <BorrowerDashboardSkeleton />;
     }
 
+    const sidebarItems = [
+        { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+        { id: 'profile', label: 'Update Your Profile', icon: <UserCircle size={20} /> },
+        { id: 'apply', label: 'Apply for Loan', icon: <FileText size={20} />, action: openApplyModal },
+        { id: 'unmasked', label: 'Unmasked List', icon: <List size={20} /> },
+        { id: 'agents', label: 'Agent Listings', icon: <Users size={20} /> },
+        { id: 'active', label: 'Active Loans', icon: <Activity size={20} /> },
+        { id: 'messages', label: 'Messages', icon: <MessageSquare size={20} /> },
+        { id: 'notifications', label: 'Notifications', icon: <Bell size={20} /> },
+        { id: 'reviews', label: 'Reviews', icon: <Star size={20} /> },
+        { id: 'contact', label: 'Get in Touch', icon: <Phone size={20} /> },
+    ];
+
     return (
-        <div className="container mx-auto px-6 py-8">
-            <div className="flex justify-between items-center mb-8">
-                <h1 className="text-3xl font-bold text-secondary">My Dashboard</h1>
-                <button 
-                    onClick={openApplyModal}
-                    className="px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:bg-primary-dark transition-transform transform hover:scale-105"
-                >
-                    New Loan Request
-                </button>
-            </div>
+        <div className="flex min-h-[calc(100vh-80px)] bg-gray-50">
+            {/* Mobile Sidebar Overlay */}
+            {isSidebarOpen && (
+                <div 
+                    className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatCard title="Total Requested" value={formatCurrency(totalRequested)} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>} color="bg-primary" />
-                <StatCard title="Active Requests" value={activeRequests.toString()} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>} color="bg-yellow-500" />
-                <StatCard title="Funded Loans" value={loanRequests.filter(r => r.status === LoanStatus.FUNDED).length.toString()} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>} color="bg-green-500" />
-                <StatCard title="Avg. Interest Rate" value="6.2%" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>} color="bg-purple-500" />
-            </div>
-
-            {/* Main Content Area */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                     <h2 className="text-xl font-bold text-secondary mb-4">My Loan Requests</h2>
-                     <div className="space-y-4">
-                        {loanRequests.map(req => (
-                            <LoanRequestCard 
-                                key={req.id} 
-                                request={req}
-                            />
+            {/* Sidebar */}
+            <aside className={`
+                fixed lg:sticky top-0 lg:top-0 left-0 h-full lg:h-[calc(100vh-80px)]
+                w-64 bg-white shadow-xl lg:shadow-md z-50 lg:z-0
+                transform transition-transform duration-300 ease-in-out
+                ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+                flex flex-col
+            `}>
+                <div className="p-4 flex justify-between items-center lg:hidden border-b border-gray-100">
+                    <span className="font-bold text-secondary text-lg">Menu</span>
+                    <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-gray-500 hover:text-primary hover:bg-primary-light rounded-lg">
+                        <X size={20} />
+                    </button>
+                </div>
+                
+                <div className="flex-1 overflow-y-auto py-4">
+                    <nav className="space-y-1 px-3">
+                        {sidebarItems.map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => {
+                                    if (item.action) {
+                                        item.action();
+                                    } else {
+                                        setActiveTab(item.id);
+                                    }
+                                    if (window.innerWidth < 1024) setIsSidebarOpen(false);
+                                }}
+                                className={`
+                                    w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200
+                                    ${activeTab === item.id && !item.action
+                                        ? 'bg-primary text-white shadow-md font-semibold' 
+                                        : 'text-gray-600 hover:bg-primary-light hover:text-primary font-medium'
+                                    }
+                                `}
+                            >
+                                {item.icon}
+                                <span>{item.label}</span>
+                            </button>
                         ))}
-                    </div>
+                    </nav>
                 </div>
 
-                <div className="bg-white p-6 rounded-xl shadow-md">
-                    <h2 className="text-xl font-bold text-secondary mb-4">Loan Status Breakdown</h2>
-                     <ResponsiveContainer width="100%" height={250}>
-                        <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis type="number" hide />
-                            <YAxis dataKey="name" type="category" width={80} tickLine={false} axisLine={false} />
-                            <Tooltip cursor={{fill: 'rgba(230, 240, 255, 0.5)'}} formatter={(value: number) => formatCurrency(value)} />
-                            <Bar dataKey="value" barSize={20} radius={[0, 10, 10, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
+                <div className="p-4 border-t border-gray-100">
+                    <button 
+                        onClick={() => {
+                            // Assuming logout is available via useAuth, let's import it or just redirect and clear storage
+                            localStorage.removeItem('mockUser');
+                            window.location.href = '/';
+                        }}
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-medium"
+                    >
+                        <LogOut size={20} />
+                        <span>Logout</span>
+                    </button>
                 </div>
-            </div>
+            </aside>
+
+            {/* Main Content */}
+            <main className="flex-1 w-full lg:w-[calc(100%-16rem)] min-w-0">
+                <div className="p-6 lg:p-8">
+                    <div className="flex items-center justify-between mb-8">
+                        <div className="flex items-center space-x-4">
+                            <button 
+                                onClick={() => setIsSidebarOpen(true)}
+                                className="lg:hidden p-2 text-gray-600 hover:text-primary hover:bg-primary-light rounded-lg transition-colors"
+                            >
+                                <Menu size={24} />
+                            </button>
+                            <h1 className="text-2xl lg:text-3xl font-bold text-secondary">
+                                {sidebarItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
+                            </h1>
+                        </div>
+                        <button 
+                            onClick={openApplyModal}
+                            className="hidden sm:flex px-6 py-2.5 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary-dark transition-all transform hover:-translate-y-0.5"
+                        >
+                            New Loan Request
+                        </button>
+                    </div>
+
+                    {activeTab === 'dashboard' ? (
+                        <>
+                            {/* Stats Grid */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 mb-8">
+                                <StatCard title="Total Requested" value={formatCurrency(totalRequested)} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01" /></svg>} color="bg-primary" />
+                                <StatCard title="Active Requests" value={activeRequests.toString()} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>} color="bg-yellow-500" />
+                                <StatCard title="Funded Loans" value={loanRequests.filter(r => r.status === LoanStatus.FUNDED).length.toString()} icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>} color="bg-green-500" />
+                                <StatCard title="Avg. Interest Rate" value="6.2%" icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>} color="bg-purple-500" />
+                            </div>
+
+                            {/* Main Content Area */}
+                            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
+                                <div className="xl:col-span-2">
+                                     <h2 className="text-xl font-bold text-secondary mb-4">My Loan Requests</h2>
+                                     <div className="space-y-4">
+                                        {loanRequests.map(req => (
+                                            <LoanRequestCard 
+                                                key={req.id} 
+                                                request={req}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="bg-white p-6 rounded-xl shadow-md h-fit">
+                                    <h2 className="text-xl font-bold text-secondary mb-4">Loan Status Breakdown</h2>
+                                     <ResponsiveContainer width="100%" height={250}>
+                                        <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                            <CartesianGrid strokeDasharray="3 3" />
+                                            <XAxis type="number" hide />
+                                            <YAxis dataKey="name" type="category" width={80} tickLine={false} axisLine={false} />
+                                            <Tooltip cursor={{fill: 'rgba(230, 240, 255, 0.5)'}} formatter={(value: number) => formatCurrency(value)} />
+                                            <Bar dataKey="value" barSize={20} radius={[0, 10, 10, 0]} />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="bg-white rounded-xl shadow-sm p-8 text-center border border-gray-100">
+                            <div className="w-16 h-16 bg-primary-light text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                {sidebarItems.find(item => item.id === activeTab)?.icon}
+                            </div>
+                            <h2 className="text-xl font-bold text-secondary mb-2">
+                                {sidebarItems.find(item => item.id === activeTab)?.label}
+                            </h2>
+                            <p className="text-gray-500">This section is currently under development.</p>
+                        </div>
+                    )}
+                </div>
+            </main>
         </div>
     );
 };

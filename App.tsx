@@ -183,7 +183,7 @@ const Header: React.FC = () => {
                                                 <p className="text-sm font-bold text-secondary truncate">{user.email}</p>
                                             </div>
                                             
-                                            <a href="/" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
+                                            <a href="/dashboard" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-primary-light hover:text-primary transition-colors">
                                                 <svg className="w-5 h-5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                                                 <span>Dashboard</span>
                                             </a>
@@ -379,16 +379,27 @@ const Footer: React.FC = () => {
 
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem('mockUser');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const login = useCallback((role: UserRole) => {
-    // Intentionally not setting the user to prevent opening the dashboard
-    // and to keep the "Login / Sign Up" button displayed.
-    // setUser(mockUser);
+    const mockUser: User = {
+        id: 'user-123',
+        name: 'Alex Doe',
+        email: 'alex@example.com',
+        role: role,
+        phone: '+91 9876543210'
+    };
+    setUser(mockUser);
+    localStorage.setItem('mockUser', JSON.stringify(mockUser));
   }, []);
 
   const logout = useCallback(() => {
     setUser(null);
+    localStorage.removeItem('mockUser');
+    window.location.href = '/';
   }, []);
 
   return (
@@ -490,16 +501,21 @@ function AppContent() {
         return <EMICalculatorScreen />;
     }
 
-    if (!user) {
-        return <LandingScreen />;
+    if (window.location.pathname === '/dashboard') {
+        if (!user) {
+            // Redirect to login if not authenticated
+            window.location.href = '/auth';
+            return null;
+        }
+        switch (user.role) {
+            case UserRole.BORROWER:
+                return <BorrowerDashboard />;
+            case UserRole.AGENT:
+                return <AgentDashboard />;
+            default:
+                return <LandingScreen />;
+        }
     }
 
-    switch (user.role) {
-        case UserRole.BORROWER:
-            return <BorrowerDashboard />;
-        case UserRole.AGENT:
-            return <AgentDashboard />;
-        default:
-            return <LandingScreen />;
-    }
+    return <LandingScreen />;
 }
