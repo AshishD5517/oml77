@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import type { LoanRequest, Offer } from '../types';
 import { LoanStatus } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useUI } from '../App';
+import { useUI, useAuth } from '../App';
 import { 
     LayoutDashboard, 
     UserCircle, 
@@ -28,17 +28,12 @@ const mockOffers: Offer[] = [
 
 
 const mockLoanRequests: LoanRequest[] = [
-    { id: 'loan-1', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 2500000, purpose: 'Home Loan', term: 60, interestRate: 5.5, status: LoanStatus.OFFERS_RECEIVED, dateRequested: '2023-10-26', creditScore: 720, offers: mockOffers },
-    { id: 'loan-2', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 500000, purpose: 'Mortgage Loan', term: 36, interestRate: 8.2, status: LoanStatus.APPROVED, dateRequested: '2023-09-15', creditScore: 720 },
-    { id: 'loan-3', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 5000000, purpose: 'Business Loan', term: 120, interestRate: 6.1, status: LoanStatus.FUNDED, dateRequested: '2023-05-01', creditScore: 720 },
-    { id: 'loan-4', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Vehicle Loan', term: 48, interestRate: 4.9, status: LoanStatus.REJECTED, dateRequested: '2023-04-20', creditScore: 720 },
+    { id: 'loan-1', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Home Loan', term: 60, interestRate: 5.5, status: LoanStatus.REJECTED, dateRequested: '2023-10-26', creditScore: 720, offers: mockOffers },
 ];
 
 {/* Updated fill color to use new primary green #16a34a */}
 const chartData = [
-  { name: 'Offers', value: 2500000, fill: '#facc15' },
-  { name: 'Approved', value: 500000, fill: '#82ca9d' },
-  { name: 'Funded', value: 5000000, fill: '#16a34a' },
+  { name: 'Offers', value: 1000000, fill: '#facc15' },
 ];
 
 const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
@@ -68,16 +63,12 @@ const LoanStatusBadge: React.FC<{ status: LoanStatus }> = ({ status }) => {
 
 const LoanRequestCard: React.FC<{ request: LoanRequest }> = ({ request }) => (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden transition-shadow duration-300 shadow-md">
-        <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+        <div className="p-5 flex justify-between items-center">
             <div>
                 <p className="text-sm text-gray-500">Amount</p>
                 <p className="font-bold text-lg text-secondary">{formatCurrency(request.amount)}</p>
             </div>
             <div>
-                <p className="text-sm text-gray-500">Purpose</p>
-                <p className="font-medium text-gray-800">{request.purpose}</p>
-            </div>
-            <div className="sm:text-right">
                  <LoanStatusBadge status={request.status} />
             </div>
         </div>
@@ -144,6 +135,7 @@ const BorrowerDashboardSkeleton: React.FC = () => (
 );
 
 const BorrowerDashboard: React.FC = () => {
+    const { user } = useAuth();
     const [loanRequests, setLoanRequests] = useState<LoanRequest[]>(mockLoanRequests);
     const { openApplyModal } = useUI();
     const [isLoading, setIsLoading] = useState(false);
@@ -251,9 +243,11 @@ const BorrowerDashboard: React.FC = () => {
                             >
                                 <Menu size={24} />
                             </button>
-                            <h1 className="text-2xl lg:text-3xl font-bold text-secondary">
-                                {sidebarItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
-                            </h1>
+                            <div>
+                                <h1 className="text-2xl lg:text-3xl font-bold text-secondary">
+                                    {sidebarItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
+                                </h1>
+                            </div>
                         </div>
                         <button 
                             onClick={openApplyModal}
