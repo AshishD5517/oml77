@@ -187,10 +187,10 @@ const BorrowerDashboard: React.FC = () => {
                 w-64 bg-white shadow-xl lg:shadow-md z-50 lg:z-0
                 transform transition-transform duration-300 ease-in-out
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-                flex flex-col
+                flex flex-col font-poppins
             `}>
                 <div className="p-4 flex justify-between items-center lg:hidden border-b border-gray-100">
-                    <span className="font-bold text-secondary text-lg">Menu</span>
+                    <span className="font-bold text-secondary text-lg tracking-wide">Menu</span>
                     <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-gray-500 hover:text-primary hover:bg-primary-light rounded-lg">
                         <X size={20} />
                     </button>
@@ -210,7 +210,7 @@ const BorrowerDashboard: React.FC = () => {
                                     if (window.innerWidth < 1024) setIsSidebarOpen(false);
                                 }}
                                 className={`
-                                    w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200
+                                    w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 text-sm tracking-wide
                                     ${activeTab === item.id && !item.action
                                         ? 'bg-primary text-white shadow-md font-semibold' 
                                         : 'text-gray-600 hover:bg-primary-light hover:text-primary font-medium'
@@ -231,7 +231,7 @@ const BorrowerDashboard: React.FC = () => {
                             localStorage.removeItem('mockUser');
                             window.location.href = '/';
                         }}
-                        className="w-full flex items-center space-x-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-medium"
+                        className="w-full flex items-center space-x-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-medium text-sm tracking-wide"
                     >
                         <LogOut size={20} />
                         <span>Logout</span>
