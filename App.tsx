@@ -106,9 +106,19 @@ const Header: React.FC = () => {
             <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
                  <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
-                            <LogoIcon className={isDashboardPage ? "h-10 md:h-12" : "h-16 md:h-20"} />
-                        </a>
+                        <div className="flex items-center">
+                            <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
+                                <LogoIcon className={isDashboardPage ? "h-10 md:h-12" : "h-16 md:h-20"} />
+                            </a>
+                            {isDashboardPage && (
+                                <div className="hidden md:block ml-2 lg:ml-4">
+                                    <h1 className="text-lg lg:text-xl font-bold text-secondary">
+                                        Hi {user?.name || 'Alex Doe'},
+                                    </h1>
+                                    <p className="text-xs lg:text-sm text-gray-600">here’s a summary of your loan applications.</p>
+                                </div>
+                            )}
+                        </div>
                         
                         {!isDashboardPage ? (
                         <nav className="hidden lg:flex items-center space-x-6">
@@ -160,14 +170,7 @@ const Header: React.FC = () => {
 
                             <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
                         </nav>
-                        ) : (
-                            <div className="hidden md:flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2">
-                                <h1 className="text-xl font-bold text-secondary">
-                                    Hi {user?.name || 'Alex Doe'}
-                                </h1>
-                                <p className="text-sm text-gray-600">welcome back! Here's your financial overview</p>
-                            </div>
-                        )}
+                        ) : null}
 
                         <div className="flex items-center space-x-4">
                             {user ? (

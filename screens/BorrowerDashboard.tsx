@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import type { LoanRequest, Offer } from '../types';
 import { LoanStatus } from '../types';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useUI, useAuth } from '../App';
 import { 
     LayoutDashboard, 
@@ -29,11 +28,6 @@ const mockOffers: Offer[] = [
 
 const mockLoanRequests: LoanRequest[] = [
     { id: 'loan-1', borrowerId: 'user-123', borrowerName: 'Alex Doe', amount: 1000000, purpose: 'Home Loan', term: 60, interestRate: 5.5, status: LoanStatus.REJECTED, dateRequested: '2023-10-26', creditScore: 720, offers: mockOffers },
-];
-
-{/* Updated fill color to use new primary green #16a34a */}
-const chartData = [
-  { name: 'Offers', value: 1000000, fill: '#facc15' },
 ];
 
 const formatCurrency = (value: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value);
@@ -268,8 +262,8 @@ const BorrowerDashboard: React.FC = () => {
                             </div>
 
                             {/* Main Content Area */}
-                            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
-                                <div className="xl:col-span-2">
+                            <div className="w-full">
+                                <div>
                                      <h2 className="text-xl font-bold text-secondary mb-4">My Loan Requests</h2>
                                      <div className="space-y-4">
                                         {loanRequests.map(req => (
@@ -279,19 +273,6 @@ const BorrowerDashboard: React.FC = () => {
                                             />
                                         ))}
                                     </div>
-                                </div>
-
-                                <div className="bg-white p-6 rounded-xl shadow-md h-fit">
-                                    <h2 className="text-xl font-bold text-secondary mb-4">Loan Status Breakdown</h2>
-                                     <ResponsiveContainer width="100%" height={250}>
-                                        <BarChart data={chartData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis type="number" hide />
-                                            <YAxis dataKey="name" type="category" width={80} tickLine={false} axisLine={false} />
-                                            <Tooltip cursor={{fill: 'rgba(230, 240, 255, 0.5)'}} formatter={(value: number) => formatCurrency(value)} />
-                                            <Bar dataKey="value" barSize={20} radius={[0, 10, 10, 0]} />
-                                        </BarChart>
-                                    </ResponsiveContainer>
                                 </div>
                             </div>
                         </>
