@@ -97,18 +97,20 @@ const Header: React.FC = () => {
     const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-lg";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
+    const isDashboardPage = window.location.pathname === '/dashboard';
 
     if (isComingSoonPage || isAuthPage) return null;
 
     return (
         <>
             <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
-                 <div className="container mx-auto px-4 md:px-6">
+                 <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center">
-                        <a href={`${linkPrefix}#home`} className="flex items-center -ml-6 md:-ml-10">
-                            <LogoIcon className="h-16 md:h-20" />
+                        <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
+                            <LogoIcon className={isDashboardPage ? "h-10 md:h-12" : "h-16 md:h-20"} />
                         </a>
                         
+                        {!isDashboardPage && (
                         <nav className="hidden lg:flex items-center space-x-6">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
@@ -158,6 +160,7 @@ const Header: React.FC = () => {
 
                             <a href={user ? '/contact-us' : (isLandingPage ? '#contact-us' : '/#contact-us')} className={navLinkClasses}>Contact Us</a>
                         </nav>
+                        )}
 
                         <div className="flex items-center space-x-4">
                             {user ? (
@@ -444,6 +447,7 @@ const UIProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 export default function App() {
     const isAuthPage = window.location.pathname === '/auth';
+    const isDashboardPage = window.location.pathname === '/dashboard';
     return (
         <AuthProvider>
             <UIProvider>
@@ -452,7 +456,7 @@ export default function App() {
                     <main className="flex-grow">
                         <AppContent />
                     </main>
-                    <Footer />
+                    {!isDashboardPage && <Footer />}
                     {!isAuthPage && <Chatbot />}
                 </div>
             </UIProvider>
