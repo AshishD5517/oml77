@@ -243,12 +243,6 @@ const BorrowerDashboard: React.FC = () => {
                                 </h1>
                             </div>
                         </div>
-                        <button 
-                            onClick={openApplyModal}
-                            className="hidden sm:flex px-6 py-2.5 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary-dark transition-all transform hover:-translate-y-0.5"
-                        >
-                            New Loan Request
-                        </button>
                     </div>
 
                     {activeTab === 'dashboard' ? (
