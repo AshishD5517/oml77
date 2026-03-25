@@ -94,7 +94,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-lg";
+    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-sm";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
     const isDashboardPage = window.location.pathname === '/dashboard';
@@ -103,12 +103,12 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
+            <header className="relative z-50 py-2 bg-white shadow-sm font-poppins">
                  <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
                             <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
-                                <LogoIcon className={isDashboardPage ? "h-10 md:h-12" : "h-16 md:h-20"} />
+                                <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-12 md:h-14"} />
                             </a>
                             {isDashboardPage && (
                                 <div className="hidden md:block ml-2 lg:ml-4">
@@ -121,7 +121,7 @@ const Header: React.FC = () => {
                         </div>
                         
                         {!isDashboardPage ? (
-                        <nav className="hidden lg:flex items-center space-x-6">
+                        <nav className="hidden lg:flex items-center space-x-4">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
@@ -179,7 +179,7 @@ const Header: React.FC = () => {
                                         onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                                         className="flex items-center space-x-2 bg-white p-1 pr-3 rounded-full shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                                     >
-                                        <img src={user.avatarUrl} alt={user.name} className="h-8 w-8 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
+                                        <img src={user.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`} alt={user.name} className="h-8 w-8 rounded-full border-2 border-primary" referrerPolicy="no-referrer" />
                                         <div className="hidden sm:flex flex-col items-start leading-tight">
                                             <span className="text-xs font-bold text-secondary">{user.name}</span>
                                             <span className="text-[9px] text-primary font-semibold uppercase tracking-wider">{user.role}</span>
@@ -232,7 +232,7 @@ const Header: React.FC = () => {
                             ) : (
                                 <div className="relative group" ref={headerDropdownRef}>
                                     <button 
-                                        className="px-5 py-2 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
+                                        className="px-4 py-1.5 text-sm font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
                                     >
                                         Login / Sign Up
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1.5 transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -403,7 +403,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         name: 'Alex Doe',
         email: 'alex@example.com',
         role: role,
-        phone: '+91 9876543210'
+        phone: '+91 9876543210',
+        avatarUrl: `https://ui-avatars.com/api/?name=${encodeURIComponent('Alex Doe')}&background=random`
     };
     setUser(mockUser);
     localStorage.setItem('mockUser', JSON.stringify(mockUser));

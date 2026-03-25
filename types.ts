@@ -9,7 +9,8 @@ export interface User {
   name: string;
   email: string;
   role: UserRole;
-  avatarUrl: string;
+  avatarUrl?: string;
+  phone?: string;
 }
 
 export enum LoanStatus {
