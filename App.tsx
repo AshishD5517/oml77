@@ -105,20 +105,21 @@ const Header: React.FC = () => {
         <>
             <header className="relative z-50 py-2 bg-white shadow-sm font-poppins">
                  <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center relative">
                         <div className="flex items-center">
                             <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
                                 <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-12 md:h-14"} />
                             </a>
-                            {isDashboardPage && (
-                                <div className="hidden md:block ml-2 lg:ml-4">
-                                    <h1 className="text-lg lg:text-xl font-bold text-secondary">
-                                        Hi {user?.name || 'Alex Doe'},
-                                    </h1>
-                                    <p className="text-xs lg:text-sm text-gray-600">here’s a summary of your loan applications.</p>
-                                </div>
-                            )}
                         </div>
+                        
+                        {isDashboardPage && (
+                            <div className="hidden md:flex flex-col items-center absolute left-1/2 transform -translate-x-1/2">
+                                <h1 className="text-lg lg:text-xl font-bold text-secondary text-center">
+                                    Hi {user?.name || 'Alex Doe'},
+                                </h1>
+                                <p className="text-xs lg:text-sm text-gray-600 text-center">here’s a summary of your loan applications.</p>
+                            </div>
+                        )}
                         
                         {!isDashboardPage ? (
                         <nav className="hidden lg:flex items-center space-x-4">

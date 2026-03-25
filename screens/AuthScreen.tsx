@@ -465,7 +465,7 @@ const AuthScreen: React.FC = () => {
                 disabled={(isRegister && !isVerified) || (!isRegister && loginMethod === 'otp' && !isOtpSent)}
                 className="w-full bg-primary text-white py-3.5 text-lg rounded-xl font-semibold hover:bg-primary-dark transition-all shadow-md hover:shadow-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:shadow-none"
               >
-                {isRegister ? 'Create Account' : 'Sign In'}
+                {isRegister ? 'Create Account' : 'Log In'}
               </button>
           </div>
           
