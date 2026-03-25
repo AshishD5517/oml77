@@ -114,14 +114,14 @@ const SearchableDropdown: React.FC<{
 
     return (
         <div className="relative" ref={dropdownRef}>
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <LocationIcon />
             </div>
             <button
                 type="button"
                 onClick={() => !disabled && setIsOpen(!isOpen)}
                 disabled={disabled}
-                className="w-full text-left pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full text-left pl-12 pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all disabled:bg-gray-100 disabled:cursor-not-allowed"
             >
                 {value ? (
                     <span className="text-black">{value}</span>
@@ -303,44 +303,43 @@ const AuthScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl flex overflow-hidden">
-        {/* Left side image */}
-        <div className="hidden md:block md:w-1/2 relative bg-primary-light">
-            <img 
-                src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=1000&auto=format&fit=crop" 
-                alt="Login" 
-                className="w-full h-full object-cover" 
-                referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent flex flex-col justify-end p-8">
-                <div className="text-white animate-fade-in-up">
-                    <h3 className="text-3xl font-bold mb-3">Welcome to Offer me loan</h3>
-                    <p className="text-sm opacity-90 leading-relaxed">Your trusted partner for quick, easy, and transparent loans. Join thousands of satisfied customers today.</p>
-                </div>
-            </div>
-        </div>
-
-        {/* Right side form */}
-        <div className="w-full md:w-1/2 p-8 lg:p-12 relative">
-          <a href="/" className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+    <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white w-full max-w-6xl flex flex-col md:flex-row overflow-hidden">
+        
+        {/* Left side form */}
+        <div className="w-full md:w-1/2 p-8 lg:p-16 relative flex flex-col justify-center">
+          <a href="/" className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </a>
-          <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-secondary">{isRegister ? 'Create Account' : 'Welcome Back'}</h2>
+          
+          <div className="mb-8">
+              <div className="flex items-center mb-6">
+                  <img 
+                      src="https://i.postimg.cc/d0nzmvyc/Gemini-Generated-Image-xd7ycnxd7ycnxd7y-removebg-preview.png" 
+                      alt="Offer Me Loan Logo" 
+                      className="h-10 object-contain"
+                      referrerPolicy="no-referrer" 
+                  />
+              </div>
+              <h2 className="text-3xl font-bold text-secondary mb-2">
+                  {isRegister ? `Create ${selectedRole === UserRole.BORROWER ? 'Borrower' : 'Agent'} Account` : `Login to Your Account`}
+              </h2>
+              <p className="text-gray-500 text-sm">
+                  {isRegister ? 'Join us to get started with your loan journey.' : 'Access your loan offers and manage your applications'}
+              </p>
           </div>
           
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="space-y-5">
           {isRegister ? (
             <>
-                <div className="relative mb-4">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><PanIcon /></div>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><PanIcon /></div>
                     <input
                         type="text"
                         placeholder="PAN Card Number"
-                        className="w-full pl-10 pr-24 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                        className="w-full pl-12 pr-24 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                         value={pan}
                         onChange={(e) => {
                             setPan(e.target.value.toUpperCase());
@@ -355,28 +354,28 @@ const AuthScreen: React.FC = () => {
                         type="button"
                         onClick={handleVerifyPan}
                         disabled={isVerifying || !pan}
-                        className="absolute inset-y-0 right-0 mr-1 my-1 px-3 text-sm font-semibold rounded-lg bg-secondary text-white hover:bg-opacity-90 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center"
+                        className="absolute inset-y-0 right-0 mr-1.5 my-1.5 px-4 text-sm font-semibold rounded-lg bg-secondary text-white hover:bg-opacity-90 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed flex items-center transition-colors"
                     >
                       {isVerifying ? (
                         <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                       ) : 'Verify'}
                     </button>
                 </div>
-                {verificationError && <p className="text-xs text-red-500 -mt-3 mb-3">{verificationError}</p>}
-                {isVerified && <p className="text-xs text-primary -mt-3 mb-3">✓ PAN Verified Successfully!</p>}
+                {verificationError && <p className="text-xs text-red-500 -mt-3 ml-1">{verificationError}</p>}
+                {isVerified && <p className="text-xs text-green-600 font-medium -mt-3 ml-1">✓ PAN Verified Successfully!</p>}
                 
-                <div className="relative mb-4">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><UserIcon /></div>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><UserIcon /></div>
                     <input
                         type="text"
                         placeholder="Full Name (Auto-filled)"
                         readOnly
                         value={fullName}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
+                        className="w-full pl-12 pr-4 py-3.5 border border-gray-200 rounded-xl bg-gray-100 text-gray-600 cursor-not-allowed"
                     />
                 </div>
                 
-                 <div className="relative mb-4">
+                 <div className="relative">
                     <SearchableDropdown
                         name="location"
                         options={locations}
@@ -386,44 +385,51 @@ const AuthScreen: React.FC = () => {
                         disabled={!isVerified}
                     />
                 </div>
-                <div className="relative mb-4">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><UserIcon /></div>
-                    <input type="email" placeholder="Email Address" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    </div>
+                    <input type="email" placeholder="Email Address" className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
-                <div className="relative mb-6">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LockIcon /></div>
-                    <input type="password" placeholder="Password" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><LockIcon /></div>
+                    <input type="password" placeholder="Password" className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
             </>
           ) : (
             <>
                 {loginMethod === 'email' ? (
                     <>
-                        <div className="relative mb-4">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><UserIcon /></div>
-                            <input type="email" placeholder="Email Address" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            </div>
+                            <input type="text" placeholder="Email / Mobile Number" className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={email} onChange={(e) => setEmail(e.target.value)} required />
                         </div>
-                        <div className="relative mb-6">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LockIcon /></div>
-                            <input type="password" placeholder="Password" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><LockIcon /></div>
+                            <input type="password" placeholder="Password" className="w-full pl-12 pr-32 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                            <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+                                <a href="#" className="text-sm text-primary font-medium hover:text-primary-dark hover:underline transition-colors">Forgot Password?</a>
+                            </div>
                         </div>
                     </>
                 ) : (
                     <>
-                        <div className="relative mb-4">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><PhoneIcon /></div>
-                            <input type="tel" placeholder="Mobile Number" className="w-full pl-10 pr-28 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={mobile} onChange={(e) => {setMobile(e.target.value); setOtpError('');}} maxLength={10} disabled={isOtpSent} />
-                            <button type="button" onClick={handleSendOtp} disabled={isSendingOtp || isOtpSent || !mobile} className="absolute inset-y-0 right-0 mr-1 my-1 px-3 text-sm font-semibold rounded-lg bg-secondary text-white hover:bg-opacity-90 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center w-24 justify-center">
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><PhoneIcon /></div>
+                            <input type="tel" placeholder="Mobile Number" className="w-full pl-12 pr-28 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={mobile} onChange={(e) => {setMobile(e.target.value); setOtpError('');}} maxLength={10} disabled={isOtpSent} />
+                            <button type="button" onClick={handleSendOtp} disabled={isSendingOtp || isOtpSent || !mobile} className="absolute inset-y-0 right-0 mr-1.5 my-1.5 px-4 text-sm font-semibold rounded-lg bg-secondary text-white hover:bg-opacity-90 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed flex items-center w-28 justify-center transition-colors">
                                 {isSendingOtp ? (<svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>) : (isOtpSent ? 'OTP Sent' : 'Send OTP')}
                             </button>
                         </div>
-                        {otpError && <p className="text-xs text-red-500 -mt-3 mb-3">{otpError}</p>}
-                        {mockOtp && !otpError && <p className="text-xs text-blue-600 -mt-3 mb-3">For demo purposes, your OTP is: <span className="font-bold">{mockOtp}</span></p>}
+                        {otpError && <p className="text-xs text-red-500 -mt-3 ml-1">{otpError}</p>}
+                        {mockOtp && !otpError && <p className="text-xs text-blue-600 -mt-3 ml-1">For demo purposes, your OTP is: <span className="font-bold">{mockOtp}</span></p>}
 
                         {isOtpSent && (
-                            <div className="relative mb-6">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><LockIcon /></div>
-                                <input type="text" placeholder="Enter 6-digit OTP" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition" value={otp} onChange={(e) => {setOtp(e.target.value); setOtpError('');}} maxLength={6} required />
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><LockIcon /></div>
+                                <input type="text" placeholder="Enter 6-digit OTP" className="w-full pl-12 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all" value={otp} onChange={(e) => {setOtp(e.target.value); setOtpError('');}} maxLength={6} required />
                             </div>
                         )}
                     </>
@@ -432,20 +438,20 @@ const AuthScreen: React.FC = () => {
           )}
 
           {isRegister && (
-            <div className="mb-6">
+            <div className="pt-3">
               <p className="text-sm font-semibold text-gray-700 mb-3">I am a...</p>
               <div className="flex space-x-4">
                 <button
                   type="button"
                   onClick={() => setSelectedRole(UserRole.BORROWER)}
-                  className={`w-full py-3 text-sm font-semibold rounded-lg border-2 transition ${selectedRole === UserRole.BORROWER ? 'bg-primary-light border-primary text-primary' : 'bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-400'}`}
+                  className={`w-full py-3 text-sm font-semibold rounded-xl border-2 transition-all duration-200 ${selectedRole === UserRole.BORROWER ? 'bg-primary/10 border-primary text-primary shadow-sm' : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-100'}`}
                 >
                   Borrower
                 </button>
                 <button
                   type="button"
                   onClick={() => setSelectedRole(UserRole.AGENT)}
-                  className={`w-full py-3 text-sm font-semibold rounded-lg border-2 transition ${selectedRole === UserRole.AGENT ? 'bg-primary-light border-primary text-primary' : 'bg-gray-100 border-gray-200 text-gray-600 hover:border-gray-400'}`}
+                  className={`w-full py-3 text-sm font-semibold rounded-xl border-2 transition-all duration-200 ${selectedRole === UserRole.AGENT ? 'bg-primary/10 border-primary text-primary shadow-sm' : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-100'}`}
                 >
                   Loan Agent
                 </button>
@@ -453,41 +459,76 @@ const AuthScreen: React.FC = () => {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={(isRegister && !isVerified) || (!isRegister && loginMethod === 'otp' && !isOtpSent)}
-            className="w-full bg-primary text-white py-2.5 text-sm rounded-lg font-semibold hover:bg-primary-dark transition-transform transform hover:scale-105 shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
-          >
-            {isRegister ? 'Sign Up' : 'Login'}
-          </button>
+          <div className="pt-5">
+              <button
+                type="submit"
+                disabled={(isRegister && !isVerified) || (!isRegister && loginMethod === 'otp' && !isOtpSent)}
+                className="w-full bg-primary text-white py-3.5 text-lg rounded-xl font-semibold hover:bg-primary-dark transition-all shadow-md hover:shadow-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:shadow-none"
+              >
+                {isRegister ? 'Create Account' : 'Sign In'}
+              </button>
+          </div>
           
           {!isRegister && (
-             <p className="text-center text-sm text-gray-500 mt-4">
-                or{' '}
-                <button
-                type="button"
-                onClick={() => {
-                    setLoginMethod(prev => prev === 'email' ? 'otp' : 'email');
-                    resetOtpFields();
-                }}
-                className="font-semibold text-primary hover:underline"
-                >
-                {loginMethod === 'email' ? 'Login with Mobile OTP' : 'Login with Email'}
-                </button>
-            </p>
+             <div className="relative flex py-5 items-center">
+                <div className="flex-grow border-t border-gray-200"></div>
+                <span className="flex-shrink-0 mx-4 text-gray-400 text-sm">
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setLoginMethod(prev => prev === 'email' ? 'otp' : 'email');
+                            resetOtpFields();
+                        }}
+                        className="font-semibold text-primary hover:underline"
+                    >
+                        {loginMethod === 'email' ? 'Login with OTP' : 'Login with Email'}
+                    </button>
+                </span>
+                <div className="flex-grow border-t border-gray-200"></div>
+            </div>
           )}
 
-          <p className="text-center text-sm text-gray-500 mt-6">
-            {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
-            <button
-              type="button"
-              onClick={() => setIsRegister(!isRegister)}
-              className="font-semibold text-primary hover:underline"
-            >
-              {isRegister ? 'Login' : 'Sign Up'}
-            </button>
-          </p>
+          <div className="flex items-center justify-start text-sm text-gray-500 mt-2">
+            <LockIcon />
+            <span className="ml-2">
+                {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
+                <button
+                type="button"
+                onClick={() => setIsRegister(!isRegister)}
+                className="font-semibold text-primary hover:underline"
+                >
+                {isRegister ? 'Login' : 'Sign Up'}
+                </button>
+            </span>
+          </div>
         </form>
+        </div>
+
+        {/* Right side image */}
+        <div className="hidden md:flex md:w-1/2 relative items-center justify-center p-12 bg-blue-50/50">
+            <div className="max-w-md text-center flex flex-col items-center">
+                <img 
+                    src={selectedRole === UserRole.BORROWER 
+                        ? "https://i.postimg.cc/zXvXJg07/loan-approved-illustration.png" 
+                        : "https://illustrations.popsy.co/blue/business-deal.svg"}
+                    alt={selectedRole === UserRole.BORROWER ? "Borrower Illustration" : "Agent Illustration"}
+                    className="w-full max-w-md object-contain mb-8 drop-shadow-2xl" 
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                        e.currentTarget.src = "https://i.postimg.cc/zXvXJg07/loan-approved-illustration.png";
+                    }}
+                />
+                <h3 className="text-2xl font-bold text-secondary mb-4">
+                    {selectedRole === UserRole.BORROWER 
+                        ? "Unlock Your Financial Freedom" 
+                        : "Grow Your Lending Business"}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                    {selectedRole === UserRole.BORROWER 
+                        ? "Get access to the best loan offers tailored just for you. Quick approval and a transparent process." 
+                        : "Connect with verified borrowers, manage your portfolio, and expand your reach with our platform."}
+                </p>
+            </div>
         </div>
       </div>
     </div>
