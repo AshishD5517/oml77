@@ -103,12 +103,12 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-2 bg-white shadow-sm font-poppins">
+            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
                  <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center relative">
                         <div className="flex items-center">
                             <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
-                                <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-12 md:h-14"} />
+                                <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-14 md:h-16"} />
                             </a>
                         </div>
                         
