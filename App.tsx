@@ -94,7 +94,7 @@ const Header: React.FC = () => {
 
     const isLandingPage = !user && window.location.pathname === '/';
     const linkPrefix = (user || window.location.pathname !== '/') ? '/' : '';
-    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-sm";
+    const navLinkClasses = "text-gray-600 hover:text-primary transition-colors font-medium text-base";
     const isComingSoonPage = window.location.pathname === '/coming-soon';
     const isAuthPage = window.location.pathname === '/auth';
     const isDashboardPage = window.location.pathname === '/dashboard';
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className="relative z-50 py-3 md:py-4 bg-white shadow-sm font-poppins">
+            <header className="relative z-50 py-4 md:py-6 bg-white shadow-sm font-poppins">
                  <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center relative">
                         <div className="flex items-center">
@@ -122,7 +122,7 @@ const Header: React.FC = () => {
                         )}
                         
                         {!isDashboardPage ? (
-                        <nav className="hidden lg:flex items-center space-x-4">
+                        <nav className="hidden lg:flex items-center space-x-6">
                             <a href={`${linkPrefix}#home`} className={navLinkClasses}>Home</a>
                             
                             <div className="relative group">
@@ -234,7 +234,7 @@ const Header: React.FC = () => {
                                 <div className="relative" ref={headerDropdownRef}>
                                     <button 
                                         onClick={() => setIsHeaderDropdownOpen(!isHeaderDropdownOpen)}
-                                        className="px-4 py-1.5 text-sm font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
+                                        className="px-6 py-2 text-base font-bold text-white bg-primary rounded-full hover:bg-primary-dark transition-colors duration-300 shadow-sm flex items-center"
                                     >
                                         Login / Sign Up
                                         <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 ml-1.5 transition-transform duration-300 ${isHeaderDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
