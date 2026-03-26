@@ -19,6 +19,7 @@ import {
     X,
     Briefcase
 } from 'lucide-react';
+import UpdateProfile from '../components/UpdateProfile';
 
 const mockOffers: Offer[] = [
     { id: 'offer-1', agentId: 'agent-456', agentName: 'Jane Smith', agentAvatarUrl: 'https://i.pravatar.cc/150?u=jane', loanRequestId: 'loan-1', offeredRate: 5.2, processingFee: 5000, message: "Hi Alex, I can offer a competitive rate for your home improvement project. My processing is fast and transparent.", dateOffered: '2023-10-27' },
@@ -135,6 +136,14 @@ const BorrowerDashboard: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [activeTab, setActiveTab] = useState('dashboard');
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get('tab');
+        if (tab) {
+            setActiveTab(tab);
+        }
+    }, []);
 
     const totalLoans = loanRequests.length;
     const activeLoans = loanRequests.filter(req => req.status === LoanStatus.APPROVED || req.status === LoanStatus.OFFERS_RECEIVED).length;
@@ -270,6 +279,8 @@ const BorrowerDashboard: React.FC = () => {
                                 </div>
                             </div>
                         </>
+                    ) : activeTab === 'profile' ? (
+                        <UpdateProfile />
                     ) : (
                         <div className="bg-white rounded-xl shadow-sm p-8 text-center border border-gray-100">
                             <div className="w-16 h-16 bg-primary-light text-primary rounded-full flex items-center justify-center mx-auto mb-4">
