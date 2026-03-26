@@ -104,14 +104,16 @@ const Header: React.FC = () => {
     return (
         <>
             <header className="relative z-50 py-4 md:py-6 bg-white shadow-sm font-poppins">
-                 <div className={isDashboardPage ? "w-full px-2 md:px-4" : "container mx-auto px-4 md:px-6"}>
+                 <div className={isDashboardPage ? "w-full pl-0 pr-4 md:pr-6" : "container mx-auto px-4 md:px-6"}>
                     <div className="flex justify-between items-center relative">
                         <div className="flex items-center">
-                            <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
-                                <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-14 md:h-16"} />
-                            </a>
+                            <div className={isDashboardPage ? "lg:w-64 flex-shrink-0 pl-4 md:pl-6" : ""}>
+                                <a href={`${linkPrefix}#home`} className={`flex items-center ${isDashboardPage ? '-ml-2 md:-ml-4' : '-ml-6 md:-ml-10'}`}>
+                                    <LogoIcon className={isDashboardPage ? "h-8 md:h-10" : "h-14 md:h-16"} />
+                                </a>
+                            </div>
                             {isDashboardPage && (
-                                <div className="hidden md:block ml-2 lg:ml-4">
+                                <div className="hidden md:block ml-2 lg:ml-0">
                                     <h1 className="text-lg lg:text-xl font-bold text-secondary">
                                         Hi {user?.name || 'Alex Doe'},
                                     </h1>
