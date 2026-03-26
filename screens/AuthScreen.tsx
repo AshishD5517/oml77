@@ -303,30 +303,37 @@ const AuthScreen: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="bg-white w-full max-w-6xl flex flex-col md:flex-row overflow-hidden">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px] animate-pulse-slow"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-accent/10 blur-[120px] animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[20%] right-[10%] w-[20%] h-[20%] rounded-full bg-primary/5 blur-[80px]"></div>
+      </div>
+
+      <div className="bg-white w-full max-w-xl shadow-2xl rounded-3xl overflow-hidden border border-gray-100 relative z-10">
         
-        {/* Left side form */}
-        <div className="w-full md:w-1/2 p-8 lg:p-16 relative flex flex-col justify-center">
-          <a href="/" className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition-colors">
+        {/* Centered form container */}
+        <div className="w-full p-8 lg:p-12 relative flex flex-col justify-center">
+          <a href="/" className="absolute top-6 left-6 text-gray-400 hover:text-gray-600 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </a>
           
-          <div className="mb-8">
-              <div className="flex items-center mb-6">
+          <div className="mb-8 text-center">
+              <div className="flex justify-center mb-6">
                   <img 
                       src="https://i.postimg.cc/d0nzmvyc/Gemini-Generated-Image-xd7ycnxd7ycnxd7y-removebg-preview.png" 
                       alt="Offer Me Loan Logo" 
-                      className="h-10 object-contain"
+                      className="h-12 object-contain"
                       referrerPolicy="no-referrer" 
                   />
               </div>
               <h2 className="text-3xl font-bold text-secondary mb-2">
                   {isRegister ? `Create ${selectedRole === UserRole.BORROWER ? 'Borrower' : 'Agent'} Account` : `Login to Your Account`}
               </h2>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-sm max-w-sm mx-auto">
                   {isRegister ? 'Join us to get started with your loan journey.' : 'Access your loan offers and manage your applications'}
               </p>
           </div>
@@ -375,7 +382,7 @@ const AuthScreen: React.FC = () => {
                     />
                 </div>
                 
-                 <div className="relative">
+                <div className="relative">
                     <SearchableDropdown
                         name="location"
                         options={locations}
@@ -488,7 +495,7 @@ const AuthScreen: React.FC = () => {
             </div>
           )}
 
-          <div className="flex items-center justify-start text-sm text-gray-500 mt-2">
+          <div className="flex items-center justify-center text-sm text-gray-500 mt-2">
             <LockIcon />
             <span className="ml-2">
                 {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
@@ -502,33 +509,6 @@ const AuthScreen: React.FC = () => {
             </span>
           </div>
         </form>
-        </div>
-
-        {/* Right side image */}
-        <div className="hidden md:flex md:w-1/2 relative items-center justify-center p-12 bg-blue-50/50">
-            <div className="max-w-md text-center flex flex-col items-center">
-                <img 
-                    src={selectedRole === UserRole.BORROWER 
-                        ? "https://i.postimg.cc/zXvXJg07/loan-approved-illustration.png" 
-                        : "https://illustrations.popsy.co/blue/business-deal.svg"}
-                    alt={selectedRole === UserRole.BORROWER ? "Borrower Illustration" : "Agent Illustration"}
-                    className="w-full max-w-md object-contain mb-8 drop-shadow-2xl" 
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                        e.currentTarget.src = "https://i.postimg.cc/zXvXJg07/loan-approved-illustration.png";
-                    }}
-                />
-                <h3 className="text-2xl font-bold text-secondary mb-4">
-                    {selectedRole === UserRole.BORROWER 
-                        ? "Unlock Your Financial Freedom" 
-                        : "Grow Your Lending Business"}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                    {selectedRole === UserRole.BORROWER 
-                        ? "Get access to the best loan offers tailored just for you. Quick approval and a transparent process." 
-                        : "Connect with verified borrowers, manage your portfolio, and expand your reach with our platform."}
-                </p>
-            </div>
         </div>
       </div>
     </div>
