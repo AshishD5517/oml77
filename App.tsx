@@ -297,7 +297,7 @@ const Footer: React.FC = () => {
     if (isComingSoonPage || isAuthPage) return null;
 
     return (
-        <footer className="relative bg-secondary text-white pt-16 font-poppins">
+        <footer className="relative bg-secondary text-white pt-16">
              <div
                 className="absolute top-0 left-0 w-full overflow-hidden leading-none"
                 style={{ transform: 'translateY(calc(-100% + 1px))', height: '60px' }}

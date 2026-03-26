@@ -183,7 +183,7 @@ const BorrowerDashboard: React.FC = () => {
                 w-64 bg-white shadow-xl lg:shadow-md z-50 lg:z-0
                 transform transition-transform duration-300 ease-in-out
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-                flex flex-col font-poppins
+                flex flex-col
             `}>
                 <div className="p-4 flex justify-between items-center lg:hidden border-b border-gray-100">
                     <span className="font-bold text-secondary text-lg tracking-wide">Menu</span>

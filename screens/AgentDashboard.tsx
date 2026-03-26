@@ -202,7 +202,7 @@ const AgentDashboard: React.FC = () => {
     }
     
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col font-poppins">
+        <div className="min-h-screen bg-gray-50 flex flex-col">
             {/* Mobile Sidebar Overlay */}
             {isSidebarOpen && (
                 <div 
